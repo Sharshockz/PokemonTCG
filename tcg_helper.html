@@ -33,10 +33,11 @@
     background: var(--surface); box-shadow: 0 0 60px rgba(0,0,0,.6);
     animation: appin .5s cubic-bezier(.2,.8,.2,1) both;
   }
-  @keyframes appin { from { opacity: 0; transform: translateY(10px); } }
+  @keyframes appin { from { opacity: 0; } }
 
   .brand { display: flex; justify-content: center; padding: 2px 0 12px; }
-  .brand-logo { height: 48px; width: auto; max-width: 80%; object-fit: contain; display: block; }
+  .brand-logo { height: 56px; width: auto; max-width: 82%; object-fit: contain; display: block; }
+  .deck-label { font-size: 12px; font-weight: 700; color: var(--muted); margin: 0 2px 8px; }
   .head { position: sticky; top: 0; z-index: 12;
     background: rgba(21,22,27,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line); padding: 12px 14px 0; }
@@ -59,7 +60,7 @@
   .tb-title { font-size: 19px; font-weight: 800; letter-spacing: .2px; }
   .tb-wr { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--accent); background: var(--accent-soft);
     padding: 5px 11px; border-radius: 99px; border: 1.5px solid var(--accent); white-space: nowrap; }
-  .tb-tag { font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .tb-tag { font-size: 12px; color: var(--muted); margin-top: 5px; display: flex; align-items: center; gap: 6px; }
 
   /* Abas (2) */
   .tabbar { padding: 8px 0 12px; }
@@ -105,7 +106,8 @@
   .tierchip.A { background: rgba(251,191,36,.18); color: var(--A); }
   .tierchip.C { background: rgba(251,113,133,.18); color: var(--C); }
   .mrow-bottom { display: flex; align-items: center; gap: 10px; margin-top: 11px; }
-  .mrow-coin { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .mrow-coin { display: inline-flex; align-items: center; }
+  .coin { width: 19px; height: 19px; flex: 0 0 auto; vertical-align: middle; }
   .wrbar { flex: 1; height: 8px; background: #0c0f15; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
   .wrfill { display: block; height: 100%; border-radius: 99px; animation: wrgrow .75s cubic-bezier(.2,.85,.25,1) both; }
   @keyframes wrgrow { from { width: 0 !important; } }
@@ -142,7 +144,7 @@
   .tierbadge.S { background: rgba(52,211,153,.18); color: var(--S); }
   .tierbadge.A { background: rgba(251,191,36,.18); color: var(--A); }
   .tierbadge.C { background: rgba(251,113,133,.18); color: var(--C); }
-  .pill { font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 99px; background: var(--card2); color: var(--muted); border: 1px solid var(--line); }
+  .pill { font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 99px; background: var(--card2); color: var(--muted); border: 1px solid var(--line); display: inline-flex; align-items: center; gap: 5px; }
   .pill.first { background: rgba(251,113,133,.15); color: #fda4af; border-color: rgba(251,113,133,.3); }
   .pill.second { background: rgba(96,165,250,.15); color: #93c5fd; border-color: rgba(96,165,250,.3); }
   .wrcard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 16px; box-shadow: var(--sh); }
@@ -175,6 +177,7 @@
 <div class="phone" id="phone">
   <header class="head" id="head">
     <div class="brand"><img class="brand-logo" src="ShockTCGHelperLogo.png" alt="Shock TCG Helper"></div>
+    <div class="deck-label">Selecione seu deck:</div>
     <div class="deckrow" id="deckrow"></div>
     <div class="topbar" id="topbar"></div>
     <div class="tabbar" id="tabbar"></div>
@@ -1484,6 +1487,24 @@ function monIcon(name) {
   return '<img class="mon-icon" alt="" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + dex + '.png" onerror="this.style.display=\'none\'">';
 }
 
+// Moeda: ouro = joga 1º, prata = joga 2º (SVG inline, sem arquivo)
+function coinIcon(c) {
+  const gold = c === 'first';
+  const fill = gold ? '#f5c518' : '#d6dae1';
+  const ring = gold ? '#a9760a' : '#8b919b';
+  const tx = gold ? '#6e4a00' : '#3a3f48';
+  const num = gold ? '1' : '2';
+  return '<svg class="coin" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<circle cx="12" cy="12" r="11" fill="' + fill + '" stroke="' + ring + '" stroke-width="1.6"/>' +
+    '<circle cx="12" cy="12" r="8" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="1"/>' +
+    '<text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="900" fill="' + tx + '">' + num + '</text></svg>';
+}
+function deckCoinMajority(deck) {
+  const ms = DECKS[deck].matchups; let first = 0, second = 0;
+  ms.forEach(function (m) { if (m.coinFlip === 'first') first++; else second++; });
+  return first > second ? 'first' : 'second';
+}
+
 function renderDeckrow() {
   let html = '';
   DECK_ORDER.forEach(function (k) {
@@ -1503,11 +1524,13 @@ function updateDeckActive() {
 }
 
 function renderTopbar() {
-  const info = DECK_INFO[currentDeck] || { tag: '', overall: '' };
+  const info = DECK_INFO[currentDeck] || { overall: '' };
+  const maj = deckCoinMajority(currentDeck);
+  const majText = maj === 'first' ? 'Joga primeiro na maioria' : 'Joga segundo na maioria';
   document.getElementById('topbar').innerHTML =
     '<div class="tb-row"><span class="tb-title">' + esc(deckName(currentDeck)) + '</span>' +
     (info.overall ? '<span class="tb-wr">' + esc(info.overall) + '</span>' : '') + '</div>' +
-    (info.tag ? '<div class="tb-tag">' + esc(info.tag) + '</div>' : '');
+    '<div class="tb-tag">' + coinIcon(maj) + '<span>' + majText + '</span></div>';
 }
 
 function renderTabbar() {
@@ -1566,7 +1589,7 @@ function renderScreen() {
 }
 
 function matchupRow(m, i) {
-  const coin = m.coinFlip === 'first' ? '🪙 1º' : '🪙 2º';
+  const coin = coinIcon(m.coinFlip);
   const delay = i < 12 ? (i * 28) : 0;
   return '<button class="mrow" style="animation-delay:' + delay + 'ms" onclick="renderMatchup(' + m.id + ')">' +
     '<div class="mrow-top">' + monIcon(m.name) + '<span class="mrow-name">' + esc(m.name) + '</span>' +
@@ -1597,11 +1620,7 @@ function buildList() {
 }
 
 function buildMatchupsView() {
-  const chip = function (t, txt) {
-    return '<button class="chip' + (tierFilter === t ? ' active' : '') + '" data-t="' + t + '" onclick="setTier(\'' + t + '\')">' + txt + '</button>';
-  };
   return '<div class="searchwrap"><input id="search" type="text" placeholder="Buscar oponente..." value="' + esc(searchText) + '"></div>' +
-    '<div class="chips">' + chip('all', 'Todos') + chip('S', 'S') + chip('A', 'A') + chip('C', 'C') + '</div>' +
     '<div id="mlist">' + buildList() + '</div>';
 }
 
@@ -1647,7 +1666,7 @@ function renderMatchup(id) {
     '<button class="back" onclick="closeSheet()">← Voltar</button>' +
     '<div class="mhead"><div class="mtitle">' + monIcon(m.name) + esc(m.name) + '</div><div class="mbadges">' +
     '<span class="tierbadge ' + m.tier + '">Tier ' + m.tier + '</span>' +
-    '<span class="pill ' + m.coinFlip + '">🪙 ' + coinText(m.coinFlip) + '</span>' +
+    '<span class="pill ' + m.coinFlip + '">' + coinIcon(m.coinFlip) + ' ' + coinText(m.coinFlip) + '</span>' +
     '<span class="pill">📈 Meta ' + esc(m.metaShare) + '</span></div></div>' +
     '<div class="wrcard"><div class="wrcard-top"><span class="lbl">Win rate</span>' +
     '<span class="wrbig ' + m.tier + '">' + esc(m.wr) + '</span></div>' +
