@@ -1,5 +1,5 @@
 // TCG Helper — Service Worker (offline)
-const SHELL_CACHE = 'tcg-shell-v8';
+const SHELL_CACHE = 'tcg-shell-v9';
 const CARDS_CACHE = 'tcg-cards-v1';
 const SHELL = [
   './',
@@ -9,6 +9,7 @@ const SHELL = [
   './icon-512.png',
   './apple-touch-icon.png',
   './appicon.png',
+  './ShockTCGHelperLogo.png',
   './deck-crustle.png',
   './deck-slowking.png',
   './deck-dragapult.png',

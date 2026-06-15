@@ -35,6 +35,8 @@
   }
   @keyframes appin { from { opacity: 0; transform: translateY(10px); } }
 
+  .brand { display: flex; justify-content: center; padding: 2px 0 12px; }
+  .brand-logo { height: 48px; width: auto; max-width: 80%; object-fit: contain; display: block; }
   .head { position: sticky; top: 0; z-index: 12;
     background: rgba(21,22,27,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line); padding: 12px 14px 0; }
@@ -172,6 +174,7 @@
 
 <div class="phone" id="phone">
   <header class="head" id="head">
+    <div class="brand"><img class="brand-logo" src="ShockTCGHelperLogo.png" alt="Shock TCG Helper"></div>
     <div class="deckrow" id="deckrow"></div>
     <div class="topbar" id="topbar"></div>
     <div class="tabbar" id="tabbar"></div>
