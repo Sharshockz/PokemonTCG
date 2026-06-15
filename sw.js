@@ -1,5 +1,5 @@
 // TCG Helper — Service Worker (offline)
-const SHELL_CACHE = 'tcg-shell-v4';
+const SHELL_CACHE = 'tcg-shell-v5';
 const CARDS_CACHE = 'tcg-cards-v1';
 const SHELL = [
   './',
