@@ -9,161 +9,174 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="TCG Helper">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="appicon.png">
 <title>🃏 TCG Helper — Crustle & Slowking (PT-BR)</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0e1a; color: #e0e6ed; min-height: 100vh; padding: 16px; }
-  .app { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 320px 1fr; gap: 16px; height: calc(100vh - 32px); }
-  header { grid-column: 1 / -1; background: linear-gradient(135deg, #1a2540 0%, #2d3a5f 100%); padding: 12px 20px; border-radius: 8px; border: 1px solid #3d4d75; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-  h1 { font-size: 18px; color: #e0e6ed; }
-  .deck-select { display: flex; gap: 8px; }
-  .deck-tab { background: #1a2540; border: 1px solid #3d4d75; color: #8595b8; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.15s; }
-  .deck-tab:hover { background: #2d3a5f; }
-  .deck-tab.active-crustle { background: #14532d; border-color: #4ade80; color: #4ade80; }
-  .deck-tab.active-slowking { background: #4a1a40; border-color: #f0abfc; color: #f0abfc; }
-  .deck-tab.active-dragapult { background: #2e1065; border-color: #c084fc; color: #c084fc; }
-  .deck-tab.active-zam { background: #083344; border-color: #22d3ee; color: #22d3ee; }
-  .controls { display: flex; gap: 8px; align-items: center; }
-  .search { background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 8px 14px; border-radius: 6px; font-size: 14px; width: 200px; }
-  .search:focus { outline: none; border-color: #4ade80; }
-  .clear-btn { background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-  .clear-btn:hover { background: #2d3a5f; }
-
-  .sidebar { background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 12px; overflow-y: auto; }
-  .tier-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 6px 4px; color: #8595b8; font-weight: 600; }
-  .tier-label:first-child { margin-top: 0; }
-  .deck-btn { display: block; width: 100%; text-align: left; background: #1a2540; border: 1px solid #2d3a5f; color: #e0e6ed; padding: 8px 12px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.15s; }
-  .deck-btn:hover { background: #2d3a5f; }
-  .deck-btn.active { box-shadow: 0 0 0 1px currentColor; }
-  .deck-btn .wr { float: right; font-weight: 600; font-size: 12px; }
-  .tier-S { color: #4ade80; }
-  .tier-A { color: #fbbf24; }
-  .tier-C { color: #f87171; }
-
-  .main { background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 20px; overflow-y: auto; }
-  .placeholder { text-align: center; padding: 60px 20px; color: #5d6d99; }
-  .placeholder h2 { font-size: 24px; margin-bottom: 12px; color: #8595b8; }
-  .placeholder p { font-size: 14px; line-height: 1.6; }
-
-  .matchup-header { border-bottom: 2px solid #2d3a5f; padding-bottom: 12px; margin-bottom: 16px; }
-  .matchup-name { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-  .matchup-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #8595b8; }
-  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: 600; font-size: 12px; }
-  .badge-S { background: #14532d; color: #4ade80; }
-  .badge-A { background: #713f12; color: #fbbf24; }
-  .badge-C { background: #7f1d1d; color: #f87171; }
-
-  .coin-flip { background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%); padding: 14px 20px; border-radius: 8px; margin-bottom: 16px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
-  .coin-flip.first { background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%); }
-  .coin-flip .icon { font-size: 22px; }
-
-  .signal { background: #1e3a5f; border-left: 4px solid #4ade80; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; font-size: 14px; }
-  .signal .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #4ade80; margin-bottom: 4px; }
-
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .grid-2.grid-solo { grid-template-columns: 1fr; }
-  .col h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .col-do h3 { color: #4ade80; }
-  .col-dont h3 { color: #f87171; }
-  .col ul { list-style: none; background: #1a2540; border-radius: 6px; padding: 10px; }
-  .col li { padding: 6px 0; font-size: 13px; line-height: 1.4; border-bottom: 1px solid #2d3a5f; }
-  .col li:last-child { border-bottom: none; }
-  .col-do li::before { content: "✅ "; }
-  .col-dont li::before { content: "❌ "; }
-
-  .threat { background: #1a0f1f; border: 1px solid #7f1d1d; padding: 12px 14px; border-radius: 6px; margin-bottom: 12px; }
-  .threat h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #f87171; margin-bottom: 6px; }
-  .threat .text { font-size: 13px; line-height: 1.5; }
-  .threat .counter { margin-top: 8px; padding-top: 8px; border-top: 1px solid #4d2530; color: #fbbf24; }
-  .threat .counter::before { content: "→ "; font-weight: 600; }
-
-  .wincon { background: linear-gradient(135deg, #14532d 0%, #166534 100%); padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
-  .wincon .icon { margin-right: 8px; font-size: 18px; }
-
-  .universal { grid-column: 1 / -1; background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 10px 16px; font-size: 12px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-around; }
-  .universal .rule { color: #8595b8; }
-  .universal .rule strong { color: #e0e6ed; }
-  .universal .key { color: #fbbf24; font-weight: 700; }
-
-  .notes-section { margin-top: 16px; border-top: 1px solid #2d3a5f; padding-top: 16px; }
-  .notes-section h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8595b8; margin-bottom: 8px; }
-  textarea { width: 100%; background: #1a2540; border: 1px solid #2d3a5f; color: #e0e6ed; padding: 10px; border-radius: 6px; font-family: inherit; font-size: 13px; resize: vertical; min-height: 60px; }
-  textarea:focus { outline: none; border-color: #4ade80; }
-  .field-edit { min-height: 260px; font-size: 14px; line-height: 1.5; }
-  .col-do .field-edit:focus { border-color: #4ade80; }
-  .col-dont .field-edit:focus { border-color: #f87171; }
-
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #131a2b; }
-  ::-webkit-scrollbar-thumb { background: #2d3a5f; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #3d4d75; }
-
-  /* Deck view (grouping headers, shared with gallery) */
-  .dl-group { margin-bottom: 20px; }
-  .dl-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #2d3a5f; padding-bottom: 6px; margin-bottom: 6px; }
-
-  /* Gallery view (card art) */
-  .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
-  .gal-imgwrap { position: relative; border-radius: 7px; overflow: hidden; background: #1a2540; aspect-ratio: 245 / 342; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-  .gal-imgwrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .gal-count { position: absolute; bottom: 5px; right: 5px; color: #0a0e1a; font-weight: 800; font-size: 13px; padding: 1px 8px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-  .gal-broken { font-size: 11px; text-align: center; padding: 8px; color: #8595b8; line-height: 1.3; }
-
-  /* ——— PWA / Mobile ——— */
-  .menu-btn { display: none; background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 16px; line-height: 1; }
-  .backdrop { display: none; }
-  @media (max-width: 760px) {
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body { padding: 8px; }
-    .app { grid-template-columns: minmax(0, 1fr); height: auto; gap: 10px; }
-    header { position: sticky; top: 0; z-index: 30; padding: 10px 12px; min-width: 0; }
-    h1 { font-size: 16px; }
-    .deck-select { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; min-width: 0; }
-    .deck-tab { white-space: nowrap; }
-    .controls { flex: 1 1 100%; min-width: 0; }
-    .search { width: auto; flex: 1 1 120px; min-width: 0; }
-    .menu-btn { display: inline-flex; align-items: center; }
-    .sidebar {
-      position: fixed; top: 0; left: 0; bottom: 0; width: 86%; max-width: 330px;
-      z-index: 60; transform: translateX(-102%); transition: transform .22s ease;
-      border-radius: 0 12px 12px 0; box-shadow: 6px 0 30px rgba(0,0,0,.65);
-    }
-    .app.sidebar-open .sidebar { transform: translateX(0); }
-    .backdrop { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 55; opacity: 0; pointer-events: none; transition: opacity .2s; }
-    .backdrop.show { opacity: 1; pointer-events: auto; }
-    .main { min-height: 72vh; padding: 16px 14px; min-width: 0; }
-    .matchup-name { font-size: 19px; }
-    .grid-2 { grid-template-columns: 1fr; }
-    .deck-btn { padding: 11px 12px; font-size: 14px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --bg:#07090f; --card:#141b2c; --card2:#1a2336; --line:#ffffff14;
+    --text:#e6ebf2; --muted:#8a98b5;
+    --S:#34d399; --A:#fbbf24; --C:#fb7185;
+    --accent:#4ade80; --accent-soft:rgba(74,222,128,.16);
   }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text);
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; min-height: 100dvh;
+  }
+  .phone {
+    width: 100%; max-width: 460px; min-height: 100vh; min-height: 100dvh;
+    position: relative; display: flex; flex-direction: column;
+    background: radial-gradient(120% 55% at 50% -8%, var(--accent-soft), transparent 60%), #0a0f1a;
+    box-shadow: 0 0 60px rgba(0,0,0,.6);
+  }
+
+  /* Topbar = hero do deck */
+  .topbar {
+    position: sticky; top: 0; z-index: 20; padding: 16px 18px 14px;
+    background: linear-gradient(165deg, var(--accent-soft), rgba(10,15,26,.55) 75%), rgba(10,15,26,.88);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .tb-row { display: flex; align-items: center; gap: 10px; }
+  .tb-emoji { font-size: 24px; line-height: 1; }
+  .tb-title { font-size: 18px; font-weight: 800; letter-spacing: .2px; }
+  .tb-wr { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--accent);
+    background: var(--accent-soft); padding: 5px 11px; border-radius: 99px; border: 1px solid var(--accent); white-space: nowrap; }
+  .tb-tag { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  /* Screen (rola na janela) */
+  .screen { flex: 1; padding: 16px 14px 104px; }
+
+  /* Busca */
+  .searchwrap { position: relative; margin-bottom: 12px; }
+  .searchwrap::before { content: "🔎"; position: absolute; left: 13px; top: 50%; transform: translateY(-50%); opacity: .6; font-size: 13px; }
+  .searchwrap input { width: 100%; background: var(--card); border: 1px solid var(--line); color: var(--text);
+    padding: 12px 14px 12px 38px; border-radius: 14px; font-size: 15px; }
+  .searchwrap input:focus { outline: none; border-color: var(--accent); }
+
+  /* Chips de tier */
+  .chips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .chip { flex: 1; text-align: center; padding: 9px 6px; border-radius: 12px; background: var(--card);
+    border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 800; cursor: pointer; }
+  .chip.active[data-t="all"] { background: var(--accent); border-color: var(--accent); color: #06203a; }
+  .chip.active[data-t="S"]   { background: var(--S); border-color: var(--S); color: #062518; }
+  .chip.active[data-t="A"]   { background: var(--A); border-color: var(--A); color: #2a1d00; }
+  .chip.active[data-t="C"]   { background: var(--C); border-color: var(--C); color: #2a0712; }
+
+  /* Cabeçalho de tier */
+  .tier-h { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; margin: 16px 2px 9px; }
+  .tier-h.S { color: var(--S); } .tier-h.A { color: var(--A); } .tier-h.C { color: var(--C); }
+
+  /* Linha de matchup */
+  .mrow { width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 13px 14px; margin-bottom: 10px; cursor: pointer; display: block;
+    transition: transform .08s ease, border-color .15s ease; }
+  .mrow:active { transform: scale(.99); }
+  .mrow:hover { border-color: var(--accent); }
+  .mrow-top { display: flex; align-items: center; gap: 8px; }
+  .mrow-name { font-size: 15px; font-weight: 700; flex: 1; line-height: 1.25; }
+  .mrow-coin { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .tierchip { font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 99px; }
+  .tierchip.S { background: rgba(52,211,153,.18); color: var(--S); }
+  .tierchip.A { background: rgba(251,191,36,.18); color: var(--A); }
+  .tierchip.C { background: rgba(251,113,133,.18); color: var(--C); }
+  .mrow-bottom { display: flex; align-items: center; gap: 10px; margin-top: 11px; }
+  .wrbar { flex: 1; height: 8px; background: #0d1422; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+  .wrfill { display: block; height: 100%; border-radius: 99px; }
+  .wrfill.S { background: linear-gradient(90deg, #0e8f63, var(--S)); }
+  .wrfill.A { background: linear-gradient(90deg, #a87a10, var(--A)); }
+  .wrfill.C { background: linear-gradient(90deg, #a83a4c, var(--C)); }
+  .wrlabel { font-size: 12px; font-weight: 800; min-width: 64px; text-align: right; }
+  .wrlabel.S { color: var(--S); } .wrlabel.A { color: var(--A); } .wrlabel.C { color: var(--C); }
+
+  /* Detalhe do matchup */
+  .back { background: var(--card); border: 1px solid var(--line); color: var(--text); padding: 9px 15px;
+    border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 16px;
+    display: inline-flex; align-items: center; gap: 6px; }
+  .back:hover { border-color: var(--accent); }
+  .mhead { margin-bottom: 16px; }
+  .mtitle { font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 11px; }
+  .mbadges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tierbadge { font-size: 12px; font-weight: 800; padding: 5px 11px; border-radius: 99px; }
+  .tierbadge.S { background: rgba(52,211,153,.18); color: var(--S); }
+  .tierbadge.A { background: rgba(251,191,36,.18); color: var(--A); }
+  .tierbadge.C { background: rgba(251,113,133,.18); color: var(--C); }
+  .pill { font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 99px;
+    background: var(--card2); color: var(--muted); border: 1px solid var(--line); }
+  .pill.first  { background: rgba(251,113,133,.15); color: #fda4af; border-color: rgba(251,113,133,.3); }
+  .pill.second { background: rgba(96,165,250,.15); color: #93c5fd; border-color: rgba(96,165,250,.3); }
+
+  .wrcard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 16px; }
+  .wrcard-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .wrcard-top .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .wrbig { font-size: 26px; font-weight: 800; }
+  .wrbig.S { color: var(--S); } .wrbig.A { color: var(--A); } .wrbig.C { color: var(--C); }
+  .wrbar.big { height: 14px; }
+
+  .sect { border-radius: 18px; padding: 14px 16px; margin-bottom: 14px; border: 1px solid var(--line); }
+  .sect.obj { background: rgba(52,211,153,.07); border-color: rgba(52,211,153,.28); }
+  .sect.cui { background: rgba(251,113,133,.07); border-color: rgba(251,113,133,.28); }
+  .sect-h { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; margin-bottom: 11px; }
+  .sect.obj .sect-h { color: var(--S); } .sect.cui .sect-h { color: var(--C); }
+  .sect ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .sect li { font-size: 14px; line-height: 1.45; padding-left: 22px; position: relative; }
+  .sect.obj li::before { content: "✓"; position: absolute; left: 1px; color: var(--S); font-weight: 800; }
+  .sect.cui li::before { content: "!"; position: absolute; left: 4px; color: var(--C); font-weight: 800; }
+
+  .empty { text-align: center; color: var(--muted); padding: 40px 16px; font-size: 14px; }
+
+  /* Galeria (Meu Deck) */
+  .gal-note { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 12px; padding: 12px 14px; font-size: 13px; line-height: 1.5; margin-bottom: 16px; }
+  .dl-group { margin-bottom: 20px; }
+  .dl-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--line);
+    padding-bottom: 6px; margin-bottom: 10px; color: var(--accent); }
+  .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+  .gal-imgwrap { position: relative; border-radius: 8px; overflow: hidden; background: var(--card);
+    aspect-ratio: 245 / 342; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+  .gal-imgwrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gal-count { position: absolute; bottom: 5px; right: 5px; color: #06203a; font-weight: 800; font-size: 12px;
+    padding: 1px 7px; border-radius: 10px; background: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.5); }
+  .gal-broken { font-size: 10px; text-align: center; padding: 6px; color: var(--muted); line-height: 1.3; }
+
+  /* Bottom nav */
+  .bnav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 460px; z-index: 40;
+    display: flex; align-items: flex-end; justify-content: space-around; gap: 2px;
+    background: rgba(13,19,32,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line); padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .bnav-item { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 0; font-size: 11px; font-weight: 600; }
+  .bnav-item .bemoji { font-size: 20px; line-height: 1; filter: grayscale(.45); opacity: .8; transition: all .15s ease; }
+  .bnav-item.active { color: var(--accent); }
+  .bnav-item.active .bemoji { filter: none; opacity: 1; transform: translateY(-1px); }
+  .bnav-center { flex: 0 0 auto; background: none; border: none; cursor: pointer; margin: 0 4px -6px; padding: 0; }
+  .pokeball { display: block; width: 52px; height: 52px; border-radius: 50%;
+    background:
+      radial-gradient(circle at center, #fff 0 6px, #111 6px 8.5px, rgba(0,0,0,0) 8.5px),
+      linear-gradient(#ff5350 0 46%, #111 46% 54%, #f4f4f5 54% 100%);
+    box-shadow: 0 6px 16px rgba(0,0,0,.5), 0 0 0 3px #0d1320, inset 0 0 0 2px #111; transition: transform .1s ease; }
+  .bnav-center:active .pokeball { transform: scale(.93); }
+
+  ::-webkit-scrollbar { width: 7px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2d3a5f; border-radius: 4px; }
 </style>
 </head>
 <body>
 
-<div class="app">
-  <header>
-    <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()" aria-label="Abrir lista de matchups">📋</button>
-    <h1>🃏 TCG Helper</h1>
-    <div class="deck-select">
-      <button class="deck-tab" id="tab-crustle" onclick="switchDeck('crustle')">🦀 Crustle</button>
-      <button class="deck-tab" id="tab-slowking" onclick="switchDeck('slowking')">🐚 Slowking</button>
-      <button class="deck-tab" id="tab-dragapult" onclick="switchDeck('dragapult')">🐉 Dragapult</button>
-      <button class="deck-tab" id="tab-zam" onclick="switchDeck('zam')">🔮 Pult+Zam</button>
-    </div>
-    <div class="controls">
-      <input type="text" class="search" placeholder="Buscar oponente..." id="search">
-      <button class="clear-btn" onclick="renderDeckGallery()">🖼️ Meu Deck</button>
-      <button class="clear-btn" onclick="clearSelection()">Limpar</button>
-    </div>
-  </header>
-
-  <aside class="sidebar" id="sidebar"></aside>
-  <div class="backdrop" id="backdrop" onclick="closeDrawerMobile()"></div>
-
-  <main class="main" id="main"></main>
-
-  <div class="universal" id="universal"></div>
+<div class="phone" id="phone">
+  <header class="topbar" id="topbar"></header>
+  <main class="screen" id="screen"></main>
+  <nav class="bnav" id="bnav">
+    <button class="bnav-item" data-deck="crustle" onclick="switchDeck('crustle')"><span class="bemoji">🦀</span><span>Crustle</span></button>
+    <button class="bnav-item" data-deck="slowking" onclick="switchDeck('slowking')"><span class="bemoji">🐚</span><span>Slowking</span></button>
+    <button class="bnav-center" onclick="showGallery()" aria-label="Meu Deck (galeria)"><span class="pokeball"></span></button>
+    <button class="bnav-item" data-deck="dragapult" onclick="switchDeck('dragapult')"><span class="bemoji">🐉</span><span>Dragapult</span></button>
+    <button class="bnav-item" data-deck="zam" onclick="switchDeck('zam')"><span class="bemoji">🔮</span><span>Zam</span></button>
+  </nav>
 </div>
 
 <script>
@@ -1409,186 +1422,171 @@ DECKS.zam = {
 
 let currentDeck = localStorage.getItem('tcg-current-deck') || 'crustle';
 let selectedId = null;
+let searchText = '';
+let tierFilter = 'all';
+
+const DECK_INFO = {
+  crustle:   { tag: 'Parede single-prize · imune a ataques de ex', overall: '~57%' },
+  slowking:  { tag: 'Combo Metagross 300 · Psíquico bate Lutador', overall: '~52%' },
+  dragapult: { tag: 'Spread + trava stax · Munkidori shift', overall: '~53%' },
+  zam:       { tag: 'Spread + finisher non-ex (Alakazam)', overall: 'est.' }
+};
+
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function hexToRgba(hex, a) {
+  let h = hex.replace('#', '');
+  if (h.length === 3) h = h.split('').map(function (c) { return c + c; }).join('');
+  const n = parseInt(h, 16);
+  return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+}
+function wrNum(wr) {
+  const nums = String(wr).match(/\d+/g);
+  if (!nums) return null;
+  if (nums.length >= 2) return Math.round((parseInt(nums[0]) + parseInt(nums[1])) / 2);
+  return parseInt(nums[0]);
+}
+function wrWidth(wr) { const n = wrNum(wr); return n == null ? 0 : Math.max(4, Math.min(100, n)); }
+function coinText(c) { return c === 'first' ? 'Jogar primeiro' : 'Jogar segundo'; }
+
+function setActiveNav() {
+  const items = document.querySelectorAll('.bnav-item');
+  for (let i = 0; i < items.length; i++) items[i].classList.toggle('active', items[i].dataset.deck === currentDeck);
+}
+
+function renderTopbar() {
+  const label = DECKS[currentDeck].label;
+  const info = DECK_INFO[currentDeck] || { tag: '', overall: '' };
+  const sp = label.indexOf(' ');
+  const emoji = sp > 0 ? label.slice(0, sp) : '🃏';
+  const name = sp > 0 ? label.slice(sp + 1) : label;
+  document.getElementById('topbar').innerHTML =
+    '<div class="tb-row"><span class="tb-emoji">' + emoji + '</span>' +
+    '<span class="tb-title">' + esc(name) + '</span>' +
+    (info.overall ? '<span class="tb-wr">' + esc(info.overall) + '</span>' : '') + '</div>' +
+    (info.tag ? '<div class="tb-tag">' + esc(info.tag) + '</div>' : '');
+}
 
 function switchDeck(deck) {
   currentDeck = deck;
   selectedId = null;
+  searchText = '';
+  tierFilter = 'all';
   localStorage.setItem('tcg-current-deck', deck);
-  document.getElementById('tab-crustle').className = 'deck-tab' + (deck === 'crustle' ? ' active-crustle' : '');
-  document.getElementById('tab-slowking').className = 'deck-tab' + (deck === 'slowking' ? ' active-slowking' : '');
-  document.getElementById('tab-dragapult').className = 'deck-tab' + (deck === 'dragapult' ? ' active-dragapult' : '');
-  document.getElementById('tab-zam').className = 'deck-tab' + (deck === 'zam' ? ' active-zam' : '');
-  document.getElementById('search').value = '';
-  renderUniversal();
-  renderSidebar();
-  renderPlaceholder();
+  const accent = DECKS[deck].accent;
+  const phone = document.getElementById('phone');
+  phone.style.setProperty('--accent', accent);
+  phone.style.setProperty('--accent-soft', hexToRgba(accent, 0.16));
+  setActiveNav();
+  renderTopbar();
+  renderHome();
+  window.scrollTo(0, 0);
 }
 
-function renderUniversal() {
-  const d = DECKS[currentDeck];
-  const el = document.getElementById('universal');
-  // Layout enxuto: barra de regras universais escondida pra TODOS os decks
-  el.style.display = 'none';
-  el.innerHTML = d.universal.map(r => `<span class="rule">${r}</span>`).join('');
+function matchupRow(m) {
+  const coin = m.coinFlip === 'first' ? '🪙 1º' : '🪙 2º';
+  return '<button class="mrow" onclick="renderMatchup(' + m.id + ')">' +
+    '<div class="mrow-top"><span class="mrow-name">' + esc(m.name) + '</span>' +
+    '<span class="tierchip ' + m.tier + '">' + m.tier + '</span></div>' +
+    '<div class="mrow-bottom"><span class="mrow-coin">' + coin + '</span>' +
+    '<span class="wrbar"><span class="wrfill ' + m.tier + '" style="width:' + wrWidth(m.wr) + '%"></span></span>' +
+    '<span class="wrlabel ' + m.tier + '">' + esc(m.wr) + '</span></div></button>';
 }
 
-function renderSidebar(filter = "") {
-  const sb = document.getElementById('sidebar');
-  const matchups = DECKS[currentDeck].matchups;
-  const accent = DECKS[currentDeck].accent;
-  const filtered = matchups.filter(m =>
-    m.name.toLowerCase().includes(filter.toLowerCase()) ||
-    (m.signals || '').toLowerCase().includes(filter.toLowerCase())
-  );
+function buildList() {
+  const ms = DECKS[currentDeck].matchups;
+  const f = searchText.toLowerCase();
+  let filtered = ms.filter(function (m) { return m.name.toLowerCase().indexOf(f) !== -1; });
+  if (tierFilter !== 'all') filtered = filtered.filter(function (m) { return m.tier === tierFilter; });
+  const val = function (s) { const n = wrNum(s); return n == null ? -1 : n; };
   const tiers = { S: [], A: [], C: [] };
-  filtered.forEach(m => tiers[m.tier].push(m));
-  // ordena cada tier por WR decrescente (pega o 1º número do wr, ex "55-62%" -> 55)
-  const wrVal = s => { const n = String(s).match(/\d+/); return n ? parseInt(n[0]) : 0; };
-  ['S','A','C'].forEach(t => tiers[t].sort((a,b) => wrVal(b.wr) - wrVal(a.wr)));
-  let html = "";
-  if (tiers.S.length) { html += '<div class="tier-label tier-S">🏆 Tier S — Vitória provável</div>'; tiers.S.forEach(m => html += deckButton(m, accent)); }
-  if (tiers.A.length) { html += '<div class="tier-label tier-A">⚖️ Tier A — Equilibrado</div>'; tiers.A.forEach(m => html += deckButton(m, accent)); }
-  if (tiers.C.length) { html += '<div class="tier-label tier-C">🔴 Tier C — Difícil</div>'; tiers.C.forEach(m => html += deckButton(m, accent)); }
-  if (!filtered.length) html = '<div style="padding:20px;color:#5d6d99;text-align:center;font-size:13px;">Nenhum deck encontrado</div>';
-  sb.innerHTML = html;
+  filtered.forEach(function (m) { tiers[m.tier].push(m); });
+  ['S', 'A', 'C'].forEach(function (t) { tiers[t].sort(function (a, b) { return val(b.wr) - val(a.wr); }); });
+  const labels = { S: '🏆 Tier S — vitória provável', A: '⚖️ Tier A — equilibrado', C: '🔴 Tier C — difícil' };
+  let out = '';
+  ['S', 'A', 'C'].forEach(function (t) {
+    if (tiers[t].length) {
+      out += '<div class="tier-h ' + t + '">' + labels[t] + '</div>';
+      tiers[t].forEach(function (m) { out += matchupRow(m); });
+    }
+  });
+  return filtered.length ? out : '<div class="empty">Nenhum matchup encontrado.</div>';
 }
 
-function deckButton(m, accent) {
-  const active = m.id === selectedId ? ' active' : '';
-  const style = m.id === selectedId ? ` style="color:${accent};background:#1e2a47"` : '';
-  return `<button class="deck-btn${active}"${style} onclick="selectMatchup(${m.id})">${m.name}<span class="wr tier-${m.tier}">${m.wr}</span></button>`;
+function setTier(t) {
+  tierFilter = (tierFilter === t ? 'all' : t);
+  const chips = document.querySelectorAll('.chip');
+  for (let i = 0; i < chips.length; i++) chips[i].classList.toggle('active', chips[i].dataset.t === tierFilter);
+  document.getElementById('mlist').innerHTML = buildList();
 }
 
-function selectMatchup(id) {
+function renderHome() {
+  selectedId = null;
+  const chip = function (t, txt) {
+    return '<button class="chip' + (tierFilter === t ? ' active' : '') + '" data-t="' + t + '" onclick="setTier(\'' + t + '\')">' + txt + '</button>';
+  };
+  document.getElementById('screen').innerHTML =
+    '<div class="searchwrap"><input id="search" type="text" placeholder="Buscar oponente..." value="' + esc(searchText) + '"></div>' +
+    '<div class="chips">' + chip('all', 'Todos') + chip('S', 'S') + chip('A', 'A') + chip('C', 'C') + '</div>' +
+    '<div id="mlist">' + buildList() + '</div>';
+  document.getElementById('search').addEventListener('input', function (e) {
+    searchText = e.target.value;
+    document.getElementById('mlist').innerHTML = buildList();
+  });
+}
+
+function renderMatchup(id) {
   selectedId = id;
-  closeDrawerMobile();
-  const m = DECKS[currentDeck].matchups.find(x => x.id === id);
-  renderSidebar(document.getElementById('search').value);
-  const coinFlipText = m.coinFlip === "first" ? "🎯 JOGAR PRIMEIRO" : "🎯 JOGAR SEGUNDO";
-  const coinFlipClass = m.coinFlip === "first" ? "first" : "";
-  const header = `
-    <div class="matchup-header">
-      <div class="matchup-name">${m.name}</div>
-      <div class="matchup-meta">
-        <span class="badge badge-${m.tier}">Tier ${m.tier}</span>
-        <span>📊 WR: <strong>${m.wr}</strong></span>
-        <span>📈 Meta: ${m.metaShare}</span>
-        <span>🃏 Seu deck: <strong>${DECKS[currentDeck].label}</strong></span>
-      </div>
-    </div>
-    <div class="coin-flip ${coinFlipClass}"><span class="icon">🪙</span><span>Ganhou o cara ou coroa? <strong>${coinFlipText}</strong></span></div>`;
-
-  if (m.objetivo || m.cuidado) {
-    // Layout enxuto (objetivo/cuidado) — PADRÃO pra todos os decks. Cada coluna só aparece se tiver conteúdo.
-    const colObj = (m.objetivo && m.objetivo.length) ? `
-      <div class="col col-do"><h3>Objetivo</h3><ul>${m.objetivo.map(d => `<li>${d}</li>`).join('')}</ul></div>` : '';
-    const colCui = (m.cuidado && m.cuidado.length) ? `
-      <div class="col col-dont"><h3>Cuidado</h3><ul>${m.cuidado.map(d => `<li>${d}</li>`).join('')}</ul></div>` : '';
-    const grid = (colObj || colCui) ? `
-    <div class="grid-2${colObj && colCui ? '' : ' grid-solo'}">${colObj}${colCui}
-    </div>` : '';
-    document.getElementById('main').innerHTML = header + grid;
-    return;
-  }
-
-  document.getElementById('main').innerHTML = header + `
-    <div class="signal"><div class="label">👁️ Sinal visual T1-T2</div><div>${m.signals}</div></div>
-    <div class="grid-2">
-      <div class="col col-do"><h3>FAÇA</h3><ul>${m.do.map(d => `<li>${d}</li>`).join('')}</ul></div>
-      <div class="col col-dont"><h3>NÃO FAÇA</h3><ul>${m.dont.map(d => `<li>${d}</li>`).join('')}</ul></div>
-    </div>
-    <div class="threat"><h3>⚠️ Ameaça crítica</h3><div class="text">${m.threat}</div><div class="counter">${m.counter}</div></div>
-    <div class="wincon"><span class="icon">🏆</span><strong>Condição de vitória:</strong> ${m.winCon}</div>
-    <div class="notes-section"><h3>📝 Notas dessa partida (salva automático)</h3><textarea id="notes" placeholder="Anote insights durante o jogo..."></textarea></div>
-  `;
-  const notesEl = document.getElementById('notes');
-  const key = `${currentDeck}-notes-${id}`;
-  const saved = localStorage.getItem(key);
-  if (saved) notesEl.value = saved;
-  notesEl.addEventListener('input', () => localStorage.setItem(key, notesEl.value));
+  const m = DECKS[currentDeck].matchups.find(function (x) { return x.id === id; });
+  if (!m) { renderHome(); return; }
+  const obj = (m.objetivo || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  const cui = (m.cuidado || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  document.getElementById('screen').innerHTML =
+    '<button class="back" onclick="renderHome()">← Voltar</button>' +
+    '<div class="mhead"><div class="mtitle">' + esc(m.name) + '</div><div class="mbadges">' +
+    '<span class="tierbadge ' + m.tier + '">Tier ' + m.tier + '</span>' +
+    '<span class="pill ' + m.coinFlip + '">🪙 ' + coinText(m.coinFlip) + '</span>' +
+    '<span class="pill">📈 Meta ' + esc(m.metaShare) + '</span></div></div>' +
+    '<div class="wrcard"><div class="wrcard-top"><span class="lbl">Win rate</span>' +
+    '<span class="wrbig ' + m.tier + '">' + esc(m.wr) + '</span></div>' +
+    '<span class="wrbar big"><span class="wrfill ' + m.tier + '" style="width:' + wrWidth(m.wr) + '%"></span></span></div>' +
+    (obj ? '<div class="sect obj"><div class="sect-h">🎯 Objetivo</div><ul>' + obj + '</ul></div>' : '') +
+    (cui ? '<div class="sect cui"><div class="sect-h">⚠️ Cuidado</div><ul>' + cui + '</ul></div>' : '');
+  window.scrollTo(0, 0);
 }
 
-function renderPlaceholder() {
-  const d = DECKS[currentDeck];
-  document.getElementById('main').innerHTML = `
-    <div class="placeholder">
-      <h2>${d.label}</h2>
-      <p>Selecione o deck do oponente na lista à esquerda.<br>
-      Ou use a busca por nome ou sinal visual (banco inicial).</p>
-      <br>
-      <p style="color:${d.accent};">📋 Clique em "Meu Deck" pra ver suas 60 cartas · 💡 Troque o deck nas abas · ↑↓ navega · Esc limpa</p>
-    </div>
-  `;
-}
-
-// Monta a URL da arte da carta no CDN do Limitless a partir de "SET NUM" (ex: "SSP 76")
 function cardImg(setStr) {
   const parts = String(setStr).trim().split(/\s+/);
   if (parts.length < 2) return '';
   const set = parts[0].toUpperCase();
   const num = parts[1].replace(/\D/g, '').padStart(3, '0');
-  return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${set}/${set}_${num}_R_EN_LG.png`;
+  return 'https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/' + set + '/' + set + '_' + num + '_R_EN_LG.png';
 }
 
-function renderDeckGallery() {
+function showGallery() {
   selectedId = null;
-  renderSidebar(document.getElementById('search').value);
-  const d = DECKS[currentDeck];
-  const ac = d.accent;
-  const dl = d.decklist;
-  if (!dl) { document.getElementById('main').innerHTML = '<div class="placeholder"><p>Lista ainda não cadastrada para este deck.</p></div>'; return; }
-  let html = `<div class="matchup-header"><div class="matchup-name">${d.label} — Galeria (60 cartas)</div>
-    <div class="matchup-meta"><span>🖼️ Arte real de cada carta · o número é a quantidade no deck</span></div></div>`;
-  if (dl.note) html += `<div class="signal" style="border-left-color:${ac}"><div class="label" style="color:${ac}">💡 Como o deck funciona</div><div style="line-height:1.5;">${dl.note}</div></div>`;
-  dl.groups.forEach(g => {
-    html += `<div class="dl-group"><h3 class="dl-cat" style="color:${ac};border-color:${ac}55">${g.type}</h3><div class="gal-grid">`;
-    g.cards.forEach(c => {
+  const dl = DECKS[currentDeck].decklist;
+  let html = '<button class="back" onclick="renderHome()">← Voltar</button>';
+  if (!dl) { document.getElementById('screen').innerHTML = html + '<div class="empty">Lista não cadastrada.</div>'; window.scrollTo(0, 0); return; }
+  if (dl.note) html += '<div class="gal-note">' + dl.note + '</div>';
+  dl.groups.forEach(function (g) {
+    html += '<div class="dl-group"><div class="dl-cat">' + esc(g.type) + '</div><div class="gal-grid">';
+    g.cards.forEach(function (c) {
       const url = cardImg(c.set);
-      const fallback = `this.parentNode.classList.add('gal-broken');this.parentNode.innerHTML='${c.name.replace(/'/g, "\\'")}<br>${c.set}'`;
-      html += `<div class="gal-imgwrap"><img loading="lazy" src="${url}" alt="${c.name}" title="${c.name} (${c.set})" onerror="${fallback}"><span class="gal-count" style="background:${ac}">${c.n}×</span></div>`;
+      const fb = "this.parentNode.classList.add('gal-broken');this.parentNode.innerHTML='" + c.name.replace(/'/g, "\\'") + "<br>" + c.set + "'";
+      html += '<div class="gal-imgwrap"><img loading="lazy" src="' + url + '" alt="' + esc(c.name) + '" title="' + esc(c.name) + ' (' + c.set + ')" onerror="' + fb + '"><span class="gal-count">' + c.n + '×</span></div>';
     });
-    html += `</div></div>`;
+    html += '</div></div>';
   });
-  document.getElementById('main').innerHTML = html;
-}
-
-function clearSelection() {
-  selectedId = null;
-  document.getElementById('search').value = '';
-  renderSidebar();
-  renderPlaceholder();
-}
-
-document.getElementById('search').addEventListener('input', e => renderSidebar(e.target.value));
-document.addEventListener('keydown', e => {
-  const buttons = document.querySelectorAll('.deck-btn');
-  let focusIndex = Array.from(buttons).indexOf(document.activeElement);
-  if (e.key === 'Escape') { clearSelection(); document.getElementById('search').focus(); }
-  else if (e.key === 'ArrowDown') { e.preventDefault(); buttons[Math.min(focusIndex + 1, buttons.length - 1)]?.focus(); }
-  else if (e.key === 'ArrowUp') { e.preventDefault(); buttons[Math.max(focusIndex - 1, 0)]?.focus(); }
-  else if (e.key === 'Enter' && document.activeElement.classList.contains('deck-btn')) { document.activeElement.click(); }
-});
-
-switchDeck(currentDeck);
-
-// ——— Mobile drawer (sidebar) ———
-function toggleSidebar() {
-  const app = document.querySelector('.app');
-  const open = app.classList.toggle('sidebar-open');
-  const b = document.getElementById('backdrop');
-  if (b) b.classList.toggle('show', open);
-}
-function closeDrawerMobile() {
-  const app = document.querySelector('.app');
-  if (app) app.classList.remove('sidebar-open');
-  const b = document.getElementById('backdrop');
-  if (b) b.classList.remove('show');
+  document.getElementById('screen').innerHTML = html;
+  window.scrollTo(0, 0);
 }
 
 // ——— PWA: service worker (só em HTTPS hospedado; ignorado em file://) ———
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
 }
+
+switchDeck(currentDeck);
 </script>
 
 </body>

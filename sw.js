@@ -1,5 +1,5 @@
 // TCG Helper — Service Worker (offline)
-const SHELL_CACHE = 'tcg-shell-v1';
+const SHELL_CACHE = 'tcg-shell-v4';
 const CARDS_CACHE = 'tcg-cards-v1';
 const SHELL = [
   './',
@@ -7,7 +7,8 @@ const SHELL = [
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
-  './apple-touch-icon.png'
+  './apple-touch-icon.png',
+  './appicon.png'
 ];
 
 self.addEventListener('install', (e) => {
