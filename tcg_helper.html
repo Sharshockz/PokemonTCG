@@ -189,315 +189,309 @@
 <script>
 const DECKS = {
   crustle: {
-    label: "🦀 Crustle Munkidori",
+    label: "🦀 Crustle Mega Kang",
     accent: "#4ade80",
     universal: [
-      '<strong>CRUSTLE MUNKIDORI:</strong>',
-      '🎯 <span class="key">Munkidori shift</span>: mova o dano que o Crustle tomou → oponente (dano + pseudo-cura). Precisa Dark anexada.',
-      '🛡️ <span class="key">Energia Básica</span> (Dark/Grass) no Crustle vs decks de martelo (Enhanced/Crushing) — imune',
-      '✅ Ordens da Chefia sempre · Curar (Sorvete Gigante 80)',
-      '✅ Trocar Estádio do oponente',
-      '🧩 Psyduck (Damp) desliga Dusknoir · Shaymin protege bench de spread',
-      '⚠️ Cornerstone = seu ÚNICO ex (2 prêmios). Não exponha à toa; fraqueza Grass ×2 no mirror',
-      '🎯 <span class="key">MATE o Munkidori DELES</span> (Dragapult/Zoroark/Grimmsnarl/Starmie) — fura wall'
+      '<strong>CRUSTLE MEGA KANG (Reddy NAIC):</strong>',
+      '🛡️ <span class="key">Crustle</span> = parede imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa). Chip 120 (Tremendas Tesouras ignora efeitos).',
+      '⚡ <span class="key">Mega Kangaskhan ex</span> = atacante/engine. Run Errand saca 2 · Rajada Rápida [CCC] 200+ fecha.',
+      '🌵 <span class="key">Energia Espinhosa</span> pune quem FURA a parede (non-ex / ignore-effects): 2 counters no atacante.',
+      '💊 Stack de cura (Sorvete 80 / PCL 60 / Bianca / Centro Pokémon) + Mist (bloqueia efeitos).',
+      '🔪 Disrupção: Petrel busca QUALQUER Trainer · Eri (descarta Itens) · Xerosic/Hand Trimmer (corta mão).',
+      '⚠️ Quase só Energia ESPECIAL (1 Básica) → vulnerável a martelo/energy-denial. ⚠️ Mega Kang = 3 prêmios.'
     ],
     decklist: {
-      note: '🛡️ <strong>Parede single-prize.</strong> Crustle é imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa). Atacantes <strong>non-ex</strong> furam a parede — mas o Munkidori (com Energia Sombria anexada) move o dano que o Crustle acumulou de volta pro oponente (dano + pseudo-cura). Cornerstone é a 2ª parede (imune a Habilidades). Quase tudo dá 1 prêmio = sem liability.',
+      note: '🛡️ <strong>Parede + finalizador.</strong> Lista EXATA do Rahul Reddy (5º no NAIC 2026). Crustle é imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa) — e ~toda a meta é ex. Mega Kangaskhan ex (×4) é o atacante recorrente (Rajada Rápida 200+). Energia Espinhosa pune os non-ex que furam a parede. Stack de cura + disrupção (Petrel tutoria o silver bullet) estrangula o oponente.',
       groups: [
-        { type: "Pokémon (12)", cards: [
-          { n:3, name:"Dwebble", set:"DRI 11", fn:"Básico. Ability Ascensão: busca/evolui em Crustle do deck (acelera a parede). Linha de início." },
-          { n:3, name:"Crustle", set:"DRI 12", fn:"⭐ Parede. Ability Pousada Rochosa Misteriosa = imune a ataques de Pokémon ex. Ataque Tremendas Tesouras [GCC] 120 (chip). 150 HP, fraqueza Fogo ×2." },
-          { n:3, name:"Munkidori", set:"TWM 95", fn:"⭐ Engine de shift. Ability Cérebro-Adrena (precisa Energia Sombria anexada): move até 3 contadores de dano do SEU Pokémon → 1 do oponente. Dano + pseudo-cura. 110 HP." },
-          { n:1, name:"Cornerstone Mask Ogerpon ex", set:"TWM 112", fn:"Básico ex. 2ª parede: Postura de Pedra Angular = imune a ataques de Pokémon com Habilidade. Demolir [FCC] 140. ⚠️ Seu ÚNICO ex (2 prêmios), fraqueza Planta ×2.", tag:"ex" },
-          { n:1, name:"Shaymin", set:"DRI 10", fn:"Básico. Ability Cortina de Flores: protege os Pokémon non-rule-box do banco de dano de espalhar (spread). 🎯 Anti-Oil Salvo / Mergulho Fantasma — salva os Munkidori." },
-          { n:1, name:"Psyduck", set:"ASC 39", fn:"Básico. Ability Encharcado (Damp): desliga abilities que se auto-nocauteiam → anula o Dusknoir Explosão Amaldiçoada." }
+        { type: "Pokémon (10)", cards: [
+          { n:4, name:"Mega Kangaskhan ex", set:"MEG 104", fn:"⭐ Atacante/engine. 300 HP Colorless. Ability Run Errand: se ativo, saca 2 (1×/turno). Rajada Rápida [CCC] 200+ (flipa até tails, +50 por heads). Fraqueza Lutador, Retreat 3. ⚠️ 3 prêmios.", tag:"ex" },
+          { n:3, name:"Dwebble", set:"DRI 11", fn:"Básico. Ability Ascensão [C]: busca/evolui em Crustle do deck (acelera a parede)." },
+          { n:3, name:"Crustle", set:"DRI 12", fn:"⭐ Parede. Ability Pousada Rochosa Misteriosa = imune a TODO dano de ataques de Pokémon ex. Tremendas Tesouras [GCC] 120 (ignora efeitos no ativo). 150 HP (170 c/ Planta Crescimento), fraqueza Fogo ×2." }
         ]},
-        { type: "Trainer (34)", cards: [
-          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra/consistência principal." },
-          { n:4, name:"Pokégear 3.0", set:"SVI 186", fn:"Item. Olha as 7 do topo e pega 1 Apoiadora. ⚠️ reg G — usar BLK 084 em torneio físico." },
-          { n:4, name:"Jumbo Ice Cream", set:"PFL 91", fn:"Item. Cura 80 de dano (Sorvete Gigante). ⭐ Sustento da parede." },
-          { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). ⭐ Finaliza alvos / puxa o Munkidori deles. (Ordens da Chefia)" },
-          { n:3, name:"Poké Pad", set:"POR 81", fn:"Item. Consistência (busca/compra)." },
-          { n:2, name:"Team Rocket's Petrel", set:"DRI 176", fn:"Apoiadora. Draw/cava cartas (Petrel da Equipe Rocket)." },
-          { n:2, name:"Hilda", set:"WHT 84", fn:"Apoiadora. Draw (compra mais quando você tem poucas cartas)." },
-          { n:2, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Acelera/fixa Energia (fix de cor do deck multi-color)." },
-          { n:1, name:"Xerosic's Machinations", set:"SFA 64", fn:"Apoiadora. Reduz a mão do oponente → anti-Mão Poderosa (Alakazam) / Penas do Foguete (Honchkrow)." },
-          { n:1, name:"Lana's Aid", set:"TWM 155", fn:"Apoiadora. Recupera Pokémon non-ex + Energia Básica do descarte pra mão." },
-          { n:1, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte." },
-          { n:2, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dwebble/Munkidori/Shaymin/Psyduck). ⭐ Consistência de setup." },
-          { n:1, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon." },
-          { n:1, name:"Energy Switch", set:"MEG 115", fn:"Item. Move 1 Energia Básica entre seus Pokémon (Sombria pro Munkidori)." },
-          { n:1, name:"Hero's Cape", set:"TEF 152", fn:"Ferramenta ACE SPEC. +100 HP em Pokémon de Estágio (Crustle 150→250). 🛡️ Sobrevive a OHKOs. (Capa do Herói — só 1 no deck inteiro)" },
-          { n:1, name:"Air Balloon", set:"ASC 181", fn:"Ferramenta. -2 no custo de recuo. Mobilidade pra trocar de Ativo." },
-          { n:1, name:"Forest of Vitality", set:"MEG 117", fn:"Estádio (Floresta da Vitalidade). Também serve pra BUMPAR o estádio do oponente (mata Pátio do Festival, Ruínas Arriscadas etc)." }
+        { type: "Trainer (37)", cards: [
+          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Embaralha a mão e compra 6 (ou 8 se em exatamente 6 prêmios). Engine de compra principal." },
+          { n:4, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). ⭐ Finaliza alvos / puxa atacante non-ex." },
+          { n:4, name:"Team Rocket's Petrel", set:"DRI 176", fn:"⭐ Apoiadora. Busca QUALQUER Trainer do deck pra mão (cola do toolbox — pega o silver bullet/estádio do turno)." },
+          { n:2, name:"Eri", set:"TEF 146", fn:"Apoiadora. Oponente revela a mão; você descarta até 2 ITENS dela (mata Ultra Ball/Poffin/Martelo/Rare Candy na mão)." },
+          { n:2, name:"Hilda", set:"WHT 84", fn:"Apoiadora. Busca 1 Pokémon de Evolução + 1 Energia (acha Crustle + Energia)." },
+          { n:1, name:"Xerosic's Machinations", set:"SFA 64", fn:"Apoiadora. Oponente descarta a mão até ficar com 3 (anti-Mão Poderosa / Penas do Foguete)." },
+          { n:1, name:"Pokémon Center Lady", set:"MEG 123", fn:"Apoiadora. Cura 60 + remove todas as Condições Especiais de 1 Pokémon." },
+          { n:1, name:"Bianca's Devotion", set:"TEF 142", fn:"Apoiadora. Cura TODO o dano de 1 Pokémon que tenha ≤30 HP restante (resgate clutch)." },
+          { n:1, name:"Lisia's Appeal", set:"SSP 179", fn:"Apoiadora. Puxa 1 Básico do banco do oponente pro Ativo + Confunde (pesca alvo / trava atacante)." },
+          { n:4, name:"Jumbo Ice Cream", set:"PFL 91", fn:"Item. Cura 80 do ativo com 3+ Energia. ⭐ Sustento da parede/Mega Kang." },
+          { n:3, name:"Pokégear 3.0", set:"SVI 186", fn:"Item. Olha 7 do topo, pega 1 Apoiadora. ⚠️ reg G — usar BLK 084 em torneio físico." },
+          { n:2, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dwebble). Consistência de setup." },
+          { n:1, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon (acha Mega Kang/Dwebble)." },
+          { n:1, name:"Switch", set:"MEG 130", fn:"Item. Troca seu Ativo (sai do retreat 3 do Mega Kang / põe Crustle pra parede)." },
+          { n:1, name:"Hand Trimmer", set:"TEF 150", fn:"Item. Ambos descartam a mão até 5 (oponente primeiro). Disrupção de mão grande." },
+          { n:1, name:"Hero's Cape", set:"TEF 152", fn:"Ferramenta ACE SPEC. +100 HP (Mega Kang 400 / Crustle 250). 🛡️ Sobrevive a OHKOs. (só 1 no deck inteiro)" },
+          { n:1, name:"Handheld Fan", set:"TWM 150", fn:"Ferramenta. Ao tomar dano no Ativo, move 1 Energia do atacante pro banco DELE (energy denial defensivo)." },
+          { n:1, name:"Team Rocket's Factory", set:"DRI 173", fn:"Estádio. +2 cartas ao jogar Apoiadora 'Team Rocket' (com Petrel) + bumpa estádio do oponente." },
+          { n:1, name:"Community Center", set:"TWM 146", fn:"Estádio (Centro Comunitário). Jogou Apoiadora no turno → cura 10 de CADA Pokémon seu. Sustento passivo." },
+          { n:1, name:"Festival Grounds", set:"TWM 149", fn:"Estádio (Pátio do Festival). Pokémon com Energia imune a Condições Especiais + bumpa estádio do oponente." }
         ]},
-        { type: "Energy (14) — 7 Especiais + 7 Básicas", cards: [
-          { n:4, name:"Growing Grass Energy", set:"POR 86", fn:"Especial Planta. +20 HP no Pokémon equipado (Crustle mais gordo). (Energia de Planta Crescimento)" },
-          { n:3, name:"Mist Energy", set:"TEF 161", fn:"Especial. Bloqueia efeitos de ataques no Pokémon equipado." },
-          { n:3, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. ⭐ Trigger do Munkidori (Cérebro-Adrena precisa Sombria) + imune a martelos." },
-          { n:3, name:"Grass Energy", set:"MEE 1", fn:"BÁSICA Planta. Custo do Crustle/Cornerstone + imune a martelos." },
-          { n:1, name:"Fighting Energy", set:"MEE 6", fn:"BÁSICA Lutador. O 1 Lutador do custo do Demolir do Cornerstone [FCC]." }
+        { type: "Energy (13) — 12 Especiais + 1 Básica", cards: [
+          { n:4, name:"Spiky Energy", set:"JTG 159", fn:"⭐ Especial [C]. Quando o portador (Ativo) toma dano de ataque, 2 counters no atacante (mesmo se KO'd). Pune non-ex / ignore-effects que furam a parede. (Energia Espinhosa)" },
+          { n:4, name:"Growing Grass Energy", set:"POR 86", fn:"Especial [G]. +20 HP no Pokémon Grass (Crustle 170)." },
+          { n:4, name:"Mist Energy", set:"TEF 161", fn:"Especial [C]. Previne todos os EFEITOS de ataques no portador (gust forçado, condições, debuffs). Não previne dano." },
+          { n:1, name:"Grass Energy", set:"MEE 1", fn:"BÁSICA Planta. Única básica do deck (custo do Crustle, imune a Enhanced Hammer)." }
         ]}
       ]
     },
     matchups: [
-      { id:21, name:"Dragapult Ex Dusknoir", tier:"S", wr:"82-88% ⭐", metaShare:"5,86%", coinFlip:"second",
+      { id:21, name:"Dragapult Ex Dusknoir", tier:"A", wr:"65-72%", metaShare:"5,86%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Dreepy + Duskull (linha Dusknoir)",
-          "🧩 Psyduck (Damp) DESLIGA o Dusknoir Explosão Amaldiçoada (a ability que furava a wall) — joga cedo",
-          "Crustle imune ao Mergulho Fantasma; chip o Dragapult ex (3 hits) e MATE o Munkidori deles",
-          "Shaymin protege o banco do spread; seu Munkidori shifta o dano de volta + pseudo-cura"
+          "Crustle imune ao Mergulho Fantasma (Dragapult é ex); chip o Dragapult ex com Tremendas Tesouras",
+          "Mega Kang fecha (Rajada Rápida 200+); Eri descarta Itens deles (corta Rare Candy/Poffin)",
+          "Cura sustenta o chip da Explosão Amaldiçoada (Sorvete 80 / Centro Comunitário)"
         ],
         cuidado:[
-          "Esquecer o Psyduck (sem Damp, Explosão Amaldiçoada 130 fura a wall)",
-          "Expor o Cornerstone à toa (único ex) / deixar o Munkidori deles vivo"
+          "🚨 Sem Psyduck nesta build: Explosão Amaldiçoada do Dusknoir é ABILITY (não ataque) → fura a parede e Espinhosa NÃO pune. Segure com cura",
+          "Munkidori deles chip 30/turno; Mega Kang exposto (3 prêmios) sem cura/parede"
         ] },
       { id:18, name:"Beedrill Ex", tier:"S", wr:"88-95%", metaShare:"4,71%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Weedle + Kit de Caçar Insetos",
           "Crustle sempre ativo bloqueia 100% das Abelhas Furiosas (Beedrill é ex)",
-          "Chip Beedrill ex em 3 hits (310 HP) — grind single-prize tranquilo"
+          "Chip Beedrill ex (310 HP) e fecha com Mega Kang — Espinhosa pune se algum non-ex aparecer"
         ],
         cuidado:[
-          "Munkidori fica ocioso (Crustle não toma dano de ex = nada pra shiftar)",
-          "Expor o Cornerstone à toa; apressar (fecha devagar sem Mega Kang)"
+          "Expor o Mega Kang à toa (3 prêmios); martelo no seu setup de Especial",
+          "Não relaxar — só precisa manter a parede e bater"
         ] },
-      { id:23, name:"Dragapult Ex Blaziken", tier:"S", wr:"65-75%", metaShare:"~2%", coinFlip:"second",
+      { id:23, name:"Dragapult Ex Blaziken", tier:"A", wr:"60-70%", metaShare:"~2%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Dreepy + Torchic",
-          "🛡️ Capa do Herói no Crustle é OBRIGATÓRIA — Blaziken NON-EX (DRI 192) 120 × Fogo ×2 = 240 OHKO sem Capa",
-          "Chip os ex (Dragapult/Blaziken ex = Crustle imune ao output direto); Munkidori shifta o Blaziken non-ex de volta",
-          "MATE o Munkidori deles; Shaymin protege o banco"
+          "Crustle imune se o Blaziken for a versão EX (JTG 24); chip os ex e fecha com Mega Kang",
+          "🛡️ Capa do Herói + Espinhosa se for o Blaziken NON-EX (DRI 192) 120 × Fogo ×2 = 240 fura a parede"
         ],
         cuidado:[
-          "🚨 Crustle SEM Capa morre pro Blaziken non-ex (240 fura a wall)",
-          "Expor o Cornerstone; apressar o grind"
+          "🚨 Crustle sem Capa morre pro Blaziken non-ex (240); Espinhosa devolve 2 counters mas não impede o KO",
+          "Expor o Mega Kang; martelo no seu Especial"
         ] },
-      { id:2, name:"Garchomp Ex da Cíntia", tier:"S", wr:"62-70%", metaShare:"3,33%", coinFlip:"second",
+      { id:2, name:"Garchomp Ex da Cíntia", tier:"S", wr:"60-68%", metaShare:"3,33%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Gible + Roselia da Cíntia",
-          "Tremendas Tesouras 240 no Garchomp ex (fraqueza Planta ×2) = 2-shot mesmo com Power Weight 400",
-          "Ordens da Chefia sempre na mão; KO no Spiritomb (70 HP) quando aparecer"
+          "Tremendas Tesouras IGNORA efeitos (fura Power Weight/buffs); Crustle imune ao Garchomp ex",
+          "Ordens da Chefia + Mega Kang finalizam; KO no Spiritomb (70 HP) quando aparecer"
         ],
         cuidado:[
-          "🚨 Munkidori NÃO colocar counter no banco Cynthia's deles (vira fuel da Maldição Furiosa do Spiritomb) — shifte pro ATIVO/finalizar",
-          "Deixar Garchomp danificado no banco (fuel pro Spiritomb); expor o Cornerstone"
+          "🚨 NÃO usar Espinhosa de propósito aqui (counters viram fuel da Maldição Furiosa do Spiritomb)",
+          "Deixar Garchomp danificado no banco (fuel do Spiritomb); expor o Mega Kang"
         ] },
-      { id:14, name:"Alakazam", tier:"A", wr:"60-65%", metaShare:"4,13%", coinFlip:"second",
+      { id:14, name:"Alakazam", tier:"C", wr:"48-54%", metaShare:"4,13%", coinFlip:"second",
         objetivo:[
-          "👁️ Banco: Abra + Dunsparce + DEDENNE + Martelo Avançado = variante ENERGY DENIAL",
-          "🛡️ Anexa Energia BÁSICA (Sombria/Planta) no Crustle — imune ao Martelo Avançado (resolve o lock)",
-          "🎯 KO no DEDENNE (Ordens + Tremendas Tesouras OHKO 70 HP) — quebra o loop do martelo",
-          "Sentença/Xerosic reduzem a mão (cortam a Mão Poderosa); Munkidori limpa o chip"
+          "👁️ Banco: Abra + Dunsparce + DEDENNE + Martelo Avançado = ENERGY DENIAL",
+          "🌵 Espinhosa pune a Mão Poderosa (Alakazam non-ex fura a parede); Xerosic/Hand Trimmer/Eri cortam a mão",
+          "🎯 KO no DEDENNE (Ordens + Tremendas Tesouras OHKO 70 HP) — quebra o loop do martelo"
         ],
         cuidado:[
-          "Depender de Energia Especial (Martelo strippa Planta Crescimento/Nebulosa)",
-          "Ignorar o Dedenne (recupera o martelo do descarte = loop infinito); expor ex (single-prize)"
+          "🚨 PIOR que a build Munkidori aqui: quase só Energia ESPECIAL (1 básica) = vulnerável ao Martelo Avançado/Esmagador. Segure 1 Grass básica pra anexar",
+          "Ignorar o Dedenne (recicla martelo = loop); expor o Mega Kang (3 prêmios)"
         ] },
-      { id:7, name:"Festival Lead", tier:"A", wr:"48-55%", metaShare:"4,95%", coinFlip:"second",
+      { id:7, name:"Festival Lead", tier:"A", wr:"50-57%", metaShare:"4,95%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Grookey + Pátio do Festival",
-          "🔑 BUMPE o Pátio do Festival com a Floresta da Vitalidade ASAP — sem ele o Dipplin não faz ataque duplo (Do the Wave cai pra 100). É a jogada que ganha",
-          "Munkidori shifta o Do the Wave pra fora + Jumbo Ice Cream sustenta (eles batem rápido)",
-          "Ao estabilizar: Tremendas Tesouras OHKO tudo deles (baixo HP)"
+          "🔑 BUMPE o Pátio do Festival deles com o SEU estádio (Community Center/Festival Grounds/TR Factory) ASAP — sem ele o Dipplin não ataca 2× (Do the Wave cai pra 100)",
+          "Cura sustenta o burst inicial (Sorvete + Centro Comunitário); Mega Kang OHKOa o time deles (baixo HP)"
         ],
         cuidado:[
           "🚨 Demorar pra contestar o Pátio = 2× Do the Wave ~200/turno (OHKO Crustle ainda magro)",
-          "Build Munkidori não tem Budew e só 1 estádio = lenta; priorize bumpar + shift + heal. Não expor Cornerstone"
+          "Petrel busca o estádio — não fique sem bump. Não expor o Mega Kang cedo"
         ] },
       { id:5, name:"Mega Venusaur", tier:"A", wr:"55-62%", metaShare:"<1%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Bulbasaur + Floresta da Vitalidade",
-          "Crustle imune ao Jungle Dump 240 (é ex); chip o Mega Venusaur",
-          "KO no Genesect quando aparecer (120 HP, snipe fura wall); trocar a Floresta"
+          "Crustle imune ao Jungle Dump 240 (é ex); chip o Mega Venusaur e fecha com Mega Kang",
+          "🌵 Espinhosa pune o Genesect (snipe non-ex fura a parede); bumpe o estádio deles"
         ],
         cuidado:[
-          "Genesect Canhão de Inseto escala com Planta (snipe fura wall) — Munkidori shifta de volta",
-          "Expor o Cornerstone (fraqueza Planta ×2 = Jungle Dump OHKO)"
+          "Genesect Canhão de Inseto escala com Planta (snipe fura a parede) — Espinhosa + cura",
+          "Mega Kang/Crustle são Colorless/Grass — fraqueza Fogo do Crustle só importa vs Fogo"
         ] },
       { id:12, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"55-62%", metaShare:"~10%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Teal Mask Ogerpon ex + Meowth ex / engine Crispin",
-          "Wall vs os ex (imune ao output direto); KO imediato nas non-ex (Chien-Pao/Passimian/Fan Rotom)",
-          "Chip os ex deles (2-3 prêmios cada)"
+          "Wall vs os ex (imune ao output direto); KO/Espinhosa nas non-ex (Chien-Pao/Passimian/Fan Rotom)",
+          "Chip os ex deles e fecha com Mega Kang (Rajada Rápida 200+)"
         ],
         cuidado:[
-          "Expor o Cornerstone à toa (Ordens + atacante ex)",
-          "Contar com Munkidori (pouco dano pra shiftar); fecha devagar sem Mega Kang"
+          "Expor o Mega Kang à toa (Ordens + atacante ex = 3 prêmios)",
+          "Raging Bolt Bellowing Thunder escala com Energia — cuidado com burst; martelo no seu Especial"
         ] },
-      { id:1, name:"Dragapult Ex Puro", tier:"A", wr:"62-65%", metaShare:"8,34%", coinFlip:"second",
+      { id:1, name:"Dragapult Ex Puro", tier:"A", wr:"58-65%", metaShare:"8,34%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Dreepy + Munkidori (com Ruínas Arriscadas)",
-          "Setup Crustle T2 (Ascensão); Shaymin protege o banco do spread",
-          "🎯 MATE o Munkidori deles (mirror — o seu shifta de volta); trocar Ruínas Arriscadas"
+          "Setup Crustle T2 (Ascensão) = parede imune ao Mergulho Fantasma; Mega Kang 300 HP tanca o spread no banco",
+          "Eri/Hand Trimmer cortam Itens (Martelo Esmagador/Poffin); bumpe as Ruínas Arriscadas; Mega Kang fecha"
         ],
         cuidado:[
-          "Munkidori deles 30/turno (ability bypass) + spread do Mergulho Fantasma no banco",
-          "Expor o Cornerstone; esquecer a cura de sustento"
+          "🚨 4 Martelo Esmagador + Munkidori 30/turno — seu deck é quase só Especial (vulnerável). Segure a Grass básica",
+          "Mergulho Fantasma spread no banco; expor o Mega Kang"
         ] },
-      { id:15, name:"Zoroark Ex do N", tier:"A", wr:"58-63%", metaShare:"3,05%", coinFlip:"second",
+      { id:15, name:"Zoroark Ex do N", tier:"A", wr:"52-58%", metaShare:"3,05%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Zorua do N + Sombria + Martelo Esmagador jogado",
-          "🛡️ Energia BÁSICA no Crustle (7 básicas resistem aos 4 Martelo Esmagador)",
-          "Tremendas Tesouras 240 no Zoroark (fraqueza Planta ×2 = 2-shot); KO Yveltal (110) e o Munkidori deles"
+          "🌵 Espinhosa pune o Despedaçar do N's Zekrom (non-ex, ignora efeitos, fura a parede); Crustle imune ao Zoroark ex",
+          "Tremendas Tesouras 240 no Zoroark (fraqueza Planta ×2 = 2-shot); Eri/Xerosic cortam a mão; Mega Kang fecha"
         ],
         cuidado:[
-          "Curinga Noturno + Despedaçar do Zekrom 70/turno fura wall; depender de Especial (Hammer descarta)",
-          "Pecharunt ex closer (60× prêmios); expor o Cornerstone"
+          "🚨 Curinga Noturno copia o Despedaçar do Zekrom (70, ignora efeitos); Martelo Esmagador no seu Especial",
+          "Pecharunt ex closer; expor o Mega Kang"
         ] },
-      { id:13, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"55-60%", metaShare:"4,79%", coinFlip:"second",
+      { id:13, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"55-62%", metaShare:"4,79%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Tarountula + Energia TR + Apoiadores TR",
-          "KO no Spidops prioritário (130 HP, fura wall escalando); Munkidori finaliza",
-          "Reduz TR < 4 = Mewtwo trava (Salva-vidas); trocar a Fábrica TR"
+          "🌵 KO/Espinhosa no Spidops (130 HP, Rush Rocket non-ex fura a parede); Crustle imune ao Mewtwo ex (Bola de Apagar 280)",
+          "Eri descarta Itens TR; reduz TR < 4 = Mewtwo trava (Salva-vidas); Mega Kang fecha"
         ],
         cuidado:[
-          "Spidops Rush Rocket 30× TR (180+ com 6); Mewtwo Bola de Apagar 280 (Crustle imune)",
-          "Expor o Cornerstone"
+          "Spidops Rush Rocket 30× TR (180+ com 6 em jogo) fura a parede",
+          "Bumpe a Fábrica TR (corta o draw deles); expor o Mega Kang"
         ] },
       { id:17, name:"Honchkrow da Equipe Rocket", tier:"A", wr:"55-60%", metaShare:"2,05%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Murkrow TR + muitos Apoiadores TR",
-          "Sentença/Xerosic SPAM (cortam as Penas do Foguete); KO Honchkrow (130, 2-shot)",
-          "Munkidori finaliza; trocar a Fábrica TR"
+          "Xerosic/Hand Trimmer/Eri SPAM (cortam as Penas do Foguete, que escalam com a mão); KO Honchkrow (130, 2-shot)",
+          "Mega Kang fecha; bumpe a Fábrica TR"
         ],
         cuidado:[
           "Mão deles >5 supporters TR = Penas do Foguete 60× = OHKO; Porygon2 re-empilha",
-          "Expor o Cornerstone"
+          "Expor o Mega Kang; deixar a mão deles encher"
         ] },
-      { id:11, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"52-57%", metaShare:"0,80%", coinFlip:"second",
+      { id:11, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"52-58%", metaShare:"0,80%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Impidimp da Marnie + Snorunt",
-          "Tremendas Tesouras 240 no Grimmsnarl ex (Planta ×2 = 2-shot); KO Yveltal (110) e os 4 Munkidori",
-          "Shaymin protege do spread da Bala Sombria; seu Munkidori shifta de volta"
+          "Crustle imune ao Grimmsnarl ex; Tremendas Tesouras 240 (Planta ×2 = 2-shot); Mega Kang fecha",
+          "Cura sustenta o Manto Congelante 10/turno + chip do Munkidori deles"
         ],
         cuidado:[
-          "4× Munkidori chip 30/turno + Manto Congelante 10/turno (Crustle tem ability)",
-          "Expor o Cornerstone"
+          "4× Munkidori chip 30/turno (ability fura a parede) + Bala Sombria spread no banco",
+          "Expor o Mega Kang; martelo no seu Especial"
         ] },
-      { id:16, name:"Slowking Metagross", tier:"C", wr:"37-42%", metaShare:"5,22%", coinFlip:"second",
+      { id:16, name:"Slowking Metagross", tier:"C", wr:"38-45%", metaShare:"5,22%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Slowpoke + Telepática · 4 Academia da Noite + Ciphermaniac = variante Metagross",
-          "Crustle ativo (Estágio 1 = imune a Explosão de Machado); trocar Academia da Noite ASAP",
-          "Capa do Herói + 3-4 Planta Crescimento (310-330 HP sobrevive 300 — Capa SOZINHA 250 NÃO)",
-          "✅ Build nova sem Tenacidade do Colress = sem trap do Kyurem"
+          "Capa do Herói + 3-4 Planta Crescimento (250-270 HP) pra sobreviver ao 300; bumpe a Academia da Noite",
+          "Eri/Hand Trimmer cortam o engine deles; Mega Kang fecha quando estabilizar"
         ],
         cuidado:[
-          "🚨 Metagross Martelo Metálico 300 (copiado, ruling JP) OHKO Crustle — fura a wall",
-          "Expor Cornerstone/Dwebble extras (Explosão de Machado OHKO Básico); Geada Tripla 110×3 spread"
+          "🚨 Metagross Martelo Metálico 300 (copiado) OHKO Crustle — fura a parede; Geada Tripla 110×3 spread",
+          "⚠️ Slowking ganha MELHOR esse matchup — considere levar o Slowking pro evento. Expor o Mega Kang"
         ] },
       { id:9, name:"🦀 Crustle (Espelho)", tier:"A", wr:"50%", metaShare:"1-3%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Dwebble + Energia de Planta Crescimento",
           "JOGAR PRIMEIRO (1 turno extra decisivo)",
-          "🎯 Ordens da Chefia no Cornerstone deles → Tremendas Tesouras 240 (Planta ×2) = OHKO + 2 prêmios",
-          "Capa do Herói no Crustle; Munkidori shifta o dano acumulado"
+          "🎯 Tremendas Tesouras 240 no Crustle deles (fraqueza Planta ×2 = OHKO); Ordens puxa o atacante",
+          "Mega Kang é INÚTIL aqui (Crustle deles imune a... não, Mega Kang é ex → o Crustle DELES é imune a ele). Quebre com o SEU Crustle"
         ],
         cuidado:[
-          "Só Crustle quebra Crustle (seu Cornerstone/Mega Kang são ex = inúteis aqui)",
-          "Expor o SEU Cornerstone (mesma fraqueza Planta ×2 que você explora neles)"
+          "🚨 Seu Mega Kang não machuca o Crustle deles (é ex). Só Crustle quebra Crustle",
+          "Quem aplicar Tremendas Tesouras 240 primeiro ganha a corrida; Hand Trimmer/Eri disrupção"
         ] },
-      { id:3, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"50-55%", metaShare:"4,08%", coinFlip:"second",
+      { id:3, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"50-57%", metaShare:"4,08%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Chikorita + Floresta da Vitalidade",
-          "Ordens da Chefia no Tapu Bulu ANTES do Martelo da Madeira (non-ex 220 fura wall)",
-          "Munkidori shifta o dano do Tapu Bulu de volta + pseudo-cura; trocar a Floresta"
+          "🌵 Ordens/Lisia's no Tapu Bulu ANTES do Martelo da Madeira (non-ex 220 fura a parede); Espinhosa pune",
+          "Cura sustenta; bumpe a Floresta; Mega Kang fecha"
         ],
         cuidado:[
-          "Expor o Cornerstone (Tapu Bulu 220 × Planta ×2 = OHKO + 2 prêmios)",
-          "Briar closer a 2 prêmios; deixar a cura do Hydrapple estabilizar"
+          "Tapu Bulu 220 (non-ex) fura a parede — Espinhosa + cura + gust pra controlar",
+          "Briar closer a 2 prêmios; a cura do Hydrapple estabiliza; expor o Mega Kang"
         ] },
       { id:25, name:"Ogerpon Meganium Arboliva", tier:"A", wr:"55-62%", metaShare:"~2%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Smoliv/Chikorita + Floresta + Teal Mask (SEM Tapu Bulu, COM Arboliva ex)",
-          "🛡️ BAIXE O SHAYMIN SEMPRE — Oil Salvo (6×20) estoura os Munkidori (110 HP) no banco e mata seu engine",
-          "Crustle imune a Oil Salvo/Aroma Shot (ex); chip os ex (Arboliva 310=3-shot, Teal 210=2-shot, Meganium 160=2-shot)"
+          "Crustle imune a Oil Salvo/Aroma Shot (ex); Mega Kang 300 HP no banco aguenta o spread (não precisa de Shaymin)",
+          "🌵 Espinhosa pune o Meganium Solar Beam 140 (non-ex chip); chip os ex e fecha com Mega Kang"
         ],
         cuidado:[
-          "🚨 Esquecer o Shaymin = perde o engine de Munkidori; Meganium Solar Beam 140 (non-ex chip)",
-          "Briar closer a 2 prêmios; expor o Cornerstone"
+          "Oil Salvo (6×20) spread no banco — distribua, mas Mega Kang tanca melhor que Munkidori tancava",
+          "Briar closer a 2 prêmios; expor o Mega Kang"
         ] },
-      { id:4, name:"Mega Starmie Ex Dusknoir", tier:"C", wr:"42-48%", metaShare:"2,07%", coinFlip:"second",
+      { id:4, name:"Mega Starmie Ex Dusknoir", tier:"C", wr:"42-50%", metaShare:"2,07%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Staryu + Duskull (variante mais difícil)",
-          "🧩 Psyduck (Damp) DESLIGA o Dusknoir Explosão Amaldiçoada (mata metade da ameaça)",
-          "KO no Munkidori deles + cura após cada Feixe Celestial; seu Munkidori shifta de volta"
+          "🛡️ Capa do Herói + cura contra o Feixe Celestial 210 (ignora efeitos, fura a parede); Espinhosa pune",
+          "Mega Kang fecha; Eri/Hand Trimmer cortam o engine"
         ],
         cuidado:[
-          "Feixe Celestial 210 'ignora efeitos' fura wall; Explosão Amaldiçoada 130 sem Psyduck",
-          "Chip das Ruínas Arriscadas; expor o Cornerstone"
+          "🚨 Sem Psyduck: Feixe Celestial 210 (ignore-effects) + Explosão Amaldiçoada (ability) furam a parede",
+          "Chip das Ruínas Arriscadas; expor o Mega Kang"
         ] },
       { id:24, name:"Mega Starmie Ex Froslass", tier:"A", wr:"48-55%", metaShare:"~1%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Staryu + Snorunt (mais fácil que Dusknoir)",
-          "KO no Munkidori deles + cura após cada Feixe Celestial; seu Munkidori shifta de volta",
-          "Ignorar a Mega Froslass ex (inútil contra Crustle — eles desperdiçaram slots)"
+          "🛡️ Capa do Herói + cura contra o Feixe Celestial 210 (ignora efeitos); Espinhosa pune",
+          "Ignorar a Mega Froslass ex (inútil contra Crustle); Mega Kang fecha"
         ],
         cuidado:[
-          "Feixe Celestial 210 'ignora efeitos' fura wall; chip das Ruínas Arriscadas",
-          "Atacar a Mega Froslass ex (perda de tempo); expor o Cornerstone"
+          "Feixe Celestial 210 'ignora efeitos' fura a parede; chip das Ruínas Arriscadas",
+          "Atacar a Mega Froslass ex (perda de tempo); expor o Mega Kang"
         ] },
       { id:20, name:"Crobat ex da Equipe Rocket", tier:"A", wr:"52-57%", metaShare:"rogue", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Zubat TR + Duraludon + Sombrio/Metal",
-          "🎯 Munkidori shifta os counters do spread (Bordada de Mordidas) de volta neles!",
-          "Foco no Crobat ex (310 HP, 3 hits) + KO Golbat (80) corta a evolução; Ordens no Crobat antes do Retorno do Assassino"
+          "Cura sustenta o spread (Bordada de Mordidas via ability não dispara Espinhosa)",
+          "Foco no Crobat ex (310 HP) + KO Golbat (80) corta a evolução; Ordens no Crobat; Mega Kang fecha"
         ],
         cuidado:[
-          "Spread via ability 60/turno + ciclo Retorno do Assassino + re-evoluir",
-          "Expor o Cornerstone; atacar Archaludon ex à toa (imune)"
+          "Spread via ability 60/turno + ciclo Retorno do Assassino + re-evoluir (cura é a resposta)",
+          "Atacar Archaludon ex à toa (Crustle imune); expor o Mega Kang"
         ] },
       { id:19, name:"Ethan's Typhlosion", tier:"C", wr:"45-52%", metaShare:"0,16%", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Ho-Oh do Ethan + Cyndaquil",
-          "⏱️ KO no Typhlosion RÁPIDO (170 HP, 2 hits) ANTES das Aventuras empilharem (Fogo non-ex, Crustle fraco Fogo ×2)",
-          "Munkidori shifta o Buddy Blast de volta; Ordens no Typhlosion/Ho-Oh ex pra controlar o tempo"
+          "⏱️ KO no Typhlosion RÁPIDO (170 HP, 2 hits / Ordens + Mega Kang) ANTES das Aventuras empilharem (Fogo non-ex, Crustle fraco Fogo ×2)",
+          "🌵 Espinhosa pune o Buddy Blast; Capa do Herói + cura seguram"
         ],
         cuidado:[
-          "🔥 Buddy Blast × Fogo ×2: 2 Aventuras = 320 (OHKO mesmo c/ Capa quase); 3 = 440 (OHKO com Capa)",
-          "Atacar Ho-Oh ex à toa (Crustle imune); deixar o jogo arrastar (mais Aventuras = mais dano)"
+          "🔥 Buddy Blast × Fogo ×2: 2 Aventuras = 320 (OHKO mesmo c/ Capa quase); 3 = 440",
+          "Deixar o jogo arrastar (mais Aventuras = mais dano); expor o Mega Kang"
         ] },
-      { id:8, name:"Mega Greninja Ex", tier:"C", wr:"42-50%", metaShare:"Recente", coinFlip:"second",
+      { id:8, name:"Mega Greninja Ex", tier:"C", wr:"45-52%", metaShare:"Recente", coinFlip:"second",
         objetivo:[
           "👁️ Banco: Froakie + Praia Surfista",
-          "🎯 Munkidori shifta o chip do Shuriken Mortal (60/turno ability) de volta; Jumbo Ice Cream (80 vs 60)",
-          "Distribua o chip (não deixe 1 Crustle absorver tudo); trocar a Praia Surfista"
+          "💊 Cura responde ao chip do Shuriken Mortal (60/turno é ABILITY, não dispara Espinhosa): Jumbo 80 > 60",
+          "Bumpe a Praia Surfista; Mega Kang fecha; Crustle imune ao Ninja Spinner (ex)"
         ],
         cuidado:[
-          "Shuriken Mortal 60/turno (ability fura wall) + Ninja Spinner 200; Carta Vermelha Especial late",
-          "Expor o Cornerstone (Greninja ex TWM tipo Lutador)"
+          "Shuriken Mortal 60/turno (ability fura a parede); Carta Vermelha Especial late",
+          "Mega Greninja é tipo Lutador → Mega Kang weakness Lutador ×2 (cuidado ao expor)"
         ] },
-      { id:6, name:"Mega Lucario Ex Hariyama", tier:"C", wr:"42-50%", metaShare:"2,64%", coinFlip:"first",
+      { id:6, name:"Mega Lucario Ex Hariyama", tier:"C", wr:"45-52%", metaShare:"2,64%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Riolu + Makuhita + Solrock/Lunatone",
           "JOGAR PRIMEIRO (1 turno extra)",
-          "🎯 Munkidori shifta o Hariyama Pressão Selvagem 210 de volta + pseudo-cura; foco no Mega Lucario ex (3 prêmios)",
-          "Hot-swap: Crustle vs Mega Lucario, Cornerstone vs Hariyama (ability)"
+          "🌵 Espinhosa pune o Hariyama Pressão Selvagem 210 (non-ex fura a parede) — devolve 2 counters/ataque",
+          "Capa do Herói + cura no Crustle; foco em prizes via Mega Kang"
         ],
         cuidado:[
-          "Hariyama 210+30 = 240 (non-ex fura wall); gust Pegada-Joga ao evoluir",
-          "Munkidori SEU sem Sombria anexada; ⚠️ Slowking ganha melhor (considere ao montar pro evento)"
+          "🚨 Hariyama 210+30 = 240 (non-ex) e Mega Lucario é Lutador → Mega Kang weakness Lutador ×2",
+          "⚠️ Slowking ganha MELHOR — considere levar o Slowking pro evento"
         ] },
-      { id:10, name:"Mega Lopunny Dudunsparce 🔴", tier:"C", wr:"38-45%", metaShare:"4,24%", coinFlip:"first",
+      { id:10, name:"Mega Lopunny Dudunsparce 🔴", tier:"C", wr:"40-48%", metaShare:"4,24%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Buneary + Jaula de Batalha",
           "JOGAR PRIMEIRO (exceção crítica)",
-          "🎯 Munkidori shifta o Saltador Espinhudo 160 de volta + pseudo-cura; Jumbo Ice Cream",
-          "Ordens no Lopunny chipado ANTES da Compaixão da Wally"
+          "🌵 Espinhosa é o counter-chave: pune o Saltador Espinhudo 160 (non-ex, ignora efeitos) — 2 counters/ataque",
+          "Capa do Herói + cura; Ordens no Lopunny chipado ANTES da Compaixão da Wally"
         ],
         cuidado:[
-          "Saltador Espinhudo 160 'ignora efeitos' fura wall; Jaula de Batalha bloqueia counters no SEU banco (cuidado onde shifta)",
-          "Compaixão da Wally cura o Lopunny; expor o Cornerstone; Munkidori sem Sombria"
+          "🚨 Saltador Espinhudo 160 'ignora efeitos' fura a parede; Jaula de Batalha pode bloquear counters",
+          "Compaixão da Wally cura o Lopunny; ⚠️ cuidado ao expor o Mega Kang (fraqueza Lutador ×2 se o atacante for Lutador)"
         ] },
-      { id:26, name:"Mega Kangaskhan Box (Clefairy) 🆕", tier:"S", wr:"70-80%", metaShare:"novo", coinFlip:"second",
+      { id:26, name:"Mega Kangaskhan Box (Clefairy) 🏆", tier:"S", wr:"75-82%", metaShare:"campeão NAIC", coinFlip:"second",
         objetivo:[
           "👁️ Banco: vários ex (Mega Kang/Latias/Lillie's Clefairy) + Profundezas da Área Zero (banco 8)",
           "🛡️ Parede absoluta — deck ~95% ex = Pousada Rochosa bloqueia TUDO (Mega Kang/Latias/Clefairy/Wellspring/Koraidon)",
-          "Chip os ex deles com Tremendas Tesouras (grind single-prize tranquilo)"
+          "🌵 Espinhosa pune o Chien-Pao (única fonte de dano non-ex); Mega Kang fecha o grind"
         ],
         cuidado:[
-          "Única fonte de dano = Chien-Pao Geada (Icicle Loop) 120 (non-ex, 1 cópia) — Moltres faz só 20 no Crustle",
-          "Não expor o Cornerstone (Latias/Clefairy OHKO 200 nele); Munkidori fica ocioso (sem dano de ex pra shiftar)"
+          "🏆 Esse deck VENCEU o NAIC, mas é a melhor matchup do Crustle: a parede neutraliza o plano A inteiro deles",
+          "Chien-Pao Geada (Icicle, non-ex, 1 cópia) é o único chip — Espinhosa/cura; não expor o Mega Kang"
         ] }
     ]
   },
