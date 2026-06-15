@@ -1,0 +1,17 @@
+{
+  "name": "TCG Helper — Crustle & Slowking",
+  "short_name": "TCG Helper",
+  "description": "Helper de torneio Pokémon TCG: matchups, planos e galeria por deck (Crustle, Slowking, Dragapult, Pult+Zam).",
+  "lang": "pt-BR",
+  "start_url": "tcg_helper.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

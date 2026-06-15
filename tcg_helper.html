@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="TCG Helper">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>🃏 TCG Helper — Crustle & Slowking (PT-BR)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0e1a; color: #e0e6ed; min-height: 100vh; padding: 16px; }
+  .app { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 320px 1fr; gap: 16px; height: calc(100vh - 32px); }
+  header { grid-column: 1 / -1; background: linear-gradient(135deg, #1a2540 0%, #2d3a5f 100%); padding: 12px 20px; border-radius: 8px; border: 1px solid #3d4d75; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  h1 { font-size: 18px; color: #e0e6ed; }
+  .deck-select { display: flex; gap: 8px; }
+  .deck-tab { background: #1a2540; border: 1px solid #3d4d75; color: #8595b8; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.15s; }
+  .deck-tab:hover { background: #2d3a5f; }
+  .deck-tab.active-crustle { background: #14532d; border-color: #4ade80; color: #4ade80; }
+  .deck-tab.active-slowking { background: #4a1a40; border-color: #f0abfc; color: #f0abfc; }
+  .deck-tab.active-dragapult { background: #2e1065; border-color: #c084fc; color: #c084fc; }
+  .deck-tab.active-zam { background: #083344; border-color: #22d3ee; color: #22d3ee; }
+  .controls { display: flex; gap: 8px; align-items: center; }
+  .search { background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 8px 14px; border-radius: 6px; font-size: 14px; width: 200px; }
+  .search:focus { outline: none; border-color: #4ade80; }
+  .clear-btn { background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+  .clear-btn:hover { background: #2d3a5f; }
+
+  .sidebar { background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 12px; overflow-y: auto; }
+  .tier-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 6px 4px; color: #8595b8; font-weight: 600; }
+  .tier-label:first-child { margin-top: 0; }
+  .deck-btn { display: block; width: 100%; text-align: left; background: #1a2540; border: 1px solid #2d3a5f; color: #e0e6ed; padding: 8px 12px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.15s; }
+  .deck-btn:hover { background: #2d3a5f; }
+  .deck-btn.active { box-shadow: 0 0 0 1px currentColor; }
+  .deck-btn .wr { float: right; font-weight: 600; font-size: 12px; }
+  .tier-S { color: #4ade80; }
+  .tier-A { color: #fbbf24; }
+  .tier-C { color: #f87171; }
+
+  .main { background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 20px; overflow-y: auto; }
+  .placeholder { text-align: center; padding: 60px 20px; color: #5d6d99; }
+  .placeholder h2 { font-size: 24px; margin-bottom: 12px; color: #8595b8; }
+  .placeholder p { font-size: 14px; line-height: 1.6; }
+
+  .matchup-header { border-bottom: 2px solid #2d3a5f; padding-bottom: 12px; margin-bottom: 16px; }
+  .matchup-name { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+  .matchup-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #8595b8; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: 600; font-size: 12px; }
+  .badge-S { background: #14532d; color: #4ade80; }
+  .badge-A { background: #713f12; color: #fbbf24; }
+  .badge-C { background: #7f1d1d; color: #f87171; }
+
+  .coin-flip { background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%); padding: 14px 20px; border-radius: 8px; margin-bottom: 16px; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+  .coin-flip.first { background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%); }
+  .coin-flip .icon { font-size: 22px; }
+
+  .signal { background: #1e3a5f; border-left: 4px solid #4ade80; padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; font-size: 14px; }
+  .signal .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #4ade80; margin-bottom: 4px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .grid-2.grid-solo { grid-template-columns: 1fr; }
+  .col h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .col-do h3 { color: #4ade80; }
+  .col-dont h3 { color: #f87171; }
+  .col ul { list-style: none; background: #1a2540; border-radius: 6px; padding: 10px; }
+  .col li { padding: 6px 0; font-size: 13px; line-height: 1.4; border-bottom: 1px solid #2d3a5f; }
+  .col li:last-child { border-bottom: none; }
+  .col-do li::before { content: "✅ "; }
+  .col-dont li::before { content: "❌ "; }
+
+  .threat { background: #1a0f1f; border: 1px solid #7f1d1d; padding: 12px 14px; border-radius: 6px; margin-bottom: 12px; }
+  .threat h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #f87171; margin-bottom: 6px; }
+  .threat .text { font-size: 13px; line-height: 1.5; }
+  .threat .counter { margin-top: 8px; padding-top: 8px; border-top: 1px solid #4d2530; color: #fbbf24; }
+  .threat .counter::before { content: "→ "; font-weight: 600; }
+
+  .wincon { background: linear-gradient(135deg, #14532d 0%, #166534 100%); padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+  .wincon .icon { margin-right: 8px; font-size: 18px; }
+
+  .universal { grid-column: 1 / -1; background: #131a2b; border: 1px solid #2d3a5f; border-radius: 8px; padding: 10px 16px; font-size: 12px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-around; }
+  .universal .rule { color: #8595b8; }
+  .universal .rule strong { color: #e0e6ed; }
+  .universal .key { color: #fbbf24; font-weight: 700; }
+
+  .notes-section { margin-top: 16px; border-top: 1px solid #2d3a5f; padding-top: 16px; }
+  .notes-section h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8595b8; margin-bottom: 8px; }
+  textarea { width: 100%; background: #1a2540; border: 1px solid #2d3a5f; color: #e0e6ed; padding: 10px; border-radius: 6px; font-family: inherit; font-size: 13px; resize: vertical; min-height: 60px; }
+  textarea:focus { outline: none; border-color: #4ade80; }
+  .field-edit { min-height: 260px; font-size: 14px; line-height: 1.5; }
+  .col-do .field-edit:focus { border-color: #4ade80; }
+  .col-dont .field-edit:focus { border-color: #f87171; }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #131a2b; }
+  ::-webkit-scrollbar-thumb { background: #2d3a5f; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3d4d75; }
+
+  /* Deck view (grouping headers, shared with gallery) */
+  .dl-group { margin-bottom: 20px; }
+  .dl-cat { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #2d3a5f; padding-bottom: 6px; margin-bottom: 6px; }
+
+  /* Gallery view (card art) */
+  .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 10px; }
+  .gal-imgwrap { position: relative; border-radius: 7px; overflow: hidden; background: #1a2540; aspect-ratio: 245 / 342; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  .gal-imgwrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gal-count { position: absolute; bottom: 5px; right: 5px; color: #0a0e1a; font-weight: 800; font-size: 13px; padding: 1px 8px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+  .gal-broken { font-size: 11px; text-align: center; padding: 8px; color: #8595b8; line-height: 1.3; }
+
+  /* ——— PWA / Mobile ——— */
+  .menu-btn { display: none; background: #1a2540; border: 1px solid #3d4d75; color: #e0e6ed; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 16px; line-height: 1; }
+  .backdrop { display: none; }
+  @media (max-width: 760px) {
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { padding: 8px; }
+    .app { grid-template-columns: minmax(0, 1fr); height: auto; gap: 10px; }
+    header { position: sticky; top: 0; z-index: 30; padding: 10px 12px; min-width: 0; }
+    h1 { font-size: 16px; }
+    .deck-select { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; min-width: 0; }
+    .deck-tab { white-space: nowrap; }
+    .controls { flex: 1 1 100%; min-width: 0; }
+    .search { width: auto; flex: 1 1 120px; min-width: 0; }
+    .menu-btn { display: inline-flex; align-items: center; }
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 86%; max-width: 330px;
+      z-index: 60; transform: translateX(-102%); transition: transform .22s ease;
+      border-radius: 0 12px 12px 0; box-shadow: 6px 0 30px rgba(0,0,0,.65);
+    }
+    .app.sidebar-open .sidebar { transform: translateX(0); }
+    .backdrop { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 55; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .backdrop.show { opacity: 1; pointer-events: auto; }
+    .main { min-height: 72vh; padding: 16px 14px; min-width: 0; }
+    .matchup-name { font-size: 19px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .deck-btn { padding: 11px 12px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header>
+    <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()" aria-label="Abrir lista de matchups">📋</button>
+    <h1>🃏 TCG Helper</h1>
+    <div class="deck-select">
+      <button class="deck-tab" id="tab-crustle" onclick="switchDeck('crustle')">🦀 Crustle</button>
+      <button class="deck-tab" id="tab-slowking" onclick="switchDeck('slowking')">🐚 Slowking</button>
+      <button class="deck-tab" id="tab-dragapult" onclick="switchDeck('dragapult')">🐉 Dragapult</button>
+      <button class="deck-tab" id="tab-zam" onclick="switchDeck('zam')">🔮 Pult+Zam</button>
+    </div>
+    <div class="controls">
+      <input type="text" class="search" placeholder="Buscar oponente..." id="search">
+      <button class="clear-btn" onclick="renderDeckGallery()">🖼️ Meu Deck</button>
+      <button class="clear-btn" onclick="clearSelection()">Limpar</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="backdrop" id="backdrop" onclick="closeDrawerMobile()"></div>
+
+  <main class="main" id="main"></main>
+
+  <div class="universal" id="universal"></div>
+</div>
+
+<script>
+const DECKS = {
+  crustle: {
+    label: "🦀 Crustle Munkidori",
+    accent: "#4ade80",
+    universal: [
+      '<strong>CRUSTLE MUNKIDORI:</strong>',
+      '🎯 <span class="key">Munkidori shift</span>: mova o dano que o Crustle tomou → oponente (dano + pseudo-cura). Precisa Dark anexada.',
+      '🛡️ <span class="key">Energia Básica</span> (Dark/Grass) no Crustle vs decks de martelo (Enhanced/Crushing) — imune',
+      '✅ Ordens da Chefia sempre · Curar (Sorvete Gigante 80)',
+      '✅ Trocar Estádio do oponente',
+      '🧩 Psyduck (Damp) desliga Dusknoir · Shaymin protege bench de spread',
+      '⚠️ Cornerstone = seu ÚNICO ex (2 prêmios). Não exponha à toa; fraqueza Grass ×2 no mirror',
+      '🎯 <span class="key">MATE o Munkidori DELES</span> (Dragapult/Zoroark/Grimmsnarl/Starmie) — fura wall'
+    ],
+    decklist: {
+      note: '🛡️ <strong>Parede single-prize.</strong> Crustle é imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa). Atacantes <strong>non-ex</strong> furam a parede — mas o Munkidori (com Energia Sombria anexada) move o dano que o Crustle acumulou de volta pro oponente (dano + pseudo-cura). Cornerstone é a 2ª parede (imune a Habilidades). Quase tudo dá 1 prêmio = sem liability.',
+      groups: [
+        { type: "Pokémon (12)", cards: [
+          { n:3, name:"Dwebble", set:"DRI 11", fn:"Básico. Ability Ascensão: busca/evolui em Crustle do deck (acelera a parede). Linha de início." },
+          { n:3, name:"Crustle", set:"DRI 12", fn:"⭐ Parede. Ability Pousada Rochosa Misteriosa = imune a ataques de Pokémon ex. Ataque Tremendas Tesouras [GCC] 120 (chip). 150 HP, fraqueza Fogo ×2." },
+          { n:3, name:"Munkidori", set:"TWM 95", fn:"⭐ Engine de shift. Ability Cérebro-Adrena (precisa Energia Sombria anexada): move até 3 contadores de dano do SEU Pokémon → 1 do oponente. Dano + pseudo-cura. 110 HP." },
+          { n:1, name:"Cornerstone Mask Ogerpon ex", set:"TWM 112", fn:"Básico ex. 2ª parede: Postura de Pedra Angular = imune a ataques de Pokémon com Habilidade. Demolir [FCC] 140. ⚠️ Seu ÚNICO ex (2 prêmios), fraqueza Planta ×2.", tag:"ex" },
+          { n:1, name:"Shaymin", set:"DRI 10", fn:"Básico. Ability Cortina de Flores: protege os Pokémon non-rule-box do banco de dano de espalhar (spread). 🎯 Anti-Oil Salvo / Mergulho Fantasma — salva os Munkidori." },
+          { n:1, name:"Psyduck", set:"ASC 39", fn:"Básico. Ability Encharcado (Damp): desliga abilities que se auto-nocauteiam → anula o Dusknoir Explosão Amaldiçoada." }
+        ]},
+        { type: "Trainer (34)", cards: [
+          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra/consistência principal." },
+          { n:4, name:"Pokégear 3.0", set:"SVI 186", fn:"Item. Olha as 7 do topo e pega 1 Apoiadora. ⚠️ reg G — usar BLK 084 em torneio físico." },
+          { n:4, name:"Jumbo Ice Cream", set:"PFL 91", fn:"Item. Cura 80 de dano (Sorvete Gigante). ⭐ Sustento da parede." },
+          { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). ⭐ Finaliza alvos / puxa o Munkidori deles. (Ordens da Chefia)" },
+          { n:3, name:"Poké Pad", set:"POR 81", fn:"Item. Consistência (busca/compra)." },
+          { n:2, name:"Team Rocket's Petrel", set:"DRI 176", fn:"Apoiadora. Draw/cava cartas (Petrel da Equipe Rocket)." },
+          { n:2, name:"Hilda", set:"WHT 84", fn:"Apoiadora. Draw (compra mais quando você tem poucas cartas)." },
+          { n:2, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Acelera/fixa Energia (fix de cor do deck multi-color)." },
+          { n:1, name:"Xerosic's Machinations", set:"SFA 64", fn:"Apoiadora. Reduz a mão do oponente → anti-Mão Poderosa (Alakazam) / Penas do Foguete (Honchkrow)." },
+          { n:1, name:"Lana's Aid", set:"TWM 155", fn:"Apoiadora. Recupera Pokémon non-ex + Energia Básica do descarte pra mão." },
+          { n:1, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte." },
+          { n:2, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dwebble/Munkidori/Shaymin/Psyduck). ⭐ Consistência de setup." },
+          { n:1, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon." },
+          { n:1, name:"Energy Switch", set:"MEG 115", fn:"Item. Move 1 Energia Básica entre seus Pokémon (Sombria pro Munkidori)." },
+          { n:1, name:"Hero's Cape", set:"TEF 152", fn:"Ferramenta ACE SPEC. +100 HP em Pokémon de Estágio (Crustle 150→250). 🛡️ Sobrevive a OHKOs. (Capa do Herói — só 1 no deck inteiro)" },
+          { n:1, name:"Air Balloon", set:"ASC 181", fn:"Ferramenta. -2 no custo de recuo. Mobilidade pra trocar de Ativo." },
+          { n:1, name:"Forest of Vitality", set:"MEG 117", fn:"Estádio (Floresta da Vitalidade). Também serve pra BUMPAR o estádio do oponente (mata Pátio do Festival, Ruínas Arriscadas etc)." }
+        ]},
+        { type: "Energy (14) — 7 Especiais + 7 Básicas", cards: [
+          { n:4, name:"Growing Grass Energy", set:"POR 86", fn:"Especial Planta. +20 HP no Pokémon equipado (Crustle mais gordo). (Energia de Planta Crescimento)" },
+          { n:3, name:"Mist Energy", set:"TEF 161", fn:"Especial. Bloqueia efeitos de ataques no Pokémon equipado." },
+          { n:3, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. ⭐ Trigger do Munkidori (Cérebro-Adrena precisa Sombria) + imune a martelos." },
+          { n:3, name:"Grass Energy", set:"MEE 1", fn:"BÁSICA Planta. Custo do Crustle/Cornerstone + imune a martelos." },
+          { n:1, name:"Fighting Energy", set:"MEE 6", fn:"BÁSICA Lutador. O 1 Lutador do custo do Demolir do Cornerstone [FCC]." }
+        ]}
+      ]
+    },
+    matchups: [
+      { id:21, name:"Dragapult Ex Dusknoir", tier:"S", wr:"82-88% ⭐", metaShare:"5,86%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Duskull (linha Dusknoir)",
+          "🧩 Psyduck (Damp) DESLIGA o Dusknoir Explosão Amaldiçoada (a ability que furava a wall) — joga cedo",
+          "Crustle imune ao Mergulho Fantasma; chip o Dragapult ex (3 hits) e MATE o Munkidori deles",
+          "Shaymin protege o banco do spread; seu Munkidori shifta o dano de volta + pseudo-cura"
+        ],
+        cuidado:[
+          "Esquecer o Psyduck (sem Damp, Explosão Amaldiçoada 130 fura a wall)",
+          "Expor o Cornerstone à toa (único ex) / deixar o Munkidori deles vivo"
+        ] },
+      { id:18, name:"Beedrill Ex", tier:"S", wr:"88-95%", metaShare:"4,71%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Weedle + Kit de Caçar Insetos",
+          "Crustle sempre ativo bloqueia 100% das Abelhas Furiosas (Beedrill é ex)",
+          "Chip Beedrill ex em 3 hits (310 HP) — grind single-prize tranquilo"
+        ],
+        cuidado:[
+          "Munkidori fica ocioso (Crustle não toma dano de ex = nada pra shiftar)",
+          "Expor o Cornerstone à toa; apressar (fecha devagar sem Mega Kang)"
+        ] },
+      { id:23, name:"Dragapult Ex Blaziken", tier:"S", wr:"65-75%", metaShare:"~2%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Torchic",
+          "🛡️ Capa do Herói no Crustle é OBRIGATÓRIA — Blaziken NON-EX (DRI 192) 120 × Fogo ×2 = 240 OHKO sem Capa",
+          "Chip os ex (Dragapult/Blaziken ex = Crustle imune ao output direto); Munkidori shifta o Blaziken non-ex de volta",
+          "MATE o Munkidori deles; Shaymin protege o banco"
+        ],
+        cuidado:[
+          "🚨 Crustle SEM Capa morre pro Blaziken non-ex (240 fura a wall)",
+          "Expor o Cornerstone; apressar o grind"
+        ] },
+      { id:2, name:"Garchomp Ex da Cíntia", tier:"S", wr:"62-70%", metaShare:"3,33%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Gible + Roselia da Cíntia",
+          "Tremendas Tesouras 240 no Garchomp ex (fraqueza Planta ×2) = 2-shot mesmo com Power Weight 400",
+          "Ordens da Chefia sempre na mão; KO no Spiritomb (70 HP) quando aparecer"
+        ],
+        cuidado:[
+          "🚨 Munkidori NÃO colocar counter no banco Cynthia's deles (vira fuel da Maldição Furiosa do Spiritomb) — shifte pro ATIVO/finalizar",
+          "Deixar Garchomp danificado no banco (fuel pro Spiritomb); expor o Cornerstone"
+        ] },
+      { id:14, name:"Alakazam", tier:"A", wr:"60-65%", metaShare:"4,13%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Abra + Dunsparce + DEDENNE + Martelo Avançado = variante ENERGY DENIAL",
+          "🛡️ Anexa Energia BÁSICA (Sombria/Planta) no Crustle — imune ao Martelo Avançado (resolve o lock)",
+          "🎯 KO no DEDENNE (Ordens + Tremendas Tesouras OHKO 70 HP) — quebra o loop do martelo",
+          "Sentença/Xerosic reduzem a mão (cortam a Mão Poderosa); Munkidori limpa o chip"
+        ],
+        cuidado:[
+          "Depender de Energia Especial (Martelo strippa Planta Crescimento/Nebulosa)",
+          "Ignorar o Dedenne (recupera o martelo do descarte = loop infinito); expor ex (single-prize)"
+        ] },
+      { id:7, name:"Festival Lead", tier:"A", wr:"48-55%", metaShare:"4,95%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Grookey + Pátio do Festival",
+          "🔑 BUMPE o Pátio do Festival com a Floresta da Vitalidade ASAP — sem ele o Dipplin não faz ataque duplo (Do the Wave cai pra 100). É a jogada que ganha",
+          "Munkidori shifta o Do the Wave pra fora + Jumbo Ice Cream sustenta (eles batem rápido)",
+          "Ao estabilizar: Tremendas Tesouras OHKO tudo deles (baixo HP)"
+        ],
+        cuidado:[
+          "🚨 Demorar pra contestar o Pátio = 2× Do the Wave ~200/turno (OHKO Crustle ainda magro)",
+          "Build Munkidori não tem Budew e só 1 estádio = lenta; priorize bumpar + shift + heal. Não expor Cornerstone"
+        ] },
+      { id:5, name:"Mega Venusaur", tier:"A", wr:"55-62%", metaShare:"<1%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Bulbasaur + Floresta da Vitalidade",
+          "Crustle imune ao Jungle Dump 240 (é ex); chip o Mega Venusaur",
+          "KO no Genesect quando aparecer (120 HP, snipe fura wall); trocar a Floresta"
+        ],
+        cuidado:[
+          "Genesect Canhão de Inseto escala com Planta (snipe fura wall) — Munkidori shifta de volta",
+          "Expor o Cornerstone (fraqueza Planta ×2 = Jungle Dump OHKO)"
+        ] },
+      { id:12, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"55-62%", metaShare:"~10%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Teal Mask Ogerpon ex + Meowth ex / engine Crispin",
+          "Wall vs os ex (imune ao output direto); KO imediato nas non-ex (Chien-Pao/Passimian/Fan Rotom)",
+          "Chip os ex deles (2-3 prêmios cada)"
+        ],
+        cuidado:[
+          "Expor o Cornerstone à toa (Ordens + atacante ex)",
+          "Contar com Munkidori (pouco dano pra shiftar); fecha devagar sem Mega Kang"
+        ] },
+      { id:1, name:"Dragapult Ex Puro", tier:"A", wr:"62-65%", metaShare:"8,34%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Munkidori (com Ruínas Arriscadas)",
+          "Setup Crustle T2 (Ascensão); Shaymin protege o banco do spread",
+          "🎯 MATE o Munkidori deles (mirror — o seu shifta de volta); trocar Ruínas Arriscadas"
+        ],
+        cuidado:[
+          "Munkidori deles 30/turno (ability bypass) + spread do Mergulho Fantasma no banco",
+          "Expor o Cornerstone; esquecer a cura de sustento"
+        ] },
+      { id:15, name:"Zoroark Ex do N", tier:"A", wr:"58-63%", metaShare:"3,05%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Zorua do N + Sombria + Martelo Esmagador jogado",
+          "🛡️ Energia BÁSICA no Crustle (7 básicas resistem aos 4 Martelo Esmagador)",
+          "Tremendas Tesouras 240 no Zoroark (fraqueza Planta ×2 = 2-shot); KO Yveltal (110) e o Munkidori deles"
+        ],
+        cuidado:[
+          "Curinga Noturno + Despedaçar do Zekrom 70/turno fura wall; depender de Especial (Hammer descarta)",
+          "Pecharunt ex closer (60× prêmios); expor o Cornerstone"
+        ] },
+      { id:13, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"55-60%", metaShare:"4,79%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Tarountula + Energia TR + Apoiadores TR",
+          "KO no Spidops prioritário (130 HP, fura wall escalando); Munkidori finaliza",
+          "Reduz TR < 4 = Mewtwo trava (Salva-vidas); trocar a Fábrica TR"
+        ],
+        cuidado:[
+          "Spidops Rush Rocket 30× TR (180+ com 6); Mewtwo Bola de Apagar 280 (Crustle imune)",
+          "Expor o Cornerstone"
+        ] },
+      { id:17, name:"Honchkrow da Equipe Rocket", tier:"A", wr:"55-60%", metaShare:"2,05%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Murkrow TR + muitos Apoiadores TR",
+          "Sentença/Xerosic SPAM (cortam as Penas do Foguete); KO Honchkrow (130, 2-shot)",
+          "Munkidori finaliza; trocar a Fábrica TR"
+        ],
+        cuidado:[
+          "Mão deles >5 supporters TR = Penas do Foguete 60× = OHKO; Porygon2 re-empilha",
+          "Expor o Cornerstone"
+        ] },
+      { id:11, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"52-57%", metaShare:"0,80%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Impidimp da Marnie + Snorunt",
+          "Tremendas Tesouras 240 no Grimmsnarl ex (Planta ×2 = 2-shot); KO Yveltal (110) e os 4 Munkidori",
+          "Shaymin protege do spread da Bala Sombria; seu Munkidori shifta de volta"
+        ],
+        cuidado:[
+          "4× Munkidori chip 30/turno + Manto Congelante 10/turno (Crustle tem ability)",
+          "Expor o Cornerstone"
+        ] },
+      { id:16, name:"Slowking Metagross", tier:"C", wr:"37-42%", metaShare:"5,22%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Slowpoke + Telepática · 4 Academia da Noite + Ciphermaniac = variante Metagross",
+          "Crustle ativo (Estágio 1 = imune a Explosão de Machado); trocar Academia da Noite ASAP",
+          "Capa do Herói + 3-4 Planta Crescimento (310-330 HP sobrevive 300 — Capa SOZINHA 250 NÃO)",
+          "✅ Build nova sem Tenacidade do Colress = sem trap do Kyurem"
+        ],
+        cuidado:[
+          "🚨 Metagross Martelo Metálico 300 (copiado, ruling JP) OHKO Crustle — fura a wall",
+          "Expor Cornerstone/Dwebble extras (Explosão de Machado OHKO Básico); Geada Tripla 110×3 spread"
+        ] },
+      { id:9, name:"🦀 Crustle (Espelho)", tier:"A", wr:"50%", metaShare:"1-3%", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: Dwebble + Energia de Planta Crescimento",
+          "JOGAR PRIMEIRO (1 turno extra decisivo)",
+          "🎯 Ordens da Chefia no Cornerstone deles → Tremendas Tesouras 240 (Planta ×2) = OHKO + 2 prêmios",
+          "Capa do Herói no Crustle; Munkidori shifta o dano acumulado"
+        ],
+        cuidado:[
+          "Só Crustle quebra Crustle (seu Cornerstone/Mega Kang são ex = inúteis aqui)",
+          "Expor o SEU Cornerstone (mesma fraqueza Planta ×2 que você explora neles)"
+        ] },
+      { id:3, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"50-55%", metaShare:"4,08%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Chikorita + Floresta da Vitalidade",
+          "Ordens da Chefia no Tapu Bulu ANTES do Martelo da Madeira (non-ex 220 fura wall)",
+          "Munkidori shifta o dano do Tapu Bulu de volta + pseudo-cura; trocar a Floresta"
+        ],
+        cuidado:[
+          "Expor o Cornerstone (Tapu Bulu 220 × Planta ×2 = OHKO + 2 prêmios)",
+          "Briar closer a 2 prêmios; deixar a cura do Hydrapple estabilizar"
+        ] },
+      { id:25, name:"Ogerpon Meganium Arboliva", tier:"A", wr:"55-62%", metaShare:"~2%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Smoliv/Chikorita + Floresta + Teal Mask (SEM Tapu Bulu, COM Arboliva ex)",
+          "🛡️ BAIXE O SHAYMIN SEMPRE — Oil Salvo (6×20) estoura os Munkidori (110 HP) no banco e mata seu engine",
+          "Crustle imune a Oil Salvo/Aroma Shot (ex); chip os ex (Arboliva 310=3-shot, Teal 210=2-shot, Meganium 160=2-shot)"
+        ],
+        cuidado:[
+          "🚨 Esquecer o Shaymin = perde o engine de Munkidori; Meganium Solar Beam 140 (non-ex chip)",
+          "Briar closer a 2 prêmios; expor o Cornerstone"
+        ] },
+      { id:4, name:"Mega Starmie Ex Dusknoir", tier:"C", wr:"42-48%", metaShare:"2,07%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Staryu + Duskull (variante mais difícil)",
+          "🧩 Psyduck (Damp) DESLIGA o Dusknoir Explosão Amaldiçoada (mata metade da ameaça)",
+          "KO no Munkidori deles + cura após cada Feixe Celestial; seu Munkidori shifta de volta"
+        ],
+        cuidado:[
+          "Feixe Celestial 210 'ignora efeitos' fura wall; Explosão Amaldiçoada 130 sem Psyduck",
+          "Chip das Ruínas Arriscadas; expor o Cornerstone"
+        ] },
+      { id:24, name:"Mega Starmie Ex Froslass", tier:"A", wr:"48-55%", metaShare:"~1%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Staryu + Snorunt (mais fácil que Dusknoir)",
+          "KO no Munkidori deles + cura após cada Feixe Celestial; seu Munkidori shifta de volta",
+          "Ignorar a Mega Froslass ex (inútil contra Crustle — eles desperdiçaram slots)"
+        ],
+        cuidado:[
+          "Feixe Celestial 210 'ignora efeitos' fura wall; chip das Ruínas Arriscadas",
+          "Atacar a Mega Froslass ex (perda de tempo); expor o Cornerstone"
+        ] },
+      { id:20, name:"Crobat ex da Equipe Rocket", tier:"A", wr:"52-57%", metaShare:"rogue", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Zubat TR + Duraludon + Sombrio/Metal",
+          "🎯 Munkidori shifta os counters do spread (Bordada de Mordidas) de volta neles!",
+          "Foco no Crobat ex (310 HP, 3 hits) + KO Golbat (80) corta a evolução; Ordens no Crobat antes do Retorno do Assassino"
+        ],
+        cuidado:[
+          "Spread via ability 60/turno + ciclo Retorno do Assassino + re-evoluir",
+          "Expor o Cornerstone; atacar Archaludon ex à toa (imune)"
+        ] },
+      { id:19, name:"Ethan's Typhlosion", tier:"C", wr:"45-52%", metaShare:"0,16%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Ho-Oh do Ethan + Cyndaquil",
+          "⏱️ KO no Typhlosion RÁPIDO (170 HP, 2 hits) ANTES das Aventuras empilharem (Fogo non-ex, Crustle fraco Fogo ×2)",
+          "Munkidori shifta o Buddy Blast de volta; Ordens no Typhlosion/Ho-Oh ex pra controlar o tempo"
+        ],
+        cuidado:[
+          "🔥 Buddy Blast × Fogo ×2: 2 Aventuras = 320 (OHKO mesmo c/ Capa quase); 3 = 440 (OHKO com Capa)",
+          "Atacar Ho-Oh ex à toa (Crustle imune); deixar o jogo arrastar (mais Aventuras = mais dano)"
+        ] },
+      { id:8, name:"Mega Greninja Ex", tier:"C", wr:"42-50%", metaShare:"Recente", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Froakie + Praia Surfista",
+          "🎯 Munkidori shifta o chip do Shuriken Mortal (60/turno ability) de volta; Jumbo Ice Cream (80 vs 60)",
+          "Distribua o chip (não deixe 1 Crustle absorver tudo); trocar a Praia Surfista"
+        ],
+        cuidado:[
+          "Shuriken Mortal 60/turno (ability fura wall) + Ninja Spinner 200; Carta Vermelha Especial late",
+          "Expor o Cornerstone (Greninja ex TWM tipo Lutador)"
+        ] },
+      { id:6, name:"Mega Lucario Ex Hariyama", tier:"C", wr:"42-50%", metaShare:"2,64%", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: Riolu + Makuhita + Solrock/Lunatone",
+          "JOGAR PRIMEIRO (1 turno extra)",
+          "🎯 Munkidori shifta o Hariyama Pressão Selvagem 210 de volta + pseudo-cura; foco no Mega Lucario ex (3 prêmios)",
+          "Hot-swap: Crustle vs Mega Lucario, Cornerstone vs Hariyama (ability)"
+        ],
+        cuidado:[
+          "Hariyama 210+30 = 240 (non-ex fura wall); gust Pegada-Joga ao evoluir",
+          "Munkidori SEU sem Sombria anexada; ⚠️ Slowking ganha melhor (considere ao montar pro evento)"
+        ] },
+      { id:10, name:"Mega Lopunny Dudunsparce 🔴", tier:"C", wr:"38-45%", metaShare:"4,24%", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: Buneary + Jaula de Batalha",
+          "JOGAR PRIMEIRO (exceção crítica)",
+          "🎯 Munkidori shifta o Saltador Espinhudo 160 de volta + pseudo-cura; Jumbo Ice Cream",
+          "Ordens no Lopunny chipado ANTES da Compaixão da Wally"
+        ],
+        cuidado:[
+          "Saltador Espinhudo 160 'ignora efeitos' fura wall; Jaula de Batalha bloqueia counters no SEU banco (cuidado onde shifta)",
+          "Compaixão da Wally cura o Lopunny; expor o Cornerstone; Munkidori sem Sombria"
+        ] },
+      { id:26, name:"Mega Kangaskhan Box (Clefairy) 🆕", tier:"S", wr:"70-80%", metaShare:"novo", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: vários ex (Mega Kang/Latias/Lillie's Clefairy) + Profundezas da Área Zero (banco 8)",
+          "🛡️ Parede absoluta — deck ~95% ex = Pousada Rochosa bloqueia TUDO (Mega Kang/Latias/Clefairy/Wellspring/Koraidon)",
+          "Chip os ex deles com Tremendas Tesouras (grind single-prize tranquilo)"
+        ],
+        cuidado:[
+          "Única fonte de dano = Chien-Pao Geada (Icicle Loop) 120 (non-ex, 1 cópia) — Moltres faz só 20 no Crustle",
+          "Não expor o Cornerstone (Latias/Clefairy OHKO 200 nele); Munkidori fica ocioso (sem dano de ex pra shiftar)"
+        ] }
+    ]
+  },
+  slowking: {
+    label: "🐚 Slowking Metagross",
+    accent: "#f0abfc",
+    universal: [
+      '<strong>ENGINE SLOWKING:</strong>',
+      '⚡ <span class="key">Metagross combo</span> = Busca de Inspiração + Metagross topo = Martelo Metálico 300',
+      '🎯 <span class="key">Lillie\'s Clefairy ex</span> = Dragão vira fraqueza Psíquica',
+      '🎯 Psíquico <span class="key">bate Lutador</span> (Lucario 74%!)',
+      '🛡️ Academia da Noite controla topo do deck',
+      '⚠️ Slowking 120 HP frágil — Latias ex retreat 0 reposiciona',
+      '📊 <span class="key">WRs reais do Limitless</span> (CRI Standard 2026, ~2000 jogos) · Overall ~52%',
+      '🔴 <span class="key">Pesadelos</span>: Zoroark do N (28%), Alakazam (32%), Dragapult Blaziken (32%) — energy denial / velocidade / fragilidade'
+    ],
+    decklist: {
+      note: '⚡ <strong>Combo central:</strong> Academia da Noite + Ciphermaniac colocam o <strong>Metagross no TOPO</strong> do deck → Slowking descarta o topo com <strong>Busca de Inspiração</strong> e COPIA o Martelo Metálico (300, sem precisar evoluir o Metagross). <strong>Metagross e Annihilape ficam no deck só como ALVOS DE CÓPIA</strong> (non-rule-box). 🎯 Lillie\'s Clefairy ex deixa Dragões fracos a Psíquico · Slowking Psíquico bate Lutador ×2 (ganha de Lucario/Hariyama).',
+      groups: [
+        { type: "Pokémon (19)", cards: [
+          { n:4, name:"Slowpoke", set:"SCR 57", fn:"Básico. Evolui em Slowking. Linha de início (4 cópias = achar rápido)." },
+          { n:3, name:"Slowking", set:"SCR 58", fn:"⭐ Estágio 1 — coração do deck. Ability Busca de Inspiração: descarta a carta do TOPO do deck; se for Pokémon non-rule-box, você pode usar 1 ataque dela. Copia o Martelo Metálico do Metagross (300). Também tem Super Psy Bolt 120. 120 HP frágil.", tag:"combo" },
+          { n:2, name:"Latias ex", set:"SSP 76", fn:"Básico ex. Ability Skyliner: seus Pokémon Básicos recuam de graça (custo 0). Reposiciona o Slowking frágil pra fora de alcance.", tag:"ex" },
+          { n:2, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador (busca uma Supporter do deck pra mão). Acelera as cartas-chave.", tag:"ex" },
+          { n:2, name:"Kyurem", set:"SFA 47", fn:"Básico. Geada Tripla 110×3 (espalha em até 3 alvos). Pressão secundária / finaliza bancos." },
+          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex. Ability de recovery/draw (compra 3 ao anexar Energia do banco a ele). Anti-brick.", tag:"ex" },
+          { n:1, name:"Lillie's Clefairy ex", set:"JTG 56", fn:"🎯 Básico ex. Ability Zona das Fadas: enquanto está em jogo, Pokémon tipo Dragão do oponente têm fraqueza Psíquica ×2. Chave vs Dragapult (Slowking OHKO).", tag:"ex" },
+          { n:1, name:"Annihilape", set:"SSP 100", fn:"ALVO DE CÓPIA (fica no deck). Luta do Destino = KO mútuo. Slowking copia via Busca de Inspiração pra trade em ameaças grandes.", tag:"copy" },
+          { n:1, name:"Budew", set:"PRE 4", fn:"Básico. Trava de Itens (Pólen Coceira): enquanto Budew está ativo, nenhum jogador joga Itens. Disrupção T1." },
+          { n:1, name:"Metagross", set:"CRI 61", fn:"⭐ ALVO DE CÓPIA principal (NÃO se joga em campo). Martelo Metálico 300, descartando 3 Energias (qualquer tipo — ruling JP). Slowking copia = 300 que FURA a parede do Crustle.", tag:"copy" },
+          { n:1, name:"Smoochum", set:"SSP 75", fn:"Básico. Aceleração de Energia Psíquica (ajuda a montar os custos). Setup." }
+        ]},
+        { type: "Trainer (31)", cards: [
+          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra/consistência principal." },
+          { n:3, name:"Ciphermaniac's Codebreaking", set:"TEF 145", fn:"⭐ Apoiadora. Busca 2 cartas e coloca no TOPO do deck (na ordem que quiser). Coloca o Metagross no topo pro Slowking copiar.", tag:"combo" },
+          { n:1, name:"Carmine", set:"TWM 145", fn:"Apoiadora. Embaralha a mão e compra (refresh de mão). Anti-brick." },
+          { n:1, name:"Dawn", set:"PFL 87", fn:"Apoiadora. Tutor de linha de evolução (busca peças pra montar Slowking). Setup." },
+          { n:1, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). 🎯 Conserta a maior fraqueza do deck (era 0 gust) — fecha prêmios / puxa o alvo frágil. (Ordens da Chefia)" },
+          { n:1, name:"Colress's Tenacity", set:"SFA 57", fn:"Apoiadora. Tutor de Estádio + Energia (busca 1 Stadium e 1 Energia). ⚠️ NO NOSSO DECK só serve pra isso — NÃO habilita o Kyurem (o Plasma Bane checa o descarte do OPONENTE, não o seu). Não use esperando ligar o Kyurem." },
+          { n:1, name:"Surfer", set:"SSP 187", fn:"Apoiadora. Troca seu Ativo + compra até ficar com 5 cartas. Reposiciona + draw." },
+          { n:4, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon. Tutor principal." },
+          { n:3, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça. Tutor dos básicos/non-ex." },
+          { n:1, name:"Special Red Card", set:"CRI 82", fn:"Item (reg J, NÃO é ACE SPEC). Só com o oponente em ≤3 prêmios restantes: ele embaralha a mão pro FUNDO do deck e compra 3. 🔴 Tech anti-Mão Poderosa (Alakazam) — reseta a mão gorda deles. NÃO use em mão pequena (daria 3 cartas de graça)." },
+          { n:3, name:"Night Stretcher", set:"SFA 61", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte pra mão." },
+          { n:3, name:"Wondrous Patch", set:"PFL 94", fn:"Item. Anexa 1 Energia Psíquica do descarte a 1 Pokémon do banco. Aceleração de energia." },
+          { n:1, name:"Max Rod", set:"PRE 116", fn:"Item · ⭐ ACE SPEC (único do deck). Pega até 5 Pokémon e/ou Energia Básica do descarte PRA MÃO. Recovery forte / anti-deckout." },
+          { n:4, name:"Academy at Night", set:"SFA 54", fn:"⭐ Estádio. Manipula o topo do deck. Essencial pro combo (garante o Metagross no topo pro Slowking copiar). (Academia da Noite)", tag:"combo" }
+        ]},
+        { type: "Energy (10)", cards: [
+          { n:4, name:"Telepathic Energy", set:"POR 88", fn:"Especial Psíquica. Provê Energia Psíquica e ajuda a montar os custos mais rápido." },
+          { n:4, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Custo principal (Slowking / Kyurem)." },
+          { n:2, name:"Boomerang Energy", set:"TWM 166", fn:"Especial [C] (Incolor). Volta pra mão quando descartada pelo SEU próprio ataque. ⭐ Recicla com o discard do Martelo Metálico (3 energias)." }
+        ]}
+      ]
+    },
+    matchups: [
+      { id:101, name:"Mega Lucario Ex Hariyama ⭐", tier:"S", wr:"72-76%", metaShare:"3,41%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Riolu + Makuhita + Solrock/Lunatone",
+          "🎯 SLOWKING PSÍQUICO BATE LUTADOR — Super Psy Bolt 120 × ×2 = 240; Metagross 300 × ×2 = 600",
+          "OHKO Hariyama (150); 2-shot Mega Lucario ex (340). Trade 1-por-3 a seu favor",
+          "⭐ Matchup que o Crustle PERDE e o Slowking GANHA"
+        ],
+        cuidado:[
+          "Mega Brave 270 / Pressão Selvagem 240 OHKO Slowking (mas o trade 1:3 compensa)",
+          "Demorar o setup; não usar a vantagem de tipo"
+        ] },
+      { id:102, name:"Beedrill Ex", tier:"A", wr:"48-53%", metaShare:"4,57%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Weedle + Kit de Caçar Insetos",
+          "Metagross 300 OHKO Beedrill ex (310) antes deles escalarem — speed race",
+          "Latias ex reposiciona o Slowking frágil"
+        ],
+        cuidado:[
+          "Abelhas Furiosas 330 (3 Beedrill) OHKO Slowking",
+          "Demorar o combo Metagross"
+        ] },
+      { id:103, name:"Dragapult Ex Puro", tier:"A", wr:"55-60%", metaShare:"9,25%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Munkidori (com Ruínas)",
+          "🎯 Lillie's Clefairy ex Zona das Fadas = Dragapult ex fraco a Psíquico ×2 → Super Psy Bolt 120×2 ou Metagross OHKO",
+          "Academia da Noite garante o Metagross no topo; Latias reposiciona o Slowking"
+        ],
+        cuidado:[
+          "Mergulho Fantasma 200 OHKO Slowking (120); Munkidori 30/turno",
+          "Desperdiçar a Lillie's Clefairy (chave do matchup)"
+        ] },
+      { id:104, name:"Dragapult Ex Dusknoir", tier:"S", wr:"63-68%", metaShare:"5,63%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Duskull",
+          "Lillie's Clefairy ex → OHKO Dragapult ex via Psíquico ×2 (Super Psy Bolt 240)",
+          "Latias ex Skyliner rotaciona o Slowking fora do alcance"
+        ],
+        cuidado:[
+          "🎯 Dusknoir Explosão Amaldiçoada 130 (ability) OHKO Slowking (120) — reposicione com Latias",
+          "Munkidori chip adicional; demorar a Lillie's Clefairy"
+        ] },
+      { id:105, name:"🐚 Slowking Metagross (Espelho)", tier:"A", wr:"50%", metaShare:"5,22%", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: Slowpoke + Energia Psíquica Telepática",
+          "JOGAR PRIMEIRO — quem monta o Metagross primeiro vence",
+          "Guerra de Academia da Noite (controle do topo decide); Annihilape pra trades"
+        ],
+        cuidado:[
+          "Deixar eles montarem o Metagross primeiro",
+          "Desperdiçar Busca de Inspiração em alvos ruins"
+        ] },
+      { id:106, name:"Garchomp Ex da Cíntia", tier:"A", wr:"48-52%", metaShare:"1,84%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Gible + Roselia da Cíntia",
+          "Metagross 300 = 2-shot Garchomp ex (330); Annihilape Luta do Destino = trade mútuo"
+        ],
+        cuidado:[
+          "🚫 Lillie's Clefairy NÃO ajuda (Garchomp é Lutador, não Dragão)",
+          "Investida do Dragão 260 OHKO Slowking; Spiritomb scaling no banco deles"
+        ] },
+      { id:107, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"46-51%", metaShare:"3,56%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Teal Mask Ogerpon ex + Meowth ex / Crispin",
+          "Metagross 300 OHKO Mega Kang (300) e os ex deles (sempre tem alvo); Annihilape trades",
+          "Latias reposiciona o Slowking"
+        ],
+        cuidado:[
+          "Bellowing Thunder 70× energia descartada pode OHKO Slowking",
+          "Demorar (eles aceleram via Crispin)"
+        ] },
+      { id:108, name:"Crustle", tier:"S", wr:"60-65%", metaShare:"1,45%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dwebble + Planta Crescimento",
+          "🎯 Metagross Martelo Metálico 300 BYPASSA a Pousada Rochosa (Slowking copiando NÃO é ex) = OHKO Crustle (230)",
+          "Kyurem Geada Tripla espalha nos Dwebble/banco; Annihilape pra trade; foco no Cornerstone (2 prêmios)"
+        ],
+        cuidado:[
+          "Atacar Crustle com Pokémon ex (immunity bloqueia)",
+          "Munkidori deles shifta o dano de volta no seu Slowking; Tremendas Tesouras 120 chipa"
+        ] },
+      { id:109, name:"Festival Lead", tier:"A", wr:"47-52%", metaShare:"1,96%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Grookey + Pátio do Festival",
+          "Metagross/Slowking copy = OHKO chain nos não-ex deles (Dipplin/Thwackey baixo HP)",
+          "Annihilape contra ataques grandes"
+        ],
+        cuidado:[
+          "Festival Grounds + Dipplin double attack escala com bench; Boom Boom Groove tutor",
+          "Deixar o Slowking exposto sem backup"
+        ] },
+      { id:110, name:"Mewtwo Ex da Equipe Rocket", tier:"C", wr:"38-43%", metaShare:"2,44%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Tarountula + Energia TR",
+          "Metagross 300 OHKO Mewtwo ex (280); OHKO Spidops (130) via cópia; Annihilape trades"
+        ],
+        cuidado:[
+          "Mewtwo Bola de Apagar 280 OHKO Slowking; Spidops Rush Rocket 30× TR escala",
+          "Deixar o Slowking exposto"
+        ] },
+      { id:111, name:"Ogerpon Meganium Hydrapple", tier:"C", wr:"40-45%", metaShare:"3,68%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Chikorita + Floresta da Vitalidade",
+          "Metagross 300 quebra Hydrapple ex (330 = 2-shot) — speed antes do heal estabilizar; Annihilape trades"
+        ],
+        cuidado:[
+          "Tapu Bulu Martelo da Madeira 220 (non-ex) OHKO Slowking — Latias reposiciona",
+          "Hydrapple heal sustain; long game favorece eles"
+        ] },
+      { id:119, name:"Ogerpon Meganium Arboliva", tier:"C", wr:"38-43%", metaShare:"0,71%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Smoliv/Chikorita + Floresta + Arboliva ex (SEM Tapu Bulu)",
+          "Metagross 300 OHKO/2-shot Arboliva ex (310); Latias reposiciona o Slowking; Annihilape trades"
+        ],
+        cuidado:[
+          "Meganium 140 / Aroma Shot 160 / Oil Salvo 120 — todos OHKO Slowking (120)",
+          "🚫 Lillie's Clefairy não ajuda (Grass, não Dragão); Briar closer a 2 prêmios"
+        ] },
+      { id:112, name:"Mega Lopunny Dudunsparce", tier:"C", wr:"37-42%", metaShare:"3,11%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Buneary + Jaula de Batalha",
+          "Metagross 300 (2-shot Mega Lopunny 330); Annihilape mutual KO; Latias reposiciona"
+        ],
+        cuidado:[
+          "Saltador Espinhudo 160 'ignora efeitos' OHKO Slowking",
+          "Jaula de Batalha bloqueia o spread do seu Kyurem"
+        ] },
+      { id:113, name:"Alakazam 🔴", tier:"C", wr:"30-35%", metaShare:"3,38%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Abra + Telepática + Dunsparce (quase 100% non-ex/single-prize)",
+          "Metagross 300 OHKO Alakazam (140); Annihilape Luta do Destino = trade 1-por-1 neutro",
+          "Latias reposiciona o Slowking; minimize a exposição dos seus ex"
+        ],
+        cuidado:[
+          "Mão deles >6 = Mão Poderosa 120 = OHKO Slowking",
+          "🚨 Expor ex (2 prêmios cada vs 1 deles = assimetria). UM DOS PIORES (Limitless 31,7%)"
+        ] },
+      { id:114, name:"Mega Greninja Ex", tier:"A", wr:"50-55%", metaShare:"6,94%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Froakie + Praia Surfista",
+          "Metagross 300 (2-shot Greninja 350) — speed antes do chip acumular; Annihilape; Latias reposiciona"
+        ],
+        cuidado:[
+          "Shuriken Mortal 60/turno (ability) + Ninja Spinner 200 OHKO Slowking",
+          "Demorar o setup"
+        ] },
+      { id:115, name:"Grimmsnarl Froslass da Marnie", tier:"C", wr:"44-48%", metaShare:"1,26%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Impidimp da Marnie + Snorunt",
+          "Metagross 300 (2-shot Grimmsnarl 320); mate Munkidori/Yveltal; Annihilape trades"
+        ],
+        cuidado:[
+          "Bala Sombria 180 + spread; 4× Munkidori shift; Yveltal 110; Manto Congelante 10/turno (Slowking tem ability)",
+          "Deixar o Slowking exposto"
+        ] },
+      { id:116, name:"Zoroark Ex do N 🔴", tier:"C", wr:"27-32%", metaShare:"3,95%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Zorua do N + Sombria + Martelo Esmagador",
+          "Metagross 300 OHKO Zoroark ex (280); Max Rod recupera energias; Annihilape trades",
+          "🚨 GERENCIE ENERGIA: só anexa Especial pra usar no turno (4 Martelo Esmagador)"
+        ],
+        cuidado:[
+          "🚨 4× Martelo Esmagador destroem Telepática + Boomerang = Slowking sem energia",
+          "Curinga Noturno copia ataques. UM DOS PIORES (Limitless 28%)"
+        ] },
+      { id:117, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"52-57%", metaShare:"2,45%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Staryu + Duskull",
+          "Metagross 300 (2-shot Starmie 330); 🔑 Latias reposiciona o Slowking fora do Feixe/Explosão Amaldiçoada = vence a corrida",
+          "Annihilape trades desesperados. SURPRESA — favorável na real (Limitless 54,3%)"
+        ],
+        cuidado:[
+          "🚨 Tripla ameaça: Feixe Celestial 210 + Explosão Amaldiçoada 130 (ability) + Munkidori — todos OHKO/chip o Slowking"
+        ] },
+      { id:118, name:"Mega Starmie Ex Froslass", tier:"S", wr:"60-65%", metaShare:"1,35%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Staryu + Snorunt (sem Dusknoir = sem Explosão Amaldiçoada)",
+          "Metagross 300 (2-shot Starmie); Latias reposiciona — menos OHKO vectors que Dusknoir",
+          "Favorável (Limitless 65%) — Froslass não pressiona o suficiente"
+        ],
+        cuidado:[
+          "Feixe Celestial 210 'ignora efeitos' OHKO Slowking (120)"
+        ] },
+      { id:120, name:"Honchkrow da Equipe Rocket", tier:"C", wr:"44-49%", metaShare:"2,98%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Murkrow TR + Porygon2 + Apoiadores TR no descarte",
+          "Metagross 300 OHKO Honchkrow (130) — KO ANTES de empilharem supporters TR; Latias reposiciona; Annihilape pra trade"
+        ],
+        cuidado:[
+          "Penas do Foguete 60× supporters TR (4 no descarte = 240 OHKO Slowking); ciclo Porygon2 re-empilha",
+          "Demorar — o dano escala rápido. ⚠️ Foi a única derrota da liga (2-1-0, 3º)"
+        ] },
+      { id:121, name:"Dragapult Ex Blaziken 🔴", tier:"C", wr:"30-35%", metaShare:"2,42%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Dreepy + Torchic/Combusken (Blaziken non-ex de Fogo)",
+          "🎯 Lillie's Clefairy ex → OHKO Dragapult ex via Psíquico ×2; Metagross nos alvos gordos; Latias reposiciona"
+        ],
+        cuidado:[
+          "🚨 Velocidade: Mergulho Fantasma 200 OHKO Slowking + Blaziken non-ex acelera — fecham antes do seu setup",
+          "Contar com a vantagem de tipo sem montar a Lillie's Clefairy a tempo. UM DOS PIORES (Limitless 32%)"
+        ] },
+      { id:122, name:"Ceruledge Ex", tier:"S", wr:"62-66%", metaShare:"1,08%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Charcadet + atacantes de Fogo agressivos",
+          "Metagross 300 OHKO os atacantes deles + Latias reposiciona = vence a corrida; Annihilape trades",
+          "Favorável (Limitless 65%)"
+        ],
+        cuidado:[
+          "Deck de Fogo agressivo bate cedo (mas nada que o Metagross 300 não responda)"
+        ] },
+      { id:123, name:"Mega Venusaur Ex", tier:"A", wr:"57-62%", metaShare:"0,70%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Bulbasaur + Genesect + Floresta",
+          "Metagross 300 (2-shot Venusaur ~340); KO Genesect (120, snipa o banco); Latias reposiciona; Annihilape",
+          "Favorável (Limitless 60%, amostra menor)"
+        ],
+        cuidado:[
+          "Jungle Dump 240 OHKO Slowking; Genesect snipe escalável no seu banco"
+        ] },
+      { id:124, name:"Archaludon Dudunsparce", tier:"A", wr:"52-56%", metaShare:"0,95%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Duraludon + Dudunsparce (engine de draw)",
+          "Metagross 300 OHKO os ex deles; Latias reposiciona; Annihilape trades; Slowking copy mantém pressão"
+        ],
+        cuidado:[
+          "Archaludon ex bate forte (Metal); Dudunsparce dá consistência/draw",
+          "Demorar contra o engine de draw deles"
+        ] },
+      { id:125, name:"Cinccino Ex Metagross 🔧", tier:"C", wr:"42-47%", metaShare:"0,74%", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: Minccino + Beldum/Metang (Metagross MONTADO) + Genesect ex + 25 Metal",
+          "🎯 Annihilape Luta do Destino = KO mútuo IGNORA o Pelagem Lisa (é nocaute, não dano) — melhor jeito de matar o Cinccino ex (troca 1-por-2)",
+          "Metagross 300 OHKO Genesect ex (220)/Cinccino (240) [conta com o flip do Pelagem Lisa]; Ordens no Genesect cedo; Latias reposiciona"
+        ],
+        cuidado:[
+          "🚫 Lillie's Clefairy não ajuda (Metal/Incolor) e Psíquico não bate Metal",
+          "Pelagem Lisa: seus ataques de DANO têm 50% de errar no Cinccino; Metagross 300 deles + Cinccino 200-280 OHKO Slowking"
+        ] },
+      { id:126, name:"Mega Kangaskhan Box (Clefairy) 🆕", tier:"A", wr:"47-52%", metaShare:"novo", coinFlip:"second",
+        objetivo:[
+          "👁️ Banco: vários ex (Mega Kang/Latias/Lillie's Clefairy) + Profundezas da Área Zero (banco 8)",
+          "Metagross 300 OHKO o Mega Kang deles (3 prêmios!)",
+          "🎯 Koraidon ex é Lutador fraco a Psíquico ×2 → Super Psy Bolt 240 OHKO; Kyurem Geada Tripla espalha no banco 8; Latias reposiciona"
+        ],
+        cuidado:[
+          "🚫 Sua Lillie's Clefairy não ajuda (o Box não tem Dragão); o Box bate primeiro e forte (todos 200)",
+          "Liability mútua de ex (2 prêmios); Slowking 120 morre a qualquer atacante deles"
+        ] }
+    ]
+  },
+  dragapult: {
+    label: "🐉 Dragapult Ex",
+    accent: "#c084fc",
+    universal: [
+      '<strong>DRAGAPULT EX (disrupção/spread):</strong>',
+      '🎯 <span class="key">Mergulho Fantasma</span> [FP] 200 + 60 spread (6 contadores) no banco do oponente',
+      '💥 <span class="key">Munkidori</span> (com Sombria): move 3 counters SEUS → oponente = finaliza KO + pseudo-cura',
+      '🔒 <span class="key">Stax</span>: Crushing Hammer (energia) · Budew (item lock) · Watchtower (desliga abilities de Pokémon INCOLOR) · Judge/Unfair Stamp (mão)',
+      '🎯 <span class="key">Watchtower só pega Pokémon INCOLOR</span> (Dudunsparce/Cinccino/Porygon2) — NÃO afeta suas peças (Dragão/Psíquico/Sombrio), só seu Meowth ex',
+      '🏟️ Risky Ruins: bancar Básico NÃO-Sombrio = 20 nele (amolece banco + fuel pro Munkidori)',
+      '🔥 Moltres = tech non-ex anti-ex (110 num ex, só dá 1 prêmio)'
+    ],
+    decklist: {
+      note: '🐉 <strong>Disrupção/spread.</strong> Mergulho Fantasma 200 + 60 espalhado no banco; Risky Ruins soma 20 ao bancar básicos não-Sombrios → o spread + Munkidori (move counters SEUS pro oponente) fecham os KOs. Pacote de trava: Crushing Hammer (energia), Budew (item), Team Rocket\'s Watchtower (desliga abilities de Pokémon INCOLOR — Dudunsparce/Cinccino), Judge + Unfair Stamp (mão). Moltres pune ex como atacante single-prize.',
+      groups: [
+        { type: "Pokémon (18)", cards: [
+          { n:4, name:"Dreepy", set:"TWM 128", fn:"Básico. Linha de início do Dragapult. Buddy-Buddy Poffin-able (≤70 HP)." },
+          { n:4, name:"Drakloak", set:"TWM 129", fn:"Estágio 1. Ability de compra (consistência) — ponte pro Dragapult ex." },
+          { n:3, name:"Dragapult ex", set:"TWM 130", fn:"⭐ Estágio 2 · 320 HP · 3 prêmios. Mergulho Fantasma [FP] 200 + põe 6 contadores (60) no banco do oponente. Jet Headbutt [P] 70. Sem fraqueza (mas Lillie's Clefairy ex torna Dragão fraco a Psíquico)." },
+          { n:2, name:"Munkidori", set:"TWM 95", fn:"Básico. Ability Cérebro-Adrena (precisa Sombria anexada): move até 3 contadores dos SEUS Pokémon → oponente. Finaliza + pseudo-cura." },
+          { n:2, name:"Budew", set:"ASC 16", fn:"Básico. Trava de Itens (ninguém joga Item enquanto Budew ativo). Disrupção T1." },
+          { n:1, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador (busca 1 Supporter do deck)." },
+          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex (Sombrio). Ability de recovery/draw (compra 3 após perder Pokémon). Imune ao Risky Ruins (é Sombrio)." },
+          { n:1, name:"Moltres", set:"PFL 14", fn:"Básico non-ex (Fogo). Fighting Wings 20 (+90 = 110 se o Ativo do oponente for ex). 🔥 Tech single-prize que pune ex (morre por só 1 prêmio)." }
+        ]},
+        { type: "Trainer (33)", cards: [
+          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra principal." },
+          { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Gust — traz 1 Pokémon do banco do oponente pro Ativo. Finaliza alvos amolecidos pelo spread. (Ordens da Chefia)" },
+          { n:3, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Busca 2 Energia Básica de tipos diferentes (acelera/fix de cor — Fogo + Psíquico)." },
+          { n:1, name:"Judge", set:"POR 76", fn:"Apoiadora. Cada jogador embaralha a mão e compra 4. Disrupção de mão. (Sentença)" },
+          { n:4, name:"Crushing Hammer", set:"POR 71", fn:"Item. Jogue uma moeda; cara = descarte 1 Energia de 1 Pokémon do oponente. 🔒 Energy denial (4 cópias!). (Martelo Esmagador)" },
+          { n:4, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dreepy/Budew/Munkidori/Moltres). Consistência de setup." },
+          { n:4, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça." },
+          { n:4, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon (inclui os ex)." },
+          { n:2, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte." },
+          { n:1, name:"Unfair Stamp", set:"TWM 165", fn:"⭐ ACE SPEC (Item). Após nocautear um Pokémon do oponente: cada um embaralha a mão pro deck; você compra 5 e o oponente 2. Disrupção + refill." },
+          { n:2, name:"Team Rocket's Watchtower", set:"DRI 180", fn:"Estádio. Pokémon do tipo INCOLOR em jogo (de ambos) NÃO têm Habilidades. 🎯 Pega Dudunsparce (Run Away Draw), Cinccino (Smooth Coat), Porygon2 etc. NÃO afeta suas peças (Dragão/Psíquico/Sombrio) — só seu Meowth ex." },
+          { n:1, name:"Risky Ruins", set:"MEG 127", fn:"Estádio. Quando QUALQUER jogador banca um Básico NÃO-Sombrio no turno, põe 2 contadores nele. Amolece o banco (sinergia spread + Munkidori). Cuidado: dana seus próprios básicos não-Sombrios." }
+        ]},
+        { type: "Energy (9)", cards: [
+          { n:4, name:"Fire Energy", set:"MEE 2", fn:"BÁSICA Fogo. Custo do Mergulho Fantasma [FP] + Moltres." },
+          { n:3, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Mergulho Fantasma [FP] + Jet Headbutt + Munkidori." },
+          { n:2, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. Trigger do Munkidori + Fezandipiti." }
+        ]}
+      ]
+    },
+    matchups: [
+      { id:201, name:"Honchkrow da Equipe Rocket ⭐", tier:"S", wr:"68-73%", metaShare:"2,98%", coinFlip:"first",
+        objetivo:[
+          "Correr: spread + Ordens fecham antes das Penas do Foguete escalarem",
+          "Watchtower desliga o Porygon2 deles (Incolor), se rodarem",
+          "Judge/Unfair Stamp limpam a mão deles (menos Apoiador TR pra descartar = menos dano)"
+        ],
+        cuidado:[
+          "Não deixar o jogo arrastar — Penas do Foguete escala com Apoiadores TR no descarte"
+        ] },
+      { id:202, name:"Mega Greninja Ex", tier:"S", wr:"63-68%", metaShare:"6,94%", coinFlip:"first",
+        objetivo:[
+          "Munki devolve o chip do Shuriken Mortal",
+          "Correr — fechar antes do chip de 60/turno acumular",
+          "Martelo atrasa o setup de Água deles"
+        ],
+        cuidado:[
+          "Watchtower NÃO pega nada aqui (Greninja é Água)",
+          "Variante c/ Mega Froslass: Resentful Refrain pune MÃO CHEIA (50×carta) — mão baixa ou martela a Água dela"
+        ] },
+      { id:203, name:"Hop's Trevenant", tier:"S", wr:"64-70%", metaShare:"0,59%", coinFlip:"first",
+        objetivo:[
+          "Correr com spread — fechar antes da trava deles montar",
+          "Jogar os Itens CEDO (Poffin/Ultra Ball) antes do lock de Item deles ligar"
+        ],
+        cuidado:[
+          "Com a trava de Item deles ativa, seu setup sufoca — não fique segurando Item na mão"
+        ] },
+      { id:204, name:"Ceruledge Ex", tier:"S", wr:"64-69%", metaShare:"1,08%", coinFlip:"first",
+        objetivo:[
+          "Spread + Munki fecham; Martelo atrasa o Fogo deles",
+          "Moltres pune os ex deles (110 por 1 prêmio)"
+        ],
+        cuidado:[
+          "Deck agressivo — não passe turnos sem pressão"
+        ] },
+      { id:205, name:"Mega Starmie Ex Froslass", tier:"S", wr:"62-68%", metaShare:"1,35%", coinFlip:"first",
+        objetivo:[
+          "Munki devolve o Feixe Celestial neles",
+          "Correr — fechar antes de estabilizarem"
+        ],
+        cuidado:[
+          "Feixe Celestial 210 ignora efeitos",
+          "Watchtower não pega nada (Água)"
+        ] },
+      { id:206, name:"Festival Lead", tier:"S", wr:"61-66%", metaShare:"1,96%", coinFlip:"first",
+        objetivo:[
+          "Budew T1 trava o setup deles",
+          "Usar estádio pra bumpar o estádio deles (sem Pátio do Festival, acaba o ataque duplo)",
+          "Ruínas Arriscadas + Munkidori + 60 do Mergulho Fantasma limpam o banco"
+        ],
+        cuidado:[
+          "NÃO colocar estádio antes deles (senão eles bumpam o seu e repõem o Pátio)",
+          "Não mover pro ativo um Pokémon que morra — eles atacam DUAS VEZES"
+        ] },
+      { id:207, name:"Okidogi Barbaracle", tier:"S", wr:"59-65%", metaShare:"0,85%", coinFlip:"first",
+        objetivo:[
+          "Spread + correr; Munki e Ordens finalizam",
+          "Moltres pune o Okidogi ex (1 prêmio)"
+        ],
+        cuidado:[
+          "Não deixar eles montarem board grande"
+        ] },
+      { id:208, name:"Beedrill Ex", tier:"S", wr:"56-61%", metaShare:"4,57%", coinFlip:"first",
+        objetivo:[
+          "Colocar Watchtower pra travar o Dudunsparce (Incolor — desliga o draw deles)",
+          "Bater de Dragapult o mais rápido que der pra limpar o banco",
+          "Martelo pra descartar energia da Beedrill ex",
+          "Ruínas Arriscadas ajuda a limpar com o Munki"
+        ],
+        cuidado:[
+          "Minha Watchtower pode atrapalhar o Meowth ex (ele é Incolor — perde o tutor de Apoiador)"
+        ] },
+      { id:209, name:"Mewtwo Ex da Equipe Rocket", tier:"S", wr:"56-61%", metaShare:"2,44%", coinFlip:"first",
+        objetivo:[
+          "Spread mata os TR pequenos → com menos de 4 TR em jogo o Mewtwo NÃO ataca",
+          "Martelo na Energia da Equipe Rocket (vale 2)"
+        ],
+        cuidado:[
+          "Bola de Apagar até 280 — com 40+ de chip seu Dragapult morre"
+        ] },
+      { id:210, name:"Ogerpon Meganium Arboliva", tier:"A", wr:"55-60%", metaShare:"0,71%", coinFlip:"first",
+        objetivo:[
+          "Correr + spread antes da cura deles estabilizar",
+          "Munki devolve o chip do Meganium"
+        ],
+        cuidado:[
+          "Oil Salvo espalha 6×20 no SEU banco — estoura os Munki (110 HP)",
+          "Watchtower não pega nada (Planta)"
+        ] },
+      { id:211, name:"Alakazam Dudunsparce", tier:"A", wr:"55-60%", metaShare:"3,38%", coinFlip:"first",
+        objetivo:[
+          "Watchtower desliga o Dudunsparce (Incolor) — corta o draw",
+          "Judge/Unfair Stamp encolhem a mão deles ANTES da Mão Poderosa",
+          "Ordens no Alakazam (140 HP — spread + Ordens mata fácil)"
+        ],
+        cuidado:[
+          "Mão Poderosa escala com a mão deles — não deixe crescer",
+          "Eles são single-prize e você dá 3 — não exponha Dragapult à toa"
+        ] },
+      { id:212, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"54-59%", metaShare:"2,45%", coinFlip:"first",
+        objetivo:[
+          "Munki devolve o Feixe Celestial",
+          "Spread no Duskull/Dusclops antes de virar Dusknoir"
+        ],
+        cuidado:[
+          "Watchtower NÃO pega o Dusknoir (Psíquico) — Explosão Amaldiçoada 130 fica de pé",
+          "Feixe Celestial 210 ignora efeitos"
+        ] },
+      { id:213, name:"Archaludon Dudunsparce", tier:"A", wr:"52-56%", metaShare:"0,95%", coinFlip:"first",
+        objetivo:[
+          "Watchtower desliga o Dudunsparce (Incolor)",
+          "Martelo na energia Metal deles"
+        ],
+        cuidado:[
+          "Assemble Alloy re-acelera do descarte ao evoluir — martelar nem sempre resolve"
+        ] },
+      { id:214, name:"Mega Lopunny Dudunsparce", tier:"A", wr:"50-54%", metaShare:"3,11%", coinFlip:"first",
+        objetivo:[
+          "Bumpar a Jaula de Batalha com SEU estádio — sem isso o spread/Munki não pega o banco deles",
+          "Watchtower desliga o Dudunsparce (Incolor)"
+        ],
+        cuidado:[
+          "Saltador Espinhudo 160 ignora efeitos",
+          "Wally's Compassion reseta a Lopunny — Ordens e mata antes da cura"
+        ] },
+      { id:215, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"50-54%", metaShare:"3,68%", coinFlip:"first",
+        objetivo:[
+          "Bumpar o estádio deles (Floresta da Vitalidade) — evita Meganium evoluindo em um turno",
+          "Focar na linha do Hydrapple",
+          "Martelo pra tirar energias — prioridade no Hydrapple"
+        ],
+        cuidado:[] },
+      { id:216, name:"Dragapult Ex Dusknoir", tier:"A", wr:"49-53%", metaShare:"5,63%", coinFlip:"first",
+        objetivo:[
+          "Race de spread — quem fecha primeiro ganha",
+          "Matar o Munki deles antes que devolvam seu dano"
+        ],
+        cuidado:[
+          "Explosão Amaldiçoada 130 (Watchtower não pega — Psíquico)",
+          "Não exponha o 2º Dragapult (3 prêmios)"
+        ] },
+      { id:217, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"49-53%", metaShare:"1,26%", coinFlip:"first",
+        objetivo:[
+          "Matar os Munkidori deles (rodam até 4!) e o Yveltal com spread/Ordens"
+        ],
+        cuidado:[
+          "Manto Congelante chipa 10/turno em TODO mundo com ability (seus Drakloak/Dragapult!)",
+          "Bala Sombria 180 + 30 no banco"
+        ] },
+      { id:218, name:"Mega Lucario Ex Hariyama", tier:"A", wr:"48-52%", metaShare:"3,41%", coinFlip:"first",
+        objetivo:[
+          "Budew T1 dá uma atrasada neles"
+        ],
+        cuidado:[
+          "Gust do Hariyama (ability ao evoluir — puxa sem gastar Apoiador)",
+          "Fezandipiti ex tem fraqueza Lutador (não bancar à toa)",
+          "Cinturão (Maximum Belt, ACE SPEC) faz o Mega Lucario ex dar one-shot no Dragapult (270+50 = 320 exato)"
+        ] },
+      { id:219, name:"🐉 Dragapult Ex (Espelho)", tier:"A", wr:"48-50%", metaShare:"9,25%", coinFlip:"first",
+        objetivo:[
+          "JOGAR PRIMEIRO decide o espelho",
+          "Martelo + Ruínas são sua edge de disrupção",
+          "Matar o Munki deles primeiro"
+        ],
+        cuidado:[
+          "Não exponha o 2º Dragapult — 3 prêmios cada",
+          "O Munki deles devolve seu spread"
+        ] },
+      { id:220, name:"Mega Venusaur Ex", tier:"A", wr:"47-51%", metaShare:"0,70%", coinFlip:"first",
+        objetivo:[
+          "Moltres/Ordens no Genesect (mata o snipe) — 120 HP",
+          "2HKO no Venusaur com spread acumulado (380 HP + cura 30, não tem OHKO)"
+        ],
+        cuidado:[
+          "Jungle Dump 240 + chip de spread mata seu Dragapult",
+          "Genesect snipa seu banco escalando com Planta anexada"
+        ] },
+      { id:221, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"45-49%", metaShare:"3,56%", coinFlip:"first",
+        objetivo:[
+          "Martelo BRILHA aqui — o deck inteiro depende de energia acelerada",
+          "Spread + Ordens nos suportes (Ogerpon/Latias)"
+        ],
+        cuidado:[
+          "Bellowing Thunder escala 70×energia descartada = OHKO — nunca deixe sobrar energia neles"
+        ] },
+      { id:222, name:"Cinccino Ex Metagross", tier:"A", wr:"45-49%", metaShare:"0,74%", coinFlip:"first",
+        objetivo:[
+          "Watchtower DESLIGA o Pelagem Lisa do Cinccino (Incolor!) — seus ataques param de errar no flip",
+          "Martelo na energia Metal"
+        ],
+        cuidado:[
+          "Martelo Metálico 300 — com 20+ de chip seu Dragapult morre",
+          "Sem Watchtower, 50% dos seus ataques no Cinccino falham"
+        ] },
+      { id:223, name:"Mega Lucario Ex (solo)", tier:"C", wr:"44-48%", metaShare:"1,58%", coinFlip:"first",
+        objetivo:[
+          "Moltres pune o Mega Lucario ex (110 por 1 prêmio)",
+          "Spread + Munki; Martelo atrasa"
+        ],
+        cuidado:[
+          "Mega Brave 270 — com Cinturão (Maximum Belt) vira 320 = OHKO exato no Dragapult"
+        ] },
+      { id:224, name:"Zoroark Ex do N", tier:"C", wr:"43-47%", metaShare:"3,95%", coinFlip:"first",
+        objetivo:[
+          "Martelo na energia deles + matar Yveltal/Munki com spread",
+          "Moltres pune o Zoroark ex (1 prêmio)"
+        ],
+        cuidado:[
+          "Eles TAMBÉM rodam 4 Martelos — só anexe energia que vai usar no turno",
+          "Pecharunt fecha jogo (60×prêmio que você já pegou)"
+        ] },
+      { id:225, name:"Greninja (não-Mega)", tier:"C", wr:"42-46%", metaShare:"1,61%", coinFlip:"first",
+        objetivo:[
+          "Munki segura o chip deles; correr"
+        ],
+        cuidado:[
+          "Mirage Barrage snipa 120×2 no seu banco — Drakloak (90 HP) morre, evolua rápido",
+          "Watchtower não pega nada (Água)"
+        ] },
+      { id:226, name:"Dragapult Ex Blaziken", tier:"C", wr:"41-45%", metaShare:"2,42%", coinFlip:"first",
+        objetivo:[
+          "Race: matar o Munki deles e fechar com spread + Ordens"
+        ],
+        cuidado:[
+          "Eles são MAIS rápidos (Blaziken acelera energia) — jogar passivo = perder",
+          "Não exponha o 2º Dragapult (3 prêmios)"
+        ] },
+      { id:227, name:"Diancie Dusknoir", tier:"C", wr:"40-44%", metaShare:"0,76%", coinFlip:"first",
+        objetivo:[
+          "Munki devolve a Explosão Amaldiçoada; correr"
+        ],
+        cuidado:[
+          "Diamond Coat: Diancie toma 30 a MENOS de dano",
+          "Explosão Amaldiçoada 130 (ability, Watchtower não pega)"
+        ] },
+      { id:228, name:"Crustle", tier:"C", wr:"40-44%", metaShare:"1,45%", coinFlip:"first",
+        objetivo:[
+          "Dar dano no Crustle com os 60 de spread do Mergulho Fantasma",
+          "Munkidori + Ruínas Arriscadas pra gerar dano",
+          "Ordens da Chefia em tudo que NÃO for o Crustle",
+          "Martelos pra descartar a Energia Nebulosa (ela bloqueia o spread no Pokémon equipado)",
+          "Usar o dano da Energia Espinhosa (que cai na gente) pra passar com o Munkidori"
+        ],
+        cuidado:[
+          "Não anexar energias demais pra não ficar sem",
+          "Eri descarta nossas Macas — oponente revela nossa mão e descarta até 2 Itens"
+        ] },
+      { id:229, name:"Slowking Metagross", tier:"C", wr:"41-44%", metaShare:"5,22%", coinFlip:"first",
+        objetivo:[
+          "Martelo na Telepática/Boomerang (energia ESPECIAL deles — alvo perfeito)",
+          "Budew T1 atrasa o setup Estágio 1 deles",
+          "Moltres pune Latias/Meowth (110 por 1 prêmio)"
+        ],
+        cuidado:[
+          "Martelo Metálico 300 via Busca de Inspiração — com 20+ de chip seu Dragapult morre",
+          "Eles são quase todo single-prize e você dá 3 — assimetria pesada",
+          "Watchtower NÃO pega o Slowking (Psíquico)"
+        ] },
+      { id:230, name:"Ethan's Typhlosion", tier:"C", wr:"39-43%", metaShare:"0,64%", coinFlip:"first",
+        objetivo:[
+          "KO rápido no Typhlosion (170 HP) ANTES das Aventuras empilharem",
+          "Martelo no Ho-Oh corta a aceleração"
+        ],
+        cuidado:[
+          "Buddy Blast escala 60×Aventura no descarte — o tempo joga contra você"
+        ] },
+      { id:231, name:"Garchomp Ex da Cíntia 🔴", tier:"C", wr:"37-42%", metaShare:"1,84%", coinFlip:"first",
+        objetivo:[
+          "Moltres pune o Garchomp ex (110 por 1 prêmio)",
+          "Martelo + Budew seguram a Investida (eles descartam tudo ao atacar)",
+          "Spread amolece + Munki finaliza"
+        ],
+        cuidado:[
+          "Investida do Dragão 260 + chip = seu Dragapult morre, e você dá 3 prêmios",
+          "Spiritomb escala com counters no banco DELES — Munki/Ruínas no ATIVO, não no banco"
+        ] },
+      { id:232, name:"Mega Kangaskhan Box (Clefairy) 🔴", tier:"C", wr:"38-43%", metaShare:"novo", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: vários ex (4 Lillie's Clefairy!) + Profundezas da Área Zero (banco 8)",
+          "Watchtower desliga o Mega Kang (Incolor) Ir Buscar + o Meowth ex deles",
+          "Spread + Munkidori shift; Ordens nos alvos amolecidos"
+        ],
+        cuidado:[
+          "🚨 Lillie's Clefairy Zona das Fadas = SEU Dragapult ex fraco a Psíquico ×2 → Latias Eon Blade 200×2 = 400 OHKO",
+          "Spread/Ruínas é lento vs Box saudável de banco 8; Crushing Hammer ajuda pouco (energia mista)",
+          "Dragapult ex = 3 prêmios (liability)"
+        ] }
+    ]
+  }
+};
+
+// 🔮 Dragapult + Alakazam — herda a base do Dragapult; matchups clonados como ponto de partida (ajustar conforme jogar)
+DECKS.zam = {
+  label: "🔮 Dragapult + Alakazam",
+  accent: "#22d3ee",
+  universal: [
+    '<strong>DRAGAPULT + ALAKAZAM (spread + finisher non-ex):</strong>',
+    '🎯 <span class="key">Mergulho Fantasma</span> [RP] 200 + 60 spread no banco + Munkidori (Sombria) move counters SEUS → oponente',
+    '🔮 <span class="key">Alakazam Mão Poderosa</span> [P]: 2 contadores × cada carta na mão. NON-EX → fura paredes de ex (Crustle!). Escala com a sua compra (Drakloak/Chi-Yu/Kadabra/Zam)',
+    '🃏 <span class="key">Linha Zam SEM Rare Candy</span>: Abra→Kadabra→Alakazam; Dawn acha a linha, draw em cada degrau (Kadabra +2, Zam +3)',
+    '⚠️ <span class="key">Tensão</span>: Mão Poderosa quer mão CHEIA, mas Mega Froslass (Resentful Refrain) pune mão cheia — ler o matchup',
+    '🏟️ Risky Ruins (2) amolece o banco (+ fuel Munkidori). Special Red Card/Xerosic atacam o hand-size do oponente',
+    '🔥 Sem Crushing Hammer/Watchtower/Moltres (vs build disrupção) — menos trava, mais consistência (Dawn/Chi-Yu/Rosa\'s) + 2º win-con'
+  ],
+  decklist: {
+    note: "🔮 <strong>Spread + finisher non-ex.</strong> Mergulho Fantasma 200 + 60 no banco (Risky Ruins soma 20) e Munkidori movem o dano. A linha Alakazam (Abra→Kadabra→Alakazam, sem Rare Candy) dá um 2º win-con NON-EX: Mão Poderosa = 2 contadores × cada carta na mão — fura paredes de ex (Crustle!) e escala com a própria compra do deck (Chi-Yu Allure, Kadabra/Zam Psychic Draw, Lillie's). Dawn acha as linhas de evolução; Rosa's recarrega Estágio 2 do descarte quando você está atrás. Energia 100% básica. ⚠️ Tensão: Mão Poderosa quer mão cheia, Mega Froslass pune mão cheia.",
+    groups: [
+      { type: "Pokémon (20)", cards: [
+        { n:4, name:"Dreepy", set:"TWM 128", fn:"Básico. Linha de início do Dragapult. Buddy-Buddy Poffin-able (≤70 HP)." },
+        { n:4, name:"Drakloak", set:"TWM 129", fn:"Estágio 1. Ability de compra (consistência) — ponte pro Dragapult ex." },
+        { n:3, name:"Dragapult ex", set:"TWM 130", fn:"⭐ Estágio 2 · 320 HP · 3 prêmios. Mergulho Fantasma [RP] 200 + 6 contadores (60) no banco. Jet Headbutt [P] 70." },
+        { n:2, name:"Munkidori", set:"TWM 95", fn:"Básico. Cérebro-Adrena (precisa Sombria): move até 3 contadores SEUS → oponente. Finaliza + pseudo-cura." },
+        { n:1, name:"Budew", set:"PRE 4", fn:"Básico. Trava de Itens enquanto ativo. Disrupção T1 (só 1 cópia agora — menos confiável)." },
+        { n:1, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador. (sem Watchtower nesse deck = não se auto-desliga)" },
+        { n:1, name:"Chi-Yu", set:"TWM 39", fn:"🆕 Básico non-ex (Fogo, 110 HP). Allure: compre 2 (draw paralelo ao Drakloak). Ground Melter [RC] 60 (120 + descarta Estádio se houver)." },
+        { n:1, name:"Fezandipiti ex", set:"SFA 84", fn:"Básico ex (Sombrio). Recovery/draw (compra 3 após perder Pokémon). = mesma carta da ASC 142." },
+        { n:1, name:"Abra", set:"TWM 80", fn:"Básico. Teleporter: embaralha-se pro deck (reposiciona/recicla). Início da linha Zam. Poffin-able (40 HP)." },
+        { n:1, name:"Kadabra", set:"MEG 55", fn:"🆕 Estágio 1. Psychic Draw: ao evoluir, compre 2. Ponte Abra→Alakazam (sem Rare Candy)." },
+        { n:1, name:"Alakazam", set:"MEG 56", fn:"🆕🔑 Estágio 2 NON-EX (140 HP, 1 prêmio). Mão Poderosa [P]: 2 contadores × cada carta na sua mão (no Ativo). Fura paredes de ex (Crustle!). Psychic Draw +3 ao evoluir." }
+      ]},
+      { type: "Trainer (31)", cards: [
+        { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra principal (enche a mão = mais Mão Poderosa)." },
+        { n:4, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dreepy/Budew/Munkidori/Abra). Consistência de setup." },
+        { n:4, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça." },
+        { n:3, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon (inclui os ex e a linha Zam)." },
+        { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Gust — traz 1 Pokémon do banco do oponente pro Ativo. Finaliza alvos amolecidos. (Ordens da Chefia)" },
+        { n:3, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte." },
+        { n:2, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Busca 2 Energia Básica de tipos diferentes (fix Fogo + Psíquico)." },
+        { n:2, name:"Dawn", set:"PFL 87", fn:"🆕 Apoiadora. Tutor de linha de evolução COMPLETA — acha Drakloak/Dragapult E Kadabra/Alakazam." },
+        { n:2, name:"Risky Ruins", set:"MEG 127", fn:"Estádio. Bancar Básico NÃO-Sombrio = 2 contadores nele. Amolece o banco (fuel Munkidori). Cuidado: dana seus próprios básicos não-Sombrios." },
+        { n:1, name:"Xerosic's Machinations", set:"SFA 89", fn:"🆕 Apoiadora. Reduz a mão do oponente (anti hand-size: Mão Poderosa do Zam deles / Penas do Foguete)." },
+        { n:1, name:"Rosa's Encouragement", set:"POR 84", fn:"🆕 Apoiadora. Só se você está ATRÁS (mais prêmios restantes): anexa 2 Energia Básica do descarte a 1 Estágio 2 (Dragapult ex/Alakazam). Comeback." },
+        { n:1, name:"Unfair Stamp", set:"TWM 165", fn:"⭐ ACE SPEC (Item). Após nocautear: cada um embaralha a mão; você compra 5, oponente 2." },
+        { n:1, name:"Special Red Card", set:"CRI 82", fn:"🆕 Item. Se opp ≤3 prêmios: ele embaralha a mão pro fundo e compra 3 (reseta a Mão Poderosa deles / Resentful Refrain)." }
+      ]},
+      { type: "Energy (9) — todas Básicas", cards: [
+        { n:3, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Mergulho Fantasma [RP] + Jet Headbutt + Munkidori + Mão Poderosa/Kadabra." },
+        { n:3, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. Trigger do Munkidori (Cérebro-Adrena) + Fezandipiti." },
+        { n:3, name:"Fire Energy", set:"MEE 2", fn:"BÁSICA Fogo. Mergulho Fantasma [RP] + Chi-Yu Ground Melter." }
+      ]}
+    ]
+  },
+  matchups: JSON.parse(JSON.stringify(DECKS.dragapult.matchups))
+};
+// Ajustes dos matchups que mudaram com a linha Zam (sem Crushing Hammer/Watchtower/Moltres). Os demais são herdados do Dragapult e ainda citam essas cartas — revisar conforme jogar.
+(function(){
+  const set = (id, patch) => { const m = DECKS.zam.matchups.find(x => x.id === id); if (m) Object.assign(m, patch); };
+  // Crustle (id 228): SOBE — Alakazam non-ex fura a Pousada Rochosa
+  set(228, { tier:"A", wr:"48-52%",
+    objetivo:[
+      "🔮 Alakazam Mão Poderosa é NON-EX → fura a Pousada Rochosa (bate cheio no Crustle, não só o spread de 60)",
+      "Os 60 do Mergulho Fantasma já passam (contadores ≠ dano de ataque) — somar com Munkidori + Ruínas",
+      "Ordens da Chefia em tudo que NÃO for o Crustle",
+      "Single-prize do Alakazam reduz a assimetria (Dragapult ex dá 3)"
+    ],
+    cuidado:[
+      "Crustle Munkidori shifta seu spread de volta — não dependa só dos 60",
+      "Linha Zam é 1-1-1 (frágil) — proteja Abra/Kadabra",
+      "🔻 Sem Crushing Hammer agora: não trava mais a energia especial do Crustle"
+    ] });
+  // Slowking (id 229): leve QUEDA — perdeu o martelo
+  set(229, { tier:"C", wr:"38-42%",
+    objetivo:[
+      "Alakazam pode OHKO o Slowking (120 HP) com mão cheia",
+      "Spread + Ordens nos suportes; Budew T1 atrasa o Estágio 1 deles"
+    ],
+    cuidado:[
+      "🔻 SEM Crushing Hammer — perdeu o que segurava a energia especial deles (downgrade vs build disrupção)",
+      "Lillie's Clefairy deixa o Dragapult fraco a Psíquico ×2 (Super Psy Bolt OHKO)",
+      "Martelo Metálico 300 via Busca de Inspiração; assimetria de prêmios (você dá 3)"
+    ] });
+  // Raging Bolt / Box (id 221): QUEDA — o martelo brilhava aqui
+  set(221, { tier:"C", wr:"42-45%",
+    objetivo:[
+      "Spread + Ordens nos suportes (Ogerpon/Latias); Alakazam finaliza alvos amolecidos"
+    ],
+    cuidado:[
+      "🔻 SEM Crushing Hammer — perdeu a edge de energy denial que brilhava aqui (downgrade)",
+      "Bellowing Thunder escala 70×energia descartada = OHKO; nunca deixe sobrar energia neles",
+      "Quase todo ex — Alakazam non-ex não ajuda contra atacantes, só fura walls"
+    ] });
+  // Alakazam Dudunsparce (id 211): leve queda (wash) — perdeu Watchtower, ganhou Special Red Card/Xerosic
+  set(211, { tier:"A", wr:"52-55%",
+    objetivo:[
+      "Special Red Card + Xerosic atacam o hand-size deles (reseta a Mão Poderosa quando ≤3 prêmios)",
+      "Spread + Ordens no Alakazam deles (140 HP)",
+      "Você também tem Alakazam — espelho parcial de Mão Poderosa"
+    ],
+    cuidado:[
+      "🔻 SEM Watchtower — o Dudunsparce deles (Incolor) volta a comprar (perdeu a trava)",
+      "Mão Poderosa escala com a mão — não deixe crescer",
+      "Single-prize deles vs seus 3 prêmios do Dragapult"
+    ] });
+  // Mega Kangaskhan Box (id 232): Alakazam (não-Dragão) ajuda um pouco, mas Latias OHKO o Dragapult ex
+  set(232, { tier:"C", wr:"40-45%",
+    objetivo:[
+      "🔮 Alakazam (non-ex Psíquico, NÃO-Dragão) escapa da Zona das Fadas e chipa com Mão Poderosa",
+      "Spread + Munkidori; Carta Vermelha Especial/Xerosic atacam a mão deles"
+    ],
+    cuidado:[
+      "🚨 Lillie's Clefairy ainda deixa o Dragapult ex fraco a Psíquico ×2 → Latias 200×2 = 400 OHKO",
+      "🔻 Sem Watchtower: o Mega Kang (Incolor) mantém o Ir Buscar",
+      "Box all-ex + banco 8; Dragapult ex = 3 prêmios (liability)"
+    ] });
+
+  // ——— Varredura dos matchups herdados do Dragapult: trocar Crushing Hammer/Watchtower/Moltres/Judge pela lógica da build Zam ———
+  set(201, {
+    objetivo:[
+      "Correr: spread + Ordens fecham antes das Penas do Foguete escalarem",
+      "Xerosic + Special Red Card encolhem a mão deles (menos Apoiador TR pra descartar = menos dano)",
+      "Alakazam non-ex finaliza alvos amolecidos sem expor o Dragapult (3 prêmios)"
+    ],
+    cuidado:[ "Não deixar o jogo arrastar — Penas do Foguete escala com Apoiadores TR no descarte" ] });
+  set(202, {
+    objetivo:[
+      "Munki devolve o chip do Shuriken Mortal",
+      "Correr — fechar antes do chip de 60/turno acumular; Alakazam finaliza"
+    ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer agora — não atrasa mais o setup de Água deles",
+      "Variante c/ Mega Froslass: Resentful Refrain pune MÃO CHEIA (50×carta) — ⚠️ conflita com o Alakazam (que quer mão cheia). Special Red Card reseta a mão DELES; segure a SUA mão baixa"
+    ] });
+  set(204, {
+    objetivo:[
+      "Spread + Munki fecham; Alakazam non-ex finaliza os ex sem dar 3 prêmios",
+      "Correr — deck agressivo, não passar turno sem pressão"
+    ],
+    cuidado:[ "🔻 Sem Crushing Hammer/Moltres — perdeu o atraso de energia e o tech single-prize anti-ex (compensa com Alakazam)" ] });
+  set(205, {
+    objetivo:[
+      "Munki devolve o Feixe Celestial neles",
+      "Correr — fechar antes de estabilizarem; Alakazam finaliza"
+    ],
+    cuidado:[
+      "Feixe Celestial 210 ignora efeitos",
+      "Mega Froslass ex pune mão cheia (Resentful Refrain) — segure a mão se vir Froslass"
+    ] });
+  set(207, {
+    objetivo:[
+      "Spread + correr; Munki e Ordens finalizam",
+      "Alakazam non-ex pune o Okidogi ex sem dar 3 prêmios"
+    ],
+    cuidado:[ "Não deixar eles montarem board grande" ] });
+  set(208, {
+    objetivo:[
+      "Bater de Dragapult o mais rápido pra limpar o banco (spread nos Weedle/Kakuna de 1 prêmio)",
+      "Risky Ruins pune o banco cheio de básicos deles (+ fuel Munkidori)",
+      "Alakazam non-ex finaliza a Beedrill ex"
+    ],
+    cuidado:[
+      "🔻 Sem Watchtower — o Dudunsparce deles (Incolor) continua comprando (perdeu a trava de draw)",
+      "Sem Crushing Hammer pra descartar a energia da Beedrill"
+    ] });
+  set(209, {
+    objetivo:[
+      "Spread mata os TR pequenos → com menos de 4 TR em jogo o Mewtwo NÃO ataca",
+      "Ordens + Alakazam finalizam; Xerosic encolhe a mão deles"
+    ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer na Energia da Equipe Rocket (perdeu o atraso)",
+      "Bola de Apagar até 280 — com chip seu Dragapult morre"
+    ] });
+  set(210, {
+    objetivo:[
+      "Correr + spread antes da cura deles estabilizar",
+      "Munki devolve o chip do Meganium; Alakazam finaliza"
+    ],
+    cuidado:[ "Oil Salvo espalha 6×20 no SEU banco — estoura os Munki (110 HP)" ] });
+  set(212, {
+    objetivo:[
+      "Munki devolve o Feixe Celestial",
+      "Spread no Duskull/Dusclops antes de virar Dusknoir"
+    ],
+    cuidado:[
+      "Explosão Amaldiçoada 130 (ability) fura tudo — sem Psyduck/Damp aqui, corra",
+      "Feixe Celestial 210 ignora efeitos"
+    ] });
+  set(213, { tier:"A", wr:"48-52%",
+    objetivo:[ "Spread + Ordens; Alakazam finaliza; Risky Ruins amolece o banco" ],
+    cuidado:[
+      "🔻 Sem Watchtower — o Dudunsparce deles (Incolor) volta a comprar (perdeu a trava — downgrade)",
+      "🔻 Sem Crushing Hammer na energia Metal; Assemble Alloy re-acelera do descarte"
+    ] });
+  set(214, { tier:"A", wr:"46-50%",
+    objetivo:[
+      "Bumpar a Jaula de Batalha com SEU estádio (Risky Ruins) — sem isso o spread/Munki não pega o banco deles",
+      "Ordens + Alakazam finalizam a Lopunny chipada"
+    ],
+    cuidado:[
+      "🔻 Sem Watchtower — o Dudunsparce deles (Incolor) continua comprando",
+      "Saltador Espinhudo 160 ignora efeitos; Wally's Compassion reseta a Lopunny — Ordens e mata antes da cura"
+    ] });
+  set(215, {
+    objetivo:[
+      "Bumpar o estádio deles (Floresta da Vitalidade) com Risky Ruins — evita Meganium evoluindo num turno",
+      "Focar na linha do Hydrapple; Alakazam/Ordens finalizam"
+    ],
+    cuidado:[ "🔻 Sem Crushing Hammer pra tirar energias — a cura do Hydrapple (Ripening Charge) sustenta mais" ] });
+  set(216, {
+    objetivo:[
+      "Race de spread — quem fecha primeiro ganha",
+      "Matar o Munki deles antes que devolvam seu dano; Alakazam finaliza"
+    ],
+    cuidado:[
+      "Explosão Amaldiçoada 130 (ability) fura tudo",
+      "Não exponha o 2º Dragapult (3 prêmios)"
+    ] });
+  set(219, {
+    objetivo:[
+      "JOGAR PRIMEIRO decide o espelho",
+      "Risky Ruins é sua edge de disrupção; matar o Munki deles primeiro",
+      "Alakazam non-ex é um ângulo que o espelho puro não tem"
+    ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer — perdeu metade da edge de disrupção do espelho",
+      "Não exponha o 2º Dragapult — 3 prêmios cada; o Munki deles devolve seu spread"
+    ] });
+  set(220, {
+    objetivo:[
+      "Ordens no Genesect (mata o snipe) — 120 HP; Alakazam finaliza",
+      "2HKO no Venusaur com spread acumulado (380 HP + cura 30, não tem OHKO)"
+    ],
+    cuidado:[
+      "Jungle Dump 240 + chip de spread mata seu Dragapult",
+      "Genesect snipa seu banco escalando com Planta anexada"
+    ] });
+  set(222, { tier:"C", wr:"40-44%",
+    objetivo:[
+      "Spread (contadores ≠ ataque — passam fora do flip) + Munki: machuca por efeito mesmo com o Pelagem Lisa",
+      "Ordens + Alakazam nos alvos amolecidos"
+    ],
+    cuidado:[
+      "🔻🔻 Sem Watchtower — o Pelagem Lisa do Cinccino (Incolor) volta: ~50% dos seus ATAQUES no Cinccino podem ser anulados pelo flip (o hit de 200 e o Powerful Hand). O spread do Mergulho ainda passa",
+      "Martelo Metálico 300 — com chip seu Dragapult morre"
+    ] });
+  set(223, {
+    objetivo:[
+      "Alakazam non-ex pune o Mega Lucario ex (1 prêmio em vez de expor o Dragapult)",
+      "Spread + Munki; Budew T1 atrasa"
+    ],
+    cuidado:[ "Mega Brave 270 — com Cinturão (Maximum Belt) vira 320 = OHKO exato no Dragapult" ] });
+  set(224, {
+    objetivo:[
+      "Spread + Ordens matam Yveltal/Munki; Alakazam finaliza o Zoroark ex",
+      "Special Red Card/Xerosic encolhem a mão deles"
+    ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer (perdeu o espelho de denial) — e os 4 Martelos DELES ainda descartam sua energia básica",
+      "Pecharunt fecha jogo (60×prêmio que você já pegou)"
+    ] });
+  set(225, {
+    objetivo:[ "Munki segura o chip deles; correr e finalizar com Alakazam" ],
+    cuidado:[ "Mirage Barrage snipa 120×2 no seu banco — Drakloak (90 HP) e a linha Zam morrem, evolua rápido" ] });
+  set(227, {
+    objetivo:[ "Munki devolve a Explosão Amaldiçoada; correr; Alakazam finaliza" ],
+    cuidado:[
+      "Diamond Coat: Diancie toma 30 a MENOS de dano",
+      "Explosão Amaldiçoada 130 (ability) fura tudo"
+    ] });
+  set(230, {
+    objetivo:[ "KO rápido no Typhlosion (170 HP) ANTES das Aventuras empilharem; Ordens + Alakazam ajudam" ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer no Ho-Oh — não corta mais a aceleração",
+      "Buddy Blast escala 60×Aventura no descarte — o tempo joga contra você"
+    ] });
+  set(231, {
+    objetivo:[
+      "Spread amolece + Munki finaliza; Alakazam non-ex pune o Garchomp ex sem dar 3 prêmios",
+      "Budew T1 atrasa"
+    ],
+    cuidado:[
+      "🔻 Sem Crushing Hammer — perdeu o atraso da Investida (eles descartam tudo ao atacar)",
+      "Investida do Dragão 260 + chip = seu Dragapult morre, e você dá 3 prêmios",
+      "Spiritomb escala com counters no banco DELES — Munki/Ruínas no ATIVO, não no banco"
+    ] });
+})();
+
+let currentDeck = localStorage.getItem('tcg-current-deck') || 'crustle';
+let selectedId = null;
+
+function switchDeck(deck) {
+  currentDeck = deck;
+  selectedId = null;
+  localStorage.setItem('tcg-current-deck', deck);
+  document.getElementById('tab-crustle').className = 'deck-tab' + (deck === 'crustle' ? ' active-crustle' : '');
+  document.getElementById('tab-slowking').className = 'deck-tab' + (deck === 'slowking' ? ' active-slowking' : '');
+  document.getElementById('tab-dragapult').className = 'deck-tab' + (deck === 'dragapult' ? ' active-dragapult' : '');
+  document.getElementById('tab-zam').className = 'deck-tab' + (deck === 'zam' ? ' active-zam' : '');
+  document.getElementById('search').value = '';
+  renderUniversal();
+  renderSidebar();
+  renderPlaceholder();
+}
+
+function renderUniversal() {
+  const d = DECKS[currentDeck];
+  const el = document.getElementById('universal');
+  // Layout enxuto: barra de regras universais escondida pra TODOS os decks
+  el.style.display = 'none';
+  el.innerHTML = d.universal.map(r => `<span class="rule">${r}</span>`).join('');
+}
+
+function renderSidebar(filter = "") {
+  const sb = document.getElementById('sidebar');
+  const matchups = DECKS[currentDeck].matchups;
+  const accent = DECKS[currentDeck].accent;
+  const filtered = matchups.filter(m =>
+    m.name.toLowerCase().includes(filter.toLowerCase()) ||
+    (m.signals || '').toLowerCase().includes(filter.toLowerCase())
+  );
+  const tiers = { S: [], A: [], C: [] };
+  filtered.forEach(m => tiers[m.tier].push(m));
+  // ordena cada tier por WR decrescente (pega o 1º número do wr, ex "55-62%" -> 55)
+  const wrVal = s => { const n = String(s).match(/\d+/); return n ? parseInt(n[0]) : 0; };
+  ['S','A','C'].forEach(t => tiers[t].sort((a,b) => wrVal(b.wr) - wrVal(a.wr)));
+  let html = "";
+  if (tiers.S.length) { html += '<div class="tier-label tier-S">🏆 Tier S — Vitória provável</div>'; tiers.S.forEach(m => html += deckButton(m, accent)); }
+  if (tiers.A.length) { html += '<div class="tier-label tier-A">⚖️ Tier A — Equilibrado</div>'; tiers.A.forEach(m => html += deckButton(m, accent)); }
+  if (tiers.C.length) { html += '<div class="tier-label tier-C">🔴 Tier C — Difícil</div>'; tiers.C.forEach(m => html += deckButton(m, accent)); }
+  if (!filtered.length) html = '<div style="padding:20px;color:#5d6d99;text-align:center;font-size:13px;">Nenhum deck encontrado</div>';
+  sb.innerHTML = html;
+}
+
+function deckButton(m, accent) {
+  const active = m.id === selectedId ? ' active' : '';
+  const style = m.id === selectedId ? ` style="color:${accent};background:#1e2a47"` : '';
+  return `<button class="deck-btn${active}"${style} onclick="selectMatchup(${m.id})">${m.name}<span class="wr tier-${m.tier}">${m.wr}</span></button>`;
+}
+
+function selectMatchup(id) {
+  selectedId = id;
+  closeDrawerMobile();
+  const m = DECKS[currentDeck].matchups.find(x => x.id === id);
+  renderSidebar(document.getElementById('search').value);
+  const coinFlipText = m.coinFlip === "first" ? "🎯 JOGAR PRIMEIRO" : "🎯 JOGAR SEGUNDO";
+  const coinFlipClass = m.coinFlip === "first" ? "first" : "";
+  const header = `
+    <div class="matchup-header">
+      <div class="matchup-name">${m.name}</div>
+      <div class="matchup-meta">
+        <span class="badge badge-${m.tier}">Tier ${m.tier}</span>
+        <span>📊 WR: <strong>${m.wr}</strong></span>
+        <span>📈 Meta: ${m.metaShare}</span>
+        <span>🃏 Seu deck: <strong>${DECKS[currentDeck].label}</strong></span>
+      </div>
+    </div>
+    <div class="coin-flip ${coinFlipClass}"><span class="icon">🪙</span><span>Ganhou o cara ou coroa? <strong>${coinFlipText}</strong></span></div>`;
+
+  if (m.objetivo || m.cuidado) {
+    // Layout enxuto (objetivo/cuidado) — PADRÃO pra todos os decks. Cada coluna só aparece se tiver conteúdo.
+    const colObj = (m.objetivo && m.objetivo.length) ? `
+      <div class="col col-do"><h3>Objetivo</h3><ul>${m.objetivo.map(d => `<li>${d}</li>`).join('')}</ul></div>` : '';
+    const colCui = (m.cuidado && m.cuidado.length) ? `
+      <div class="col col-dont"><h3>Cuidado</h3><ul>${m.cuidado.map(d => `<li>${d}</li>`).join('')}</ul></div>` : '';
+    const grid = (colObj || colCui) ? `
+    <div class="grid-2${colObj && colCui ? '' : ' grid-solo'}">${colObj}${colCui}
+    </div>` : '';
+    document.getElementById('main').innerHTML = header + grid;
+    return;
+  }
+
+  document.getElementById('main').innerHTML = header + `
+    <div class="signal"><div class="label">👁️ Sinal visual T1-T2</div><div>${m.signals}</div></div>
+    <div class="grid-2">
+      <div class="col col-do"><h3>FAÇA</h3><ul>${m.do.map(d => `<li>${d}</li>`).join('')}</ul></div>
+      <div class="col col-dont"><h3>NÃO FAÇA</h3><ul>${m.dont.map(d => `<li>${d}</li>`).join('')}</ul></div>
+    </div>
+    <div class="threat"><h3>⚠️ Ameaça crítica</h3><div class="text">${m.threat}</div><div class="counter">${m.counter}</div></div>
+    <div class="wincon"><span class="icon">🏆</span><strong>Condição de vitória:</strong> ${m.winCon}</div>
+    <div class="notes-section"><h3>📝 Notas dessa partida (salva automático)</h3><textarea id="notes" placeholder="Anote insights durante o jogo..."></textarea></div>
+  `;
+  const notesEl = document.getElementById('notes');
+  const key = `${currentDeck}-notes-${id}`;
+  const saved = localStorage.getItem(key);
+  if (saved) notesEl.value = saved;
+  notesEl.addEventListener('input', () => localStorage.setItem(key, notesEl.value));
+}
+
+function renderPlaceholder() {
+  const d = DECKS[currentDeck];
+  document.getElementById('main').innerHTML = `
+    <div class="placeholder">
+      <h2>${d.label}</h2>
+      <p>Selecione o deck do oponente na lista à esquerda.<br>
+      Ou use a busca por nome ou sinal visual (banco inicial).</p>
+      <br>
+      <p style="color:${d.accent};">📋 Clique em "Meu Deck" pra ver suas 60 cartas · 💡 Troque o deck nas abas · ↑↓ navega · Esc limpa</p>
+    </div>
+  `;
+}
+
+// Monta a URL da arte da carta no CDN do Limitless a partir de "SET NUM" (ex: "SSP 76")
+function cardImg(setStr) {
+  const parts = String(setStr).trim().split(/\s+/);
+  if (parts.length < 2) return '';
+  const set = parts[0].toUpperCase();
+  const num = parts[1].replace(/\D/g, '').padStart(3, '0');
+  return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${set}/${set}_${num}_R_EN_LG.png`;
+}
+
+function renderDeckGallery() {
+  selectedId = null;
+  renderSidebar(document.getElementById('search').value);
+  const d = DECKS[currentDeck];
+  const ac = d.accent;
+  const dl = d.decklist;
+  if (!dl) { document.getElementById('main').innerHTML = '<div class="placeholder"><p>Lista ainda não cadastrada para este deck.</p></div>'; return; }
+  let html = `<div class="matchup-header"><div class="matchup-name">${d.label} — Galeria (60 cartas)</div>
+    <div class="matchup-meta"><span>🖼️ Arte real de cada carta · o número é a quantidade no deck</span></div></div>`;
+  if (dl.note) html += `<div class="signal" style="border-left-color:${ac}"><div class="label" style="color:${ac}">💡 Como o deck funciona</div><div style="line-height:1.5;">${dl.note}</div></div>`;
+  dl.groups.forEach(g => {
+    html += `<div class="dl-group"><h3 class="dl-cat" style="color:${ac};border-color:${ac}55">${g.type}</h3><div class="gal-grid">`;
+    g.cards.forEach(c => {
+      const url = cardImg(c.set);
+      const fallback = `this.parentNode.classList.add('gal-broken');this.parentNode.innerHTML='${c.name.replace(/'/g, "\\'")}<br>${c.set}'`;
+      html += `<div class="gal-imgwrap"><img loading="lazy" src="${url}" alt="${c.name}" title="${c.name} (${c.set})" onerror="${fallback}"><span class="gal-count" style="background:${ac}">${c.n}×</span></div>`;
+    });
+    html += `</div></div>`;
+  });
+  document.getElementById('main').innerHTML = html;
+}
+
+function clearSelection() {
+  selectedId = null;
+  document.getElementById('search').value = '';
+  renderSidebar();
+  renderPlaceholder();
+}
+
+document.getElementById('search').addEventListener('input', e => renderSidebar(e.target.value));
+document.addEventListener('keydown', e => {
+  const buttons = document.querySelectorAll('.deck-btn');
+  let focusIndex = Array.from(buttons).indexOf(document.activeElement);
+  if (e.key === 'Escape') { clearSelection(); document.getElementById('search').focus(); }
+  else if (e.key === 'ArrowDown') { e.preventDefault(); buttons[Math.min(focusIndex + 1, buttons.length - 1)]?.focus(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); buttons[Math.max(focusIndex - 1, 0)]?.focus(); }
+  else if (e.key === 'Enter' && document.activeElement.classList.contains('deck-btn')) { document.activeElement.click(); }
+});
+
+switchDeck(currentDeck);
+
+// ——— Mobile drawer (sidebar) ———
+function toggleSidebar() {
+  const app = document.querySelector('.app');
+  const open = app.classList.toggle('sidebar-open');
+  const b = document.getElementById('backdrop');
+  if (b) b.classList.toggle('show', open);
+}
+function closeDrawerMobile() {
+  const app = document.querySelector('.app');
+  if (app) app.classList.remove('sidebar-open');
+  const b = document.getElementById('backdrop');
+  if (b) b.classList.remove('show');
+}
+
+// ——— PWA: service worker (só em HTTPS hospedado; ignorado em file://) ———
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
+</script>
+
+</body>
+</html>
