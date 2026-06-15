@@ -1,5 +1,5 @@
 // TCG Helper — Service Worker (offline)
-const SHELL_CACHE = 'tcg-shell-v7';
+const SHELL_CACHE = 'tcg-shell-v8';
 const CARDS_CACHE = 'tcg-cards-v1';
 const SHELL = [
   './',
@@ -39,8 +39,8 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Artes das cartas (CDN Limitless): cache-first, guarda na 1ª vez = galeria offline
-  if (url.hostname.indexOf('limitlesstcg') !== -1) {
+  // Artes das cartas (Limitless) + sprites Pokémon (PokeAPI/GitHub): cache-first, guarda na 1ª vez = offline
+  if (url.hostname.indexOf('limitlesstcg') !== -1 || url.hostname.indexOf('githubusercontent') !== -1) {
     e.respondWith(
       caches.open(CARDS_CACHE).then(async (c) => {
         const hit = await c.match(req);
