@@ -196,7 +196,7 @@ const DECKS = {
       '🛡️ <span class="key">Crustle</span> = parede imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa). Chip 120 (Tremendas Tesouras ignora efeitos).',
       '⚡ <span class="key">Mega Kangaskhan ex</span> = atacante/engine. Run Errand saca 2 · Rajada Rápida [CCC] 200+ fecha.',
       '🌵 <span class="key">Energia Espinhosa</span> pune quem FURA a parede (non-ex / ignore-effects): 2 counters no atacante.',
-      '💊 Stack de cura (Sorvete 80 / PCL 60 / Bianca / Centro Pokémon) + Mist (bloqueia efeitos).',
+      '💊 Stack de cura (Sorvete 80 / PCL 60 / Centro Comunitário 10) + Mist (bloqueia efeitos).',
       '🔪 Disrupção: Petrel busca QUALQUER Trainer · Eri (descarta Itens) · Xerosic/Hand Trimmer (corta mão).',
       '⚠️ Quase só Energia ESPECIAL (1 Básica) → vulnerável a martelo/energy-denial. ⚠️ Mega Kang = 3 prêmios.'
     ],
@@ -212,11 +212,10 @@ const DECKS = {
           { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Embaralha a mão e compra 6 (ou 8 se em exatamente 6 prêmios). Engine de compra principal." },
           { n:4, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). ⭐ Finaliza alvos / puxa atacante non-ex." },
           { n:4, name:"Team Rocket's Petrel", set:"DRI 176", fn:"⭐ Apoiadora. Busca QUALQUER Trainer do deck pra mão (cola do toolbox — pega o silver bullet/estádio do turno)." },
-          { n:2, name:"Eri", set:"TEF 146", fn:"Apoiadora. Oponente revela a mão; você descarta até 2 ITENS dela (mata Ultra Ball/Poffin/Martelo/Rare Candy na mão)." },
+          { n:3, name:"Eri", set:"TEF 146", fn:"⭐ Apoiadora. Oponente revela a mão; você descarta até 2 ITENS dela (mata Ultra Ball/Poffin/Martelo/Rare Candy/Maca). Carta mais forte do NAIC — subiu de 2→3 no lugar da Bianca's. Snipe Stamp/Stretcher no turno do KO." },
           { n:2, name:"Hilda", set:"WHT 84", fn:"Apoiadora. Busca 1 Pokémon de Evolução + 1 Energia (acha Crustle + Energia)." },
           { n:1, name:"Xerosic's Machinations", set:"SFA 64", fn:"Apoiadora. Oponente descarta a mão até ficar com 3 (anti-Mão Poderosa / Penas do Foguete)." },
           { n:1, name:"Pokémon Center Lady", set:"MEG 123", fn:"Apoiadora. Cura 60 + remove todas as Condições Especiais de 1 Pokémon." },
-          { n:1, name:"Bianca's Devotion", set:"TEF 142", fn:"Apoiadora. Cura TODO o dano de 1 Pokémon que tenha ≤30 HP restante (resgate clutch)." },
           { n:1, name:"Lisia's Appeal", set:"SSP 179", fn:"Apoiadora. Puxa 1 Básico do banco do oponente pro Ativo + Confunde (pesca alvo / trava atacante)." },
           { n:4, name:"Jumbo Ice Cream", set:"PFL 91", fn:"Item. Cura 80 do ativo com 3+ Energia. ⭐ Sustento da parede/Mega Kang." },
           { n:3, name:"Pokégear 3.0", set:"SVI 186", fn:"Item. Olha 7 do topo, pega 1 Apoiadora. ⚠️ reg G — usar BLK 084 em torneio físico." },
@@ -225,7 +224,7 @@ const DECKS = {
           { n:1, name:"Switch", set:"MEG 130", fn:"Item. Troca seu Ativo (sai do retreat 3 do Mega Kang / põe Crustle pra parede)." },
           { n:1, name:"Hand Trimmer", set:"TEF 150", fn:"Item. Ambos descartam a mão até 5 (oponente primeiro). Disrupção de mão grande." },
           { n:1, name:"Hero's Cape", set:"TEF 152", fn:"Ferramenta ACE SPEC. +100 HP (Mega Kang 400 / Crustle 250). 🛡️ Sobrevive a OHKOs. (só 1 no deck inteiro)" },
-          { n:1, name:"Handheld Fan", set:"TWM 150", fn:"Ferramenta. Ao tomar dano no Ativo, move 1 Energia do atacante pro banco DELE (energy denial defensivo)." },
+          { n:1, name:"Handheld Fan", set:"TWM 150", fn:"Ferramenta. Ao tomar dano no Ativo, move 1 Energia do atacante pro banco DELE. 🌬️ MVP do NAIC vs Dragapult: anexe no Kang cedo → eles gastam 3+ energia pra te dar KO. Também bom vs Fan Rotom (Lopunny) e Trevenant." },
           { n:1, name:"Team Rocket's Factory", set:"DRI 173", fn:"Estádio. +2 cartas ao jogar Apoiadora 'Team Rocket' (com Petrel) + bumpa estádio do oponente." },
           { n:1, name:"Community Center", set:"TWM 146", fn:"Estádio (Centro Comunitário). Jogou Apoiadora no turno → cura 10 de CADA Pokémon seu. Sustento passivo." },
           { n:1, name:"Festival Grounds", set:"TWM 149", fn:"Estádio (Pátio do Festival). Pokémon com Energia imune a Condições Especiais + bumpa estádio do oponente." }
@@ -243,7 +242,8 @@ const DECKS = {
         objetivo:[
           "👁️ JOGAR 1º, começar de Kangaskhan (saca com Run Errand montando UM Crustle gigante)",
           "🎯 [GUIA] Prioriza Capa do Herói + 1 NEBULOSA + 2 ESPINHOSA — a Espinhosa deixa você dar OHKO de retorno no Dusknoir deles",
-          "Boss mata um Dusclops quando der; semi-agressivo cedo pra queimar energia; pivota pro Kang no late se eles superexpõem"
+          "Boss mata um Dusclops quando der; semi-agressivo cedo pra queimar energia; pivota pro Kang no late se eles superexpõem",
+          "🌬️ [NAIC] LEQUE DE MÃO no Kang cedo força 3+ energia pra te dar KO (funciona em TODO Pult, MVP do NAIC) — ótimo se eles abrirem com Budew"
         ],
         cuidado:[
           "🚨 Sua lista NAIC NÃO tem Psyduck (o guia ganhava de graça com ele desligando a Explosão Amaldiçoada). Sem ele, a Explosão (ability) fura a parede — segure com cura + 2 Espinhosa",
@@ -294,7 +294,7 @@ const DECKS = {
         objetivo:[
           "👁️ JOGAR 1º. [GUIA] Monte Kang/Crustle com Capa do Herói + 2 ESPINHOSA → o Dipplin se auto-mata atacando 2× (Do the Wave)",
           "🎯 Boss caça os THWACKEY deles (corta o combo); bumpe o Pátio do Festival com seu estádio",
-          "⚠️ O guia ganha 90/10 com CORNERSTONE (sua lista NAIC não tem) — sem ela, segure com Crustle/Kang + Spiky + cura"
+          "⚠️ [NAIC] SEM Cornerstone (a lista atual cortou): monte Kang com LEQUE DE MÃO cedo + Espinhosa, caçando os Grookey; monte um 2º Kang com Capa no banco. Jogue defensivo cedo (Hilda busca Espinhosa)"
         ],
         cuidado:[
           "🚨 Rillaboom (30/70) / Tool Scrapper (35/65) tiram a Capa → vira desfavorável; priorize Spiky + caçar Thwackey + guerra de recurso (Xerosic)",
@@ -324,7 +324,8 @@ const DECKS = {
         objetivo:[
           "👁️ JOGAR 1º. [GUIA] Variante PIOR de Pult (Martelo Esmagador descarta sua energia). 🎯 Prioriza achar MUITAS Nebulosas pro Crustle (se descartarem a única, batem no banco + Munki confunde)",
           "🔑 Ficar 2 attachments À FRENTE no Crustle = ganho (eles não lidam com Crustle montado). Quer 2 Espinhosa + 2 Nebulosa (vs baby Dudunsparce + Munki)",
-          "⚠️ CUIDADO ao tomar o 1º KO: pode tomar Unfair Stamp e perder pra 1 heads de martelo. Às vezes sente 1 soco, cura, anexa extra, mata no próximo. Ou Eri no turno do KO pra descartar o Stamp"
+          "⚠️ CUIDADO ao tomar o 1º KO: pode tomar Unfair Stamp e perder pra 1 heads de martelo. Às vezes sente 1 soco, cura, anexa extra, mata no próximo. Ou Eri no turno do KO pra descartar o Stamp",
+          "🌬️ [NAIC] LEQUE DE MÃO foi o MVP do NAIC aqui: anexe no Kang CEDO → pra dar KO no Kang eles gastam 3+ energia no Pult (1ª atk + reanexar). Ótimo vs Budew cedo (alvo fácil do leque). Se recuarem da agressão, ataque com Kang + Boss nos Drakloak"
         ],
         cuidado:[
           "🚨 NÃO super-monte um 2º Crustle (fica preso no ativo com Budew → loop infinito Ruínas/Dudunsparce/Munki)",
@@ -344,7 +345,7 @@ const DECKS = {
         objetivo:[
           "👁️ JOGAR 1º, SEMPRE começar de Kangaskhan. Crustle imune ao Mewtwo ex e aos grandões ex — só Spidops/Mimikyu (non-ex) te machucam",
           "🎯 [GUIA] 3 ESPINHOSA + Capa no seu wall → o que eles atacarem se auto-nocauteia; eles ficam SEM atacante e você pega prêmio rápido. KO no Spidops (130) prioritário",
-          "⚠️ O guia ganha 75/25 com CORNERSTONE (imune a ability — sua lista NAIC não tem). Sem ela, use Crustle + Spiky vs Spidops"
+          "⚠️ [NAIC] SEM Cornerstone: comece de Kang e monte 2 Crustle no banco com Espinhosa. 1º Crustle = Capa + 1 Espinhosa + 2 Planta (sobrevive a um Spidops de banco cheio + 1 Sorvete = aguenta mais 1; retorno-KO no Spidops com Espinhosa). 2º Crustle = 1 Espinhosa + 2 Planta. Corra os Spidops deles (é a única linha)"
         ],
         cuidado:[
           "Spidops Rush Rocket 30× TR (fura a parede, escala com TR em jogo); reduza TR < 4 trava o Mewtwo",
@@ -374,27 +375,27 @@ const DECKS = {
         objetivo:[
           "👁️ JOGAR 1º. [GUIA] Ficou DIFÍCIL com o Metagross (300/turno, não dá pra outhealizar). Plano: montar UM Kangaskhan gigante com Capa e tentar passar por cima",
           "🎯 Sobreviva a 2 ataques do Metagross com o 1º Kang enquanto monta o 2º no banco (tanca 1-2 turnos com Dwebble); force eles a montar atacante TODO turno sem errar",
-          "🎯 2 Eri é a tech-chave (snipe Wonder Patch/Night Stretcher); guia sugere Payapa Berry + Super Potion pra aguentar 2 Metagross num Kang"
+          "🎯 [NAIC] Linha: comece de DWEBBLE, evolua ele + outro Crustle no banco montando o 1º Kang. Force eles a gastar 2 Kyurem/2 ataques nos Crustle (você joga 2-3 Eri → eles ficam SEM atacante). Depois vai de Kang gordo + monta o 2º. RIPE Eri sempre (snipe Wonder Patch/Maca); Payapa Berry + Super Potion ajudam a tankar 2 Metagross"
         ],
         cuidado:[
           "🚨 Metagross 300/turno fura a parede — a cura não acompanha (era fácil pré-Chaos Rising)",
           "Geada Tripla 110×3 spread; não expor o Mega Kang à toa"
         ] },
-      { id:9, name:"🦀 Crustle (Espelho)", tier:"A", wr:"50%", metaShare:"1-3%", coinFlip:"first",
+      { id:9, name:"🦀 Crustle (Espelho)", tier:"A", wr:"50-55%", metaShare:"1-3%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: Dwebble + Energia de Planta Crescimento",
-          "JOGAR PRIMEIRO (1 turno extra decisivo)",
-          "🎯 Tremendas Tesouras 240 no Crustle deles (fraqueza Planta ×2 = OHKO); Ordens puxa o atacante",
-          "Mega Kang é INÚTIL aqui (é ex → o Crustle DELES é imune a ele). Quebre com o SEU Crustle"
+          "👁️ [NAIC] Sua lista é levemente FAVORITA. Se QUALQUER um começar de Kangaskhan → vira GUERRA DE DECKOUT (não corrida de prêmio)",
+          "🔑 Kang no board: gruda o Kang DELES no Ativo com Boss toda vez que puder (eles só recuam X vezes). Seu trunfo no deckout = HAND TRIMMER + Xerosic (quase toda lista joga Xerosic; o Trimmer dá a vantagem)",
+          "🎯 NÃO use Lillie à toa — guarde pro turno mais incômodo pro oponente (logo antes de eles quererem Xerosic). Hand Trimmer melhor depois de uma Lillie ou com mão baixa (Petrel pra achar e forçar 6-7 de descarte)",
+          "🦀 Ambos de Dwebble (ainda favorável): monte 2 Crustle (mantenha o 1º vivo). Prioridade = achar CURA (Sorvete); melhor disrupção = Eri com soco (descartar os Sorvetes deles = vitória). ⚠️ O Crustle DELES pode ter Bianca's (full-heal ganha sozinho) — você não roda mais"
         ],
         cuidado:[
-          "🚨 Seu Mega Kang não machuca o Crustle deles (é ex). Só Crustle quebra Crustle",
-          "Quem aplicar Tremendas Tesouras 240 primeiro ganha a corrida; Hand Trimmer/Eri disrupção"
+          "🚨 Mega Kang é INÚTIL contra o Crustle deles (é ex → imune). Só Crustle quebra Crustle",
+          "Espinhosa é faca de dois gumes (pode alimentar a Bianca's DELES); não deixe o oponente tirar valor do Xerosic. Ambos de Kang: desista do Crustle (evolua só 1), não gaste recurso à toa"
         ] },
       { id:3, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"80%/20% c/ Bulu", metaShare:"4,08%", coinFlip:"first",
         objetivo:[
           "👁️ JOGAR 1º. [GUIA] Depende do TAPU BULU: sem Bulu 80/20, com Bulu 20/80",
-          "🌵 SEM Bulu: prioriza 2 ESPINHOSA ANTES das Planta (Meganium 160 toma 40 de si → OHKO no retorno). Math: 2 Planta + Capa, eles batem 2× Meganium → Bianca cura tudo = ganho",
+          "🌵 SEM Bulu: prioriza 2 ESPINHOSA ANTES das Planta (Meganium 160 toma 40 de si → OHKO no retorno). Sustente com Sorvete entre os socos do Meganium (⚠️ Bianca's cortada → não tem mais o full-heal que zerava 2 Meganium)",
           "🔑 COM Bulu (220): monte o Crustle mais gordo. No 1º soco: retorno-KO + cura + Eri (descarta Stretcher/Stamp — só têm 2 recovery). Depois corra a energia (Hydrapple ex retreat 3; 3 Boss no Hydrapple fecha)"
         ],
         cuidado:[
@@ -474,8 +475,9 @@ const DECKS = {
       { id:10, name:"Mega Lopunny Dudunsparce 🔴", tier:"C", wr:"20-30%", metaShare:"4,24%", coinFlip:"first",
         objetivo:[
           "👁️ JOGAR 1º. [GUIA] Ruim (20/80) mas tem linha. Cedo: Kang com 2 ESPINHOSA (se o Bunny bater e você der 2 caras, retorno-KO). KO em só 1 Lopunny já pode bastar",
-          "🎯 Pivota Kang → Crustle no banco com 3-4 Planta Crescimento + Capa. Math da Bianca: 4 Planta + Capa, eles batem 2× Saltador Espinhudo → Bianca cura TUDO",
-          "🎯 Math do Kang: Capa no Kang, eles batem 230, 1 Sorvete, batem 230 de novo → Bianca cura tudo = anula 2 ataques"
+          "🎯 Pivota Kang → Crustle no banco com 3-4 Planta Crescimento + Capa; sustente com Sorvete (heal 80) — KO em 1 Lopunny já pode bastar",
+          "⚠️ Cortou a Bianca's (→3ª Eri): perdeu o full-heal que anulava 2 Saltador Espinhudo. Sem ela esse matchup ficou mais duro — segure com Sorvete + Capa e gatekeep energia (martelo saiu, use Eri/Leque)",
+          "🌬️ [NAIC] Se tiverem Fan Rotom no banco: anexe Leque de Mão no Kang/Crustle que tankar mais, estique a energia deles, e feche com Crustle gigante + Capa (corre a energia deles)"
         ],
         cuidado:[
           "🚨 Saltador Espinhudo 160 ignora efeitos; Jaula de Batalha pode bloquear counters",
@@ -490,6 +492,16 @@ const DECKS = {
         cuidado:[
           "🏆 Esse deck VENCEU o NAIC, mas é a melhor matchup do Crustle: a parede neutraliza o plano A inteiro deles",
           "Chien-Pao Geada (Icicle, non-ex, 1 cópia) é o único chip — Espinhosa/cura; não expor o Mega Kang"
+        ] },
+      { id:27, name:"Hop's Trevenant", tier:"C", wr:"35-65% (desf.)", metaShare:"<2%", coinFlip:"first",
+        objetivo:[
+          "👁️ [NAIC] JOGAR 1º e COMEÇAR DE DWEBBLE (eles atacam já no T1; Dwebble tanca prêmios enquanto monta o Kang)",
+          "🎯 Truque: empilhe 3-4 ESPINHOSA no Kang gigante e DEIXE eles baterem fraco — assim não ativa o dano extra do ataque do Trevenant e você nem precisa pegar KO",
+          "🔨 Eles só jogam 8 energia → dá pra correr a energia deles com bons flips; Leque de Mão funciona se tiver cura na mão"
+        ],
+        cuidado:[
+          "⚠️ Deck fraco (ganhou Turin mas é ruim, <2% no NAIC) — Cornerstone não ajudaria mesmo; é só montar Kang gigante",
+          "🚨 Cuidado com o Cramorant/Snorlax do Hop"
         ] }
     ]
   },
