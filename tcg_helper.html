@@ -201,7 +201,7 @@ const DECKS = {
       '⚠️ Quase só Energia ESPECIAL (1 Básica) → vulnerável a martelo/energy-denial. ⚠️ Mega Kang = 3 prêmios.'
     ],
     decklist: {
-      note: '🛡️ <strong>Parede + finalizador.</strong> Lista EXATA do Rahul Reddy (5º no NAIC 2026). Crustle é imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa Misteriosa) — e ~toda a meta é ex. Mega Kangaskhan ex (×4) é o atacante recorrente (Rajada Rápida 200+). Energia Espinhosa pune os non-ex que furam a parede. Stack de cura + disrupção (Petrel tutoria o silver bullet) estrangula o oponente.',
+      note: '🛡️ <strong>Parede + finalizador — LISTA DE FLIP (em uso hoje).</strong> Base do Rahul Reddy (5º NAIC 2026) com a troca do Sharshock: <strong>+3 Crushing Hammer</strong> (energy denial / moedas) no lugar de Lisia\'s Appeal + Community Center + 1 Eri. Crustle imune a ataques de Pokémon <strong>ex</strong> (Pousada Rochosa) — e ~toda a meta é ex. Mega Kangaskhan ex (×4) é o atacante recorrente (Rajada Rápida 200+). Energia Espinhosa pune os non-ex que furam a parede. Martelo + cura + disrupção (Petrel tutoria o silver bullet) estrangula o oponente. ⚙️ Em teste — pode voltar pra Reddy pura.',
       groups: [
         { type: "Pokémon (10)", cards: [
           { n:4, name:"Mega Kangaskhan ex", set:"MEG 104", fn:"⭐ Atacante/engine. 300 HP Colorless. Ability Run Errand: se ativo, saca 2 (1×/turno). Rajada Rápida [CCC] 200+ (flipa até tails, +50 por heads). Fraqueza Lutador, Retreat 3. ⚠️ 3 prêmios.", tag:"ex" },
@@ -212,11 +212,11 @@ const DECKS = {
           { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Embaralha a mão e compra 6 (ou 8 se em exatamente 6 prêmios). Engine de compra principal." },
           { n:4, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). ⭐ Finaliza alvos / puxa atacante non-ex." },
           { n:4, name:"Team Rocket's Petrel", set:"DRI 176", fn:"⭐ Apoiadora. Busca QUALQUER Trainer do deck pra mão (cola do toolbox — pega o silver bullet/estádio do turno)." },
-          { n:3, name:"Eri", set:"TEF 146", fn:"⭐ Apoiadora. Oponente revela a mão; você descarta até 2 ITENS dela (mata Ultra Ball/Poffin/Martelo/Rare Candy/Maca). Carta mais forte do NAIC — subiu de 2→3 no lugar da Bianca's. Snipe Stamp/Stretcher no turno do KO." },
+          { n:2, name:"Eri", set:"TEF 146", fn:"⭐ Apoiadora. Oponente revela a mão; você descarta até 2 ITENS dela (mata Ultra Ball/Poffin/Martelo/Rare Candy/Maca). Snipe Stamp/Stretcher no turno do KO. (Flip: 2 — cortou 1 no lugar dos Crushing Hammer.)" },
           { n:2, name:"Hilda", set:"WHT 84", fn:"Apoiadora. Busca 1 Pokémon de Evolução + 1 Energia (acha Crustle + Energia)." },
           { n:1, name:"Xerosic's Machinations", set:"SFA 64", fn:"Apoiadora. Oponente descarta a mão até ficar com 3 (anti-Mão Poderosa / Penas do Foguete)." },
           { n:1, name:"Pokémon Center Lady", set:"MEG 123", fn:"Apoiadora. Cura 60 + remove todas as Condições Especiais de 1 Pokémon." },
-          { n:1, name:"Lisia's Appeal", set:"SSP 179", fn:"Apoiadora. Puxa 1 Básico do banco do oponente pro Ativo + Confunde (pesca alvo / trava atacante)." },
+          { n:3, name:"Crushing Hammer", set:"POR 71", fn:"⭐ Item. Jogue uma moeda; se CARA, descarte 1 Energia do Ativo do oponente. Energy denial da 'lista de flip' — brilha vs energy-hungry (Raging Bolt) e special-energy (Slowking/Zoroark). (NAIC tinha cortado; o Sharshock trouxe de volta.)" },
           { n:4, name:"Jumbo Ice Cream", set:"PFL 91", fn:"Item. Cura 80 do ativo com 3+ Energia. ⭐ Sustento da parede/Mega Kang." },
           { n:3, name:"Pokégear 3.0", set:"SVI 186", fn:"Item. Olha 7 do topo, pega 1 Apoiadora. ⚠️ reg G — usar BLK 084 em torneio físico." },
           { n:2, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dwebble). Consistência de setup." },
@@ -226,8 +226,7 @@ const DECKS = {
           { n:1, name:"Hero's Cape", set:"TEF 152", fn:"Ferramenta ACE SPEC. +100 HP (Mega Kang 400 / Crustle 250). 🛡️ Sobrevive a OHKOs. (só 1 no deck inteiro)" },
           { n:1, name:"Handheld Fan", set:"TWM 150", fn:"Ferramenta. Ao tomar dano no Ativo, move 1 Energia do atacante pro banco DELE. 🌬️ MVP do NAIC vs Dragapult: anexe no Kang cedo → eles gastam 3+ energia pra te dar KO. Também bom vs Fan Rotom (Lopunny) e Trevenant." },
           { n:1, name:"Team Rocket's Factory", set:"DRI 173", fn:"Estádio. +2 cartas ao jogar Apoiadora 'Team Rocket' (com Petrel) + bumpa estádio do oponente." },
-          { n:1, name:"Community Center", set:"TWM 146", fn:"Estádio (Centro Comunitário). Jogou Apoiadora no turno → cura 10 de CADA Pokémon seu. Sustento passivo." },
-          { n:1, name:"Festival Grounds", set:"TWM 149", fn:"Estádio (Pátio do Festival). Pokémon com Energia imune a Condições Especiais + bumpa estádio do oponente." }
+          { n:1, name:"Festival Grounds", set:"TWM 149", fn:"Estádio (Pátio do Festival). Pokémon com Energia imune a Condições Especiais + bumpa estádio do oponente. (Flip: único estádio além do TR Factory — saiu o Community Center.)" }
         ]},
         { type: "Energy (13) — 12 Especiais + 1 Básica", cards: [
           { n:4, name:"Spiky Energy", set:"JTG 159", fn:"⭐ Especial [C]. Quando o portador (Ativo) toma dano de ataque, 2 counters no atacante (mesmo se KO'd). Pune non-ex / ignore-effects que furam a parede. (Energia Espinhosa)" },
