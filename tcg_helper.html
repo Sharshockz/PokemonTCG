@@ -574,299 +574,306 @@ const DECKS = {
     universal: [
       '<strong>ENGINE SLOWKING:</strong>',
       '⚡ <span class="key">Metagross combo</span> = Busca de Inspiração + Metagross topo = Martelo Metálico 300',
+      '🥊 <span class="key">Mega Kangaskhan ex (×3)</span> = atacante/engine secundário de 300 HP (Run Errand draw 2)',
       '🎯 <span class="key">Lillie\'s Clefairy ex</span> = Dragão vira fraqueza Psíquica',
-      '🎯 Psíquico <span class="key">bate Lutador</span> (Lucario 74%!)',
-      '🛡️ Academia da Noite controla topo do deck',
-      '⚠️ Slowking 120 HP frágil — Latias ex retreat 0 reposiciona',
-      '📊 <span class="key">WRs reais do Limitless</span> (CRI Standard 2026, ~2000 jogos) · Overall ~52%',
-      '🔴 <span class="key">Pesadelos</span>: Zoroark do N (28%), Alakazam (32%), Dragapult Blaziken (32%) — energy denial / velocidade / fragilidade'
+      '⚡ <span class="key">Zeraora</span> = alvo de cópia finisher (Thunder Raid 210 num ex do banco: Fez/Latias/Meowth)',
+      '🎯 Psíquico <span class="key">bate Lutador</span> (Lucario 73%!)',
+      '🪙 <span class="key">SEMPRE JOGAR PRIMEIRO</span> (guia): Kyurem T2 confiável; tira o opp de range',
+      '🧭 <span class="key">3 chaves</span>: montar prize map (Kyurem/Metagross) · jogar ao redor de hand disruption (Unfair Stamp/Red Card) · não bancar liabilities (3 prêmios)',
+      '🛡️ Academia da Noite controla topo do deck · Slowking 120 HP frágil — Latias retreat 0 reposiciona',
+      '📊 <span class="key">WRs reais do Limitless</span> (CRI Standard 2026, ~5300 jogos) · Overall ~52%',
+      '🚨 <span class="key">Shaymin</span> é o counter principal (Dragapult/Alakazam/Festival) — esta lista NÃO techa (sem Spectrier/Cofagrigus)',
+      '🔴 <span class="key">Piores</span>: Arboliva (21%), Alakazam (35%), Hydrapple (37%), Festival (42%) — Shaymin / board state'
     ],
     decklist: {
-      note: '⚡ <strong>Combo central:</strong> Academia da Noite + Ciphermaniac colocam o <strong>Metagross no TOPO</strong> do deck → Slowking descarta o topo com <strong>Busca de Inspiração</strong> e COPIA o Martelo Metálico (300, sem precisar evoluir o Metagross). <strong>Metagross e Annihilape ficam no deck só como ALVOS DE CÓPIA</strong> (non-rule-box). 🎯 Lillie\'s Clefairy ex deixa Dragões fracos a Psíquico · Slowking Psíquico bate Lutador ×2 (ganha de Lucario/Hariyama).',
+      note: '⚡ <strong>Combo central:</strong> Academia da Noite + Ciphermaniac colocam o <strong>Metagross no TOPO</strong> do deck → Slowking descarta o topo com <strong>Busca de Inspiração</strong> e COPIA o Martelo Metálico (300, sem precisar evoluir o Metagross). <strong>Metagross / Kyurem / Zeraora ficam no deck como ALVOS DE CÓPIA</strong> (non-rule-box). 🥊 <strong>Mega Kangaskhan ex (×3)</strong> = atacante/engine secundário robusto (300 HP aguenta o que mata o Slowking de 120). 🎯 Lillie\'s Clefairy ex deixa Dragões fracos a Psíquico · Slowking Psíquico bate Lutador ×2 (ganha de Lucario/Hariyama). ⚠️ Esta versão NÃO roda gust (sem Boss\'s Orders).',
       groups: [
-        { type: "Pokémon (19)", cards: [
+        { type: "Pokémon (20)", cards: [
           { n:4, name:"Slowpoke", set:"SCR 57", fn:"Básico. Evolui em Slowking. Linha de início (4 cópias = achar rápido)." },
           { n:3, name:"Slowking", set:"SCR 58", fn:"⭐ Estágio 1 — coração do deck. Ability Busca de Inspiração: descarta a carta do TOPO do deck; se for Pokémon non-rule-box, você pode usar 1 ataque dela. Copia o Martelo Metálico do Metagross (300). Também tem Super Psy Bolt 120. 120 HP frágil.", tag:"combo" },
-          { n:2, name:"Latias ex", set:"SSP 76", fn:"Básico ex. Ability Skyliner: seus Pokémon Básicos recuam de graça (custo 0). Reposiciona o Slowking frágil pra fora de alcance.", tag:"ex" },
-          { n:2, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador (busca uma Supporter do deck pra mão). Acelera as cartas-chave.", tag:"ex" },
-          { n:2, name:"Kyurem", set:"SFA 47", fn:"Básico. Geada Tripla 110×3 (espalha em até 3 alvos). Pressão secundária / finaliza bancos." },
-          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex. Ability de recovery/draw (compra 3 ao anexar Energia do banco a ele). Anti-brick.", tag:"ex" },
+          { n:3, name:"Mega Kangaskhan ex", set:"MEG 104", fn:"🥊 Básico ex · 300 HP Incolor. Ability Run Errand (1×/turno: compre 2). Combo Rápido [CCC] 200+ (flipa até dar coroa, +50 por cara). Atacante/engine secundário — corpo de 300 HP que tanka o que mata o Slowking. ⚠️ 3 PRÊMIOS ao morrer · fraqueza Luta ×2 (cuidado vs Lucario/Hariyama) · recuo 3 mas é Básico → Latias Skyliner zera.", tag:"ex" },
+          { n:2, name:"Latias ex", set:"SSP 76", fn:"Básico ex. Ability Skyliner: seus Pokémon Básicos recuam de graça (custo 0). Reposiciona o Slowking frágil — e zera o recuo 3 do Mega Kang.", tag:"ex" },
+          { n:2, name:"Kyurem", set:"SFA 47", fn:"Básico · ALVO DE CÓPIA. Geada Tripla 110×3 (espalha em até 3 alvos do oponente, ignora F/R no banco). Slowking copia pra spread / finalizar bancos.", tag:"copy" },
+          { n:2, name:"Metagross", set:"CRI 61", fn:"⭐ ALVO DE CÓPIA principal (NÃO se joga em campo). Martelo Metálico 300, descartando 3 Energias (qualquer tipo — ruling JP). Slowking copia = 300 que FURA a parede do Crustle. 2 cópias = achar 1 no topo com mais consistência.", tag:"copy" },
+          { n:1, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador (busca uma Supporter do deck pra mão ao jogá-lo da mão pro banco). Acelera as cartas-chave.", tag:"ex" },
+          { n:1, name:"Zeraora", set:"DRI 78", fn:"⚡ Básico non-ex · ALVO DE CÓPIA. Thunder Raid [LLL]: descarta todas as Energias dele e dá 210 a 1 Pokémon ex do BANCO do oponente (ignora F/R no banco). Slowking copia → snipa finisher/setup escondido no banco. ⚠️ É ataque → Tera/proteção de banco bloqueiam.", tag:"copy" },
           { n:1, name:"Lillie's Clefairy ex", set:"JTG 56", fn:"🎯 Básico ex. Ability Zona das Fadas: enquanto está em jogo, Pokémon tipo Dragão do oponente têm fraqueza Psíquica ×2. Chave vs Dragapult (Slowking OHKO).", tag:"ex" },
-          { n:1, name:"Annihilape", set:"SSP 100", fn:"ALVO DE CÓPIA (fica no deck). Luta do Destino = KO mútuo. Slowking copia via Busca de Inspiração pra trade em ameaças grandes.", tag:"copy" },
-          { n:1, name:"Budew", set:"PRE 4", fn:"Básico. Trava de Itens (Pólen Coceira): enquanto Budew está ativo, nenhum jogador joga Itens. Disrupção T1." },
-          { n:1, name:"Metagross", set:"CRI 61", fn:"⭐ ALVO DE CÓPIA principal (NÃO se joga em campo). Martelo Metálico 300, descartando 3 Energias (qualquer tipo — ruling JP). Slowking copia = 300 que FURA a parede do Crustle.", tag:"copy" },
-          { n:1, name:"Smoochum", set:"SSP 75", fn:"Básico. Aceleração de Energia Psíquica (ajuda a montar os custos). Setup." }
+          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex. Ability de recovery/draw (compra 3 se algum Pokémon seu foi KO no último turno do oponente). Anti-brick.", tag:"ex" }
         ]},
-        { type: "Trainer (31)", cards: [
+        { type: "Trainer (29)", cards: [
           { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra/consistência principal." },
-          { n:3, name:"Ciphermaniac's Codebreaking", set:"TEF 145", fn:"⭐ Apoiadora. Busca 2 cartas e coloca no TOPO do deck (na ordem que quiser). Coloca o Metagross no topo pro Slowking copiar.", tag:"combo" },
-          { n:1, name:"Carmine", set:"TWM 145", fn:"Apoiadora. Embaralha a mão e compra (refresh de mão). Anti-brick." },
-          { n:1, name:"Dawn", set:"PFL 87", fn:"Apoiadora. Tutor de linha de evolução (busca peças pra montar Slowking). Setup." },
-          { n:1, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Traz 1 Pokémon do banco do oponente pro Ativo (gust). 🎯 Conserta a maior fraqueza do deck (era 0 gust) — fecha prêmios / puxa o alvo frágil. (Ordens da Chefia)" },
-          { n:1, name:"Colress's Tenacity", set:"SFA 57", fn:"Apoiadora. Tutor de Estádio + Energia (busca 1 Stadium e 1 Energia). ⚠️ NO NOSSO DECK só serve pra isso — NÃO habilita o Kyurem (o Plasma Bane checa o descarte do OPONENTE, não o seu). Não use esperando ligar o Kyurem." },
-          { n:1, name:"Surfer", set:"SSP 187", fn:"Apoiadora. Troca seu Ativo + compra até ficar com 5 cartas. Reposiciona + draw." },
-          { n:4, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon. Tutor principal." },
-          { n:3, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça. Tutor dos básicos/non-ex." },
-          { n:1, name:"Special Red Card", set:"CRI 82", fn:"Item (reg J, NÃO é ACE SPEC). Só com o oponente em ≤3 prêmios restantes: ele embaralha a mão pro FUNDO do deck e compra 3. 🔴 Tech anti-Mão Poderosa (Alakazam) — reseta a mão gorda deles. NÃO use em mão pequena (daria 3 cartas de graça)." },
-          { n:3, name:"Night Stretcher", set:"SFA 61", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte pra mão." },
-          { n:3, name:"Wondrous Patch", set:"PFL 94", fn:"Item. Anexa 1 Energia Psíquica do descarte a 1 Pokémon do banco. Aceleração de energia." },
-          { n:1, name:"Max Rod", set:"PRE 116", fn:"Item · ⭐ ACE SPEC (único do deck). Pega até 5 Pokémon e/ou Energia Básica do descarte PRA MÃO. Recovery forte / anti-deckout." },
+          { n:4, name:"Ciphermaniac's Codebreaking", set:"TEF 145", fn:"⭐ Apoiadora. Busca 2 cartas e coloca no TOPO do deck (na ordem que quiser). Coloca o Metagross no topo pro Slowking copiar.", tag:"combo" },
+          { n:4, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça. Tutor dos básicos/non-ex (Slowpoke/Slowking/Kyurem/Zeraora/Metagross)." },
+          { n:4, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon. Tutor principal (único que pega os ex: Latias/Meowth/Lillie's Clefairy/Fezandipiti/Mega Kang)." },
+          { n:3, name:"Wondrous Patch", set:"PFL 94", fn:"Item. Anexa 1 Energia Psíquica Básica do descarte a 1 Pokémon Psíquico do BANCO. Aceleração de energia." },
+          { n:2, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte pra mão." },
+          { n:1, name:"Secret Box", set:"TWM 163", fn:"Item · ⭐ ACE SPEC (único do deck). Descarta 3 outras cartas → busca 1 Item + 1 Pokémon Tool + 1 Apoiador + 1 Estádio do deck pra mão. Setup nuclear (pega 4 trainers diferentes numa carta)." },
+          { n:1, name:"Switch", set:"MEG 130", fn:"Item. Troca seu Ativo por 1 do banco (grátis). Pivot manual / tira o Slowking do alvo." },
+          { n:1, name:"Brave Bangle", set:"WHT 80", fn:"🔴 Tool. Pokémon equipado SEM Rule Box faz +30 ao Ativo ex do oponente. No Slowking/cópia (non-ex): Super Psy Bolt 120→150 e Martelo Metálico 300→330 contra ex." },
+          { n:1, name:"Lucky Helmet", set:"TWM 158", fn:"Tool. Quando o equipado está Ativo e toma dano de ataque (mesmo se KO), compre 2. Draw passivo — bom no corpo gordo do Mega Kang." },
           { n:4, name:"Academy at Night", set:"SFA 54", fn:"⭐ Estádio. Manipula o topo do deck. Essencial pro combo (garante o Metagross no topo pro Slowking copiar). (Academia da Noite)", tag:"combo" }
         ]},
-        { type: "Energy (10)", cards: [
+        { type: "Energy (11)", cards: [
           { n:4, name:"Telepathic Energy", set:"POR 88", fn:"Especial Psíquica. Provê Energia Psíquica e ajuda a montar os custos mais rápido." },
           { n:4, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Custo principal (Slowking / Kyurem)." },
-          { n:2, name:"Boomerang Energy", set:"TWM 166", fn:"Especial [C] (Incolor). Volta pra mão quando descartada pelo SEU próprio ataque. ⭐ Recicla com o discard do Martelo Metálico (3 energias)." }
+          { n:3, name:"Boomerang Energy", set:"TWM 166", fn:"Especial [C] (Incolor). Volta pra mão quando descartada pelo SEU próprio ataque. ⭐ Recicla com o discard do Martelo Metálico (3 energias) — também banca o custo Incolor do Mega Kang." }
         ]}
       ]
     },
     matchups: [
-      { id:101, name:"Mega Lucario Ex Hariyama ⭐", tier:"S", wr:"72-76%", metaShare:"3,41%", coinFlip:"second",
+      { id:101, name:"Mega Lucario Ex Hariyama ⭐", tier:"S", wr:"~73%", metaShare:"3,05%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Riolu + Makuhita + Solrock/Lunatone",
-          "🎯 SLOWKING PSÍQUICO BATE LUTADOR — Super Psy Bolt 120 × ×2 = 240; Metagross 300 × ×2 = 600",
-          "OHKO Hariyama (150); 2-shot Mega Lucario ex (340). Trade 1-por-3 a seu favor",
-          "⭐ Matchup que o Crustle PERDE e o Slowking GANHA"
+          "🎯 Psíquico bate Lutador ×2 — Metagross/Slowking OHKO Hariyama; plano 3-3 (Solrock+Lunatone+algo, depois Mega Lucario)",
+          "❌ SEM Mega Kang (dá 3 prêmios fáceis — fraqueza Luta); Fezandipiti/Smoochum ajudam (Smoochum carrega Latias, que ATACA aqui)",
+          "⭐ Melhor MU do Slowking (Limitless 73%)"
         ],
         cuidado:[
-          "Mega Brave 270 / Pressão Selvagem 240 OHKO Slowking (mas o trade 1:3 compensa)",
-          "Demorar o setup; não usar a vantagem de tipo"
+          "Resistência Lutador de Latias/Slowking/Slowpoke nas contas de KO deles (precisam de boosts)",
+          "🚨 Hand disruption + gust no MESMO turno (Boss/Hariyama + Red Card/Judge) vira o jogo",
+          "Mega Brave 270 OHKO Slowking"
         ] },
-      { id:102, name:"Beedrill Ex", tier:"A", wr:"48-53%", metaShare:"4,57%", coinFlip:"second",
+      { id:102, name:"Beedrill Ex", tier:"A", wr:"~53%", metaShare:"3,96%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Weedle + Kit de Caçar Insetos",
-          "Metagross 300 OHKO Beedrill ex (310) antes deles escalarem — speed race",
-          "Latias ex reposiciona o Slowking frágil"
+          "Metagross + Brave Bangle 330 OHKO Beedrill ex antes deles escalarem (speed race)",
+          "Kyurem monta prize map nos Weedle/banco; jogar PRIMEIRO"
         ],
         cuidado:[
           "Abelhas Furiosas 330 (3 Beedrill) OHKO Slowking",
-          "Demorar o combo Metagross"
+          "Prepare contra Unfair Stamp (Boomerang/Lucky Helmet anexados)"
         ] },
-      { id:103, name:"Dragapult Ex Puro", tier:"A", wr:"55-60%", metaShare:"9,25%", coinFlip:"second",
+      { id:103, name:"Dragapult Ex Puro", tier:"A", wr:"~52%", metaShare:"8,40%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: Dreepy + Munkidori (com Ruínas)",
-          "🎯 Lillie's Clefairy ex Zona das Fadas = Dragapult ex fraco a Psíquico ×2 → Super Psy Bolt 120×2 ou Metagross OHKO",
-          "Academia da Noite garante o Metagross no topo; Latias reposiciona o Slowking"
+          "👁️ Banco: Dreepy + Munkidori",
+          "Kyurem mira os DRAKLOAK (monta prize map); Lillie's Clefairy ex → Metagross/Super Psy Bolt OHKO Dragapult ex (Psíquico ×2)",
+          "Jogue ao redor do Budew (busca preemptiva de Slowking/Meowth/Kyurem); prepare Unfair Stamp (Boomerang+Lucky Helmet anexados, espaço pro Meowth, Kang/Fez em jogo)"
         ],
         cuidado:[
-          "Mergulho Fantasma 200 OHKO Slowking (120); Munkidori 30/turno",
-          "Desperdiçar a Lillie's Clefairy (chave do matchup)"
+          "🚨 SHAYMIN = quase auto-loss (esta lista não tem Spectrier/Cofagrigus) — 54% sem Shaymin, ~12% com",
+          "Mergulho Fantasma 200 OHKO Slowking + Munkidori 30/turno"
         ] },
-      { id:104, name:"Dragapult Ex Dusknoir", tier:"S", wr:"63-68%", metaShare:"5,63%", coinFlip:"second",
+      { id:104, name:"Dragapult Ex Dusknoir", tier:"A", wr:"~55%", metaShare:"6,10%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Dreepy + Duskull",
-          "Lillie's Clefairy ex → OHKO Dragapult ex via Psíquico ×2 (Super Psy Bolt 240)",
-          "Latias ex Skyliner rotaciona o Slowking fora do alcance"
+          "Mira os Drakloak; Lillie's Clefairy ex → OHKO Dragapult ex (Psíquico ×2)",
+          "Cada prêmio conta — fique tão à frente que eles só usam 1 Dusknoir; Tackle/KO no Budew cedo (mesmo sob Unfair Stamp)"
         ],
         cuidado:[
-          "🎯 Dusknoir Explosão Amaldiçoada 130 (ability) OHKO Slowking (120) — reposicione com Latias",
-          "Munkidori chip adicional; demorar a Lillie's Clefairy"
+          "Dusknoir Explosão Amaldiçoada 130 + Red Card no MESMO turno (KO setup + disrupção)",
+          "Shaymin (se jogarem); prepare contra Unfair Stamp"
         ] },
-      { id:105, name:"🐚 Slowking Metagross (Espelho)", tier:"A", wr:"50%", metaShare:"5,22%", coinFlip:"first",
+      { id:105, name:"🐚 Slowking Metagross (Espelho)", tier:"A", wr:"50%", metaShare:"5,70%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Slowpoke + Energia Psíquica Telepática",
-          "JOGAR PRIMEIRO — quem monta o Metagross primeiro vence",
-          "Guerra de Academia da Noite (controle do topo decide); Annihilape pra trades"
+          "JOGAR PRIMEIRO — quem monta Metagross/prize map primeiro vence; guerra de Academia da Noite (controle do topo)",
+          "Zeraora finaliza os ex de suporte deles (Fezandipiti/Latias/Meowth)"
         ],
         cuidado:[
           "Deixar eles montarem o Metagross primeiro",
-          "Desperdiçar Busca de Inspiração em alvos ruins"
+          "Desperdiçar Busca de Inspiração; hand disruption"
         ] },
-      { id:106, name:"Garchomp Ex da Cíntia", tier:"A", wr:"48-52%", metaShare:"1,84%", coinFlip:"second",
+      { id:106, name:"Garchomp Ex da Cíntia", tier:"C", wr:"~43%", metaShare:"1,84%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Gible + Roselia da Cíntia",
-          "Metagross 300 = 2-shot Garchomp ex (330); Annihilape Luta do Destino = trade mútuo"
+          "❌ SEM Mega Kang (KO fácil); Kyurem na linha Garchomp ANTES de tools/evoluírem fora de alcance",
+          "Às vezes 110 em cada Gabite (tira o Garchomp de jogo — sem Rare Candy = perdem 1 turno de ataque)"
         ],
         cuidado:[
           "🚫 Lillie's Clefairy NÃO ajuda (Garchomp é Lutador, não Dragão)",
-          "Investida do Dragão 260 OHKO Slowking; Spiritomb scaling no banco deles"
+          "Spiritomb KO em liabilities do banco; Stone Energy evita seu OHKO; resistência Lutador do Slowking (precisam 2 boosts)"
         ] },
-      { id:107, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"46-51%", metaShare:"3,56%", coinFlip:"second",
+      { id:107, name:"Raging Bolt / Slop Box", tier:"A", wr:"~50%", metaShare:"3,56%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: Teal Mask Ogerpon ex + Meowth ex / Crispin",
-          "Metagross 300 OHKO Mega Kang (300) e os ex deles (sempre tem alvo); Annihilape trades",
-          "Latias reposiciona o Slowking"
+          "👁️ Banco: Teal Mask Ogerpon ex + Crispin/Meowth",
+          "❌ evite Mega Kang (liability); use SÓ Metagross como atacante (Chien-Pao apaga o dano do Kyurem) — exceto vs Passimian",
+          "Lillie's Clefairy = atacante fácil (lida com Clefairy/Raging Bolt deles); trade ideal 2-2-2"
         ],
         cuidado:[
-          "Bellowing Thunder 70× energia descartada pode OHKO Slowking",
-          "Demorar (eles aceleram via Crispin)"
+          "Chien-Pao remove TODO dano do board (mata o plano Kyurem); Sob lock (segure Surfer/Switch)",
+          "Unfair Stamp / Hero's Cape / Legacy Energy no prize trade; Bellowing Thunder OHKO Slowking"
         ] },
-      { id:108, name:"Crustle", tier:"S", wr:"60-65%", metaShare:"1,45%", coinFlip:"second",
+      { id:108, name:"Crustle", tier:"S", wr:"~64%", metaShare:"1,45%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Dwebble + Planta Crescimento",
-          "🎯 Metagross Martelo Metálico 300 BYPASSA a Pousada Rochosa (Slowking copiando NÃO é ex) = OHKO Crustle (230)",
-          "Kyurem Geada Tripla espalha nos Dwebble/banco; Annihilape pra trade; foco no Cornerstone (2 prêmios)"
+          "🎯 Metagross Martelo Metálico 300 BYPASSA a Pousada Rochosa (Slowking copiando NÃO é ex) = OHKO Crustle",
+          "Kyurem espalha nos Dwebble/banco; foco no Cornerstone (2 prêmios); ✅ favorável (Limitless 64%)"
         ],
         cuidado:[
           "Atacar Crustle com Pokémon ex (immunity bloqueia)",
-          "Munkidori deles shifta o dano de volta no seu Slowking; Tremendas Tesouras 120 chipa"
+          "Munkidori shifta o dano de volta; Tremendas Tesouras 120 chipa; Hero's Cape (Brave Bangle ajuda a furar)"
         ] },
-      { id:109, name:"Festival Lead", tier:"A", wr:"47-52%", metaShare:"1,96%", coinFlip:"second",
+      { id:109, name:"Festival Lead", tier:"C", wr:"~42%", metaShare:"1,96%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Grookey + Pátio do Festival",
-          "Metagross/Slowking copy = OHKO chain nos não-ex deles (Dipplin/Thwackey baixo HP)",
-          "Annihilape contra ataques grandes"
+          "Metagross/cópia OHKO os não-ex deles; Kang+Latias = engine de draw (1 só liability) OU Smoochum/0-recuo + Fezandipiti",
+          "Não banque 2-prizers à toa (eles dão Boss neles)"
         ],
         cuidado:[
-          "Festival Grounds + Dipplin double attack escala com bench; Boom Boom Groove tutor",
-          "Deixar o Slowking exposto sem backup"
+          "🚨 Shaymin (sem Spectrier/Cofagrigus nesta lista, vira ruim — Limitless 42%)",
+          "Rabsca trava a cópia; Dipplin double attack escala com bench; assuma Secret Box ACE deles"
         ] },
-      { id:110, name:"Mewtwo Ex da Equipe Rocket", tier:"C", wr:"38-43%", metaShare:"2,44%", coinFlip:"second",
+      { id:110, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"~53%", metaShare:"2,44%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Tarountula + Energia TR",
-          "Metagross 300 OHKO Mewtwo ex (280); OHKO Spidops (130) via cópia; Annihilape trades"
+          "✅ FAVORÁVEL (Limitless 53% — era subestimado); mira Spidops/Tarountula com Kyurem (prize map de 3 Kyurem); ponha 110 no Mewtwo cedo",
+          "Mega Kang OK no banco (50% jogam Max Belt; eles miram Spidops que gera energia)"
         ],
         cuidado:[
-          "Mewtwo Bola de Apagar 280 OHKO Slowking; Spidops Rush Rocket 30× TR escala",
-          "Deixar o Slowking exposto"
+          "Spidops Rocket Rush escala com bench cheio (Meowth/Fez/Latias morrem)",
+          "Archer (hand disruption 1-2 cópias); Mewtwo Bola de Apagar 280"
         ] },
-      { id:111, name:"Ogerpon Meganium Hydrapple", tier:"C", wr:"40-45%", metaShare:"3,68%", coinFlip:"second",
+      { id:111, name:"Ogerpon Meganium Hydrapple", tier:"C", wr:"~37%", metaShare:"3,47%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Chikorita + Floresta da Vitalidade",
-          "Metagross 300 quebra Hydrapple ex (330 = 2-shot) — speed antes do heal estabilizar; Annihilape trades"
+          "Metagross + Brave Bangle OHKO Hydrapple ex; ataque CONTÍNUO de Metagross (joga ao redor do Unfair Stamp, força eles a gastar energia no KO)",
+          "Kyurem SÓ com 3 alvos non-Tera (Teal Mask tem cláusula Tera; e eles curam o Fez fora de alcance)"
         ],
         cuidado:[
-          "Tapu Bulu Martelo da Madeira 220 (non-ex) OHKO Slowking — Latias reposiciona",
-          "Hydrapple heal sustain; long game favorece eles"
+          "🔴 MU difícil (Limitless 37%); board state deles trava ataques; heal do Hydrapple sustenta",
+          "Powerup do Fez → Unfair Stamp + snipe no banco no MESMO turno"
         ] },
-      { id:119, name:"Ogerpon Meganium Arboliva", tier:"C", wr:"38-43%", metaShare:"0,71%", coinFlip:"second",
+      { id:119, name:"Ogerpon Meganium Arboliva", tier:"C", wr:"~21% ⚠️", metaShare:"0,71%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Smoliv/Chikorita + Floresta + Arboliva ex (SEM Tapu Bulu)",
-          "Metagross 300 OHKO/2-shot Arboliva ex (310); Latias reposiciona o Slowking; Annihilape trades"
+          "Metagross + Brave Bangle OHKO/2-shot Arboliva ex (310); Latias reposiciona; jogar PRIMEIRO"
         ],
         cuidado:[
-          "Meganium 140 / Aroma Shot 160 / Oil Salvo 120 — todos OHKO Slowking (120)",
-          "🚫 Lillie's Clefairy não ajuda (Grass, não Dragão); Briar closer a 2 prêmios"
+          "🔴🔴 PIOR MU (Limitless 21%, amostra pequena n=19)",
+          "Meganium 140 / Aroma Shot 160 / Oil Salvo 120 — todos OHKO Slowking; 🚫 Lillie's Clefairy não ajuda (Grass)"
         ] },
-      { id:112, name:"Mega Lopunny Dudunsparce", tier:"C", wr:"37-42%", metaShare:"3,11%", coinFlip:"second",
+      { id:112, name:"Mega Lopunny Dudunsparce", tier:"C", wr:"~42%", metaShare:"3,11%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Buneary + Jaula de Batalha",
-          "Metagross 300 (2-shot Mega Lopunny 330); Annihilape mutual KO; Latias reposiciona"
+          "⬆️ melhorou com Metagross + Brave Bangle (agora OHKO Mega Lopunny); Kyurem mira Buneary/Snorunt (difícil lidar com 2 Lopunny + Mist, só 1 Brave Bangle)",
+          "Kang OK no banco (não dão OHKO nele)"
         ],
         cuidado:[
-          "Saltador Espinhudo 160 'ignora efeitos' OHKO Slowking",
-          "Jaula de Batalha bloqueia o spread do seu Kyurem"
+          "Saltador Espinhudo 160 'ignora efeitos' OHKO Slowking; Red Card agora",
+          "Eles dão Boss nos seus 2-prizers (não banque >2 cedo); Dudunsparce ex Boss KO no Meowth"
         ] },
-      { id:113, name:"Alakazam 🔴", tier:"C", wr:"30-35%", metaShare:"3,38%", coinFlip:"second",
+      { id:113, name:"Alakazam 🔴", tier:"C", wr:"~35%", metaShare:"4,38%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: Abra + Telepática + Dunsparce (quase 100% non-ex/single-prize)",
-          "Metagross 300 OHKO Alakazam (140); Annihilape Luta do Destino = trade 1-por-1 neutro",
-          "Latias reposiciona o Slowking; minimize a exposição dos seus ex"
+          "👁️ Banco: Abra + Telepática + Dunsparce (quase tudo non-ex)",
+          "🔴 UM DOS PIORES (Limitless 35%); esconda que é Slowking (comece SÓ de Fezandipiti)",
+          "Metagross OHKO Alakazam (140); priorize Boomerang; minimize exposição dos ex"
         ],
         cuidado:[
-          "Mão deles >6 = Mão Poderosa 120 = OHKO Slowking",
-          "🚨 Expor ex (2 prêmios cada vs 1 deles = assimetria). UM DOS PIORES (Limitless 31,7%)"
+          "🚨 Shaymin = quase sem chance (esta lista não tem Spectrier)",
+          "Mão Poderosa OHKO Slowking; assimetria de prêmios. Build Elgyem/Nighttime Mine NÃO tem Shaymin (alívio)"
         ] },
-      { id:114, name:"Mega Greninja Ex", tier:"A", wr:"50-55%", metaShare:"6,94%", coinFlip:"second",
+      { id:114, name:"Mega Greninja Ex", tier:"A", wr:"~55%", metaShare:"5,69%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Froakie + Praia Surfista",
-          "Metagross 300 (2-shot Greninja 350) — speed antes do chip acumular; Annihilape; Latias reposiciona"
+          "Metagross + Brave Bangle 2-shot Greninja 350 — speed antes do chip acumular",
+          "Kyurem monta prize map; Latias reposiciona; jogar PRIMEIRO"
         ],
         cuidado:[
           "Shuriken Mortal 60/turno (ability) + Ninja Spinner 200 OHKO Slowking",
           "Demorar o setup"
         ] },
-      { id:115, name:"Grimmsnarl Froslass da Marnie", tier:"C", wr:"44-48%", metaShare:"1,26%", coinFlip:"second",
+      { id:115, name:"Grimmsnarl Froslass da Marnie", tier:"C", wr:"~44%", metaShare:"1,26%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Impidimp da Marnie + Snorunt",
-          "Metagross 300 (2-shot Grimmsnarl 320); mate Munkidori/Yveltal; Annihilape trades"
+          "Metagross + Brave Bangle 2-shot Grimmsnarl 320; mate Munkidori/Yveltal"
         ],
         cuidado:[
-          "Bala Sombria 180 + spread; 4× Munkidori shift; Yveltal 110; Manto Congelante 10/turno (Slowking tem ability)",
-          "Deixar o Slowking exposto"
+          "Bala Sombria 180 + spread; 4× Munkidori shift; Yveltal 110",
+          "Manto Congelante 10/turno (Slowking E Metagross têm ability)"
         ] },
-      { id:116, name:"Zoroark Ex do N 🔴", tier:"C", wr:"27-32%", metaShare:"3,95%", coinFlip:"second",
+      { id:116, name:"Zoroark Ex do N", tier:"C", wr:"~44%", metaShare:"5,09%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: Zorua do N + Sombria + Martelo Esmagador",
-          "Metagross 300 OHKO Zoroark ex (280); Max Rod recupera energias; Annihilape trades",
-          "🚨 GERENCIE ENERGIA: só anexa Especial pra usar no turno (4 Martelo Esmagador)"
+          "👁️ Banco: Zorua do N + Sombria",
+          "⬆️ MELHOROU muito com Metagross (Limitless 44%, era ~28%); jogar 1º → KO Zorua antes de evoluir; Metagross OHKO Zoroark (corta o draw deles)",
+          "Mira Darumaka com Kyurem (Darmanitan pune a fraqueza de Latias/Slowking)"
         ],
         cuidado:[
-          "🚨 4× Martelo Esmagador destroem Telepática + Boomerang = Slowking sem energia",
-          "Curinga Noturno copia ataques. UM DOS PIORES (Limitless 28%)"
+          "4× Martelo Esmagador na sua energia especial; Yveltal lock (não ponha dano em jogo; guarde os switches)",
+          "Unfair Stamp (Boss + disrupt); Hero's Cape tira o Zoroark do alcance do Metagross"
         ] },
-      { id:117, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"52-57%", metaShare:"2,45%", coinFlip:"second",
+      { id:117, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"~55%", metaShare:"2,45%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Staryu + Duskull",
-          "Metagross 300 (2-shot Starmie 330); 🔑 Latias reposiciona o Slowking fora do Feixe/Explosão Amaldiçoada = vence a corrida",
-          "Annihilape trades desesperados. SURPRESA — favorável na real (Limitless 54,3%)"
+          "Metagross + Brave Bangle 2-shot Starmie 330; 🔑 Latias reposiciona o Slowking fora do Feixe/Explosão Amaldiçoada",
+          "✅ favorável (Limitless 55%)"
         ],
         cuidado:[
-          "🚨 Tripla ameaça: Feixe Celestial 210 + Explosão Amaldiçoada 130 (ability) + Munkidori — todos OHKO/chip o Slowking"
+          "🚨 Feixe Celestial 210 + Explosão Amaldiçoada 130 (ability) + Munkidori — todos OHKO/chip o Slowking"
         ] },
-      { id:118, name:"Mega Starmie Ex Froslass", tier:"S", wr:"60-65%", metaShare:"1,35%", coinFlip:"second",
+      { id:118, name:"Mega Starmie Ex Froslass", tier:"S", wr:"~59%", metaShare:"1,35%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Staryu + Snorunt (sem Dusknoir = sem Explosão Amaldiçoada)",
-          "Metagross 300 (2-shot Starmie); Latias reposiciona — menos OHKO vectors que Dusknoir",
-          "Favorável (Limitless 65%) — Froslass não pressiona o suficiente"
+          "Metagross 2-shot Starmie; Latias reposiciona — menos vetores de OHKO que a Dusknoir",
+          "✅ favorável (Limitless 59%)"
         ],
         cuidado:[
           "Feixe Celestial 210 'ignora efeitos' OHKO Slowking (120)"
         ] },
-      { id:120, name:"Honchkrow da Equipe Rocket", tier:"C", wr:"44-49%", metaShare:"2,98%", coinFlip:"second",
+      { id:120, name:"Honchkrow da Equipe Rocket", tier:"A", wr:"~54%", metaShare:"2,98%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Murkrow TR + Porygon2 + Apoiadores TR no descarte",
-          "Metagross 300 OHKO Honchkrow (130) — KO ANTES de empilharem supporters TR; Latias reposiciona; Annihilape pra trade"
+          "Metagross 300 OHKO Honchkrow (130) ANTES de empilharem supporters TR; ✅ favorável na real (Limitless 54%)",
+          "Latias reposiciona o Slowking"
         ],
         cuidado:[
-          "Penas do Foguete 60× supporters TR (4 no descarte = 240 OHKO Slowking); ciclo Porygon2 re-empilha",
-          "Demorar — o dano escala rápido. ⚠️ Foi a única derrota da liga (2-1-0, 3º)"
+          "Penas do Foguete 60× supporters TR (escala rápido); ciclo Porygon2 re-empilha",
+          "⚠️ Foi a derrota da liga (2-1-0, 3º) — KO o Honchkrow cedo é a chave"
         ] },
-      { id:121, name:"Dragapult Ex Blaziken 🔴", tier:"C", wr:"30-35%", metaShare:"2,42%", coinFlip:"second",
+      { id:121, name:"Dragapult Ex Blaziken", tier:"C", wr:"~45%", metaShare:"2,42%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Dreepy + Torchic/Combusken (Blaziken non-ex de Fogo)",
-          "🎯 Lillie's Clefairy ex → OHKO Dragapult ex via Psíquico ×2; Metagross nos alvos gordos; Latias reposiciona"
+          "Limpe os Dreepy/Drakloak; Lillie's Clefairy ex → OHKO Dragapult ex (Psíquico ×2)",
+          "🎯 GUARDE o Brave Bangle pro ataque do Blaziken"
         ],
         cuidado:[
-          "🚨 Velocidade: Mergulho Fantasma 200 OHKO Slowking + Blaziken non-ex acelera — fecham antes do seu setup",
-          "Contar com a vantagem de tipo sem montar a Lillie's Clefairy a tempo. UM DOS PIORES (Limitless 32%)"
+          "Mergulho Fantasma 200 OHKO Slowking + Blaziken non-ex acelera (fecham antes do setup)",
+          "Mais provável jogar Shaymin (vê quando buscarem). Limitless 45% (era subestimado)"
         ] },
-      { id:122, name:"Ceruledge Ex", tier:"S", wr:"62-66%", metaShare:"1,08%", coinFlip:"second",
+      { id:122, name:"Ceruledge Ex", tier:"S", wr:"~71%", metaShare:"1,08%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Charcadet + atacantes de Fogo agressivos",
-          "Metagross 300 OHKO os atacantes deles + Latias reposiciona = vence a corrida; Annihilape trades",
-          "Favorável (Limitless 65%)"
+          "Metagross OHKO os atacantes deles + Latias reposiciona = vence a corrida",
+          "✅✅ ótimo MU (Limitless 71%)"
         ],
         cuidado:[
           "Deck de Fogo agressivo bate cedo (mas nada que o Metagross 300 não responda)"
         ] },
-      { id:123, name:"Mega Venusaur Ex", tier:"A", wr:"57-62%", metaShare:"0,70%", coinFlip:"second",
+      { id:123, name:"Mega Venusaur Ex", tier:"A", wr:"~50%", metaShare:"0,70%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Bulbasaur + Genesect + Floresta",
-          "Metagross 300 (2-shot Venusaur ~340); KO Genesect (120, snipa o banco); Latias reposiciona; Annihilape",
-          "Favorável (Limitless 60%, amostra menor)"
+          "Metagross 2-shot Venusaur (380); KO Genesect (120, snipa o banco); Latias reposiciona"
         ],
         cuidado:[
-          "Jungle Dump 240 OHKO Slowking; Genesect snipe escalável no seu banco"
+          "Jungle Dump 240 OHKO Slowking; Genesect snipe escalável no seu banco",
+          "~50% real (era superestimado em 57-62%)"
         ] },
-      { id:124, name:"Archaludon Dudunsparce", tier:"A", wr:"52-56%", metaShare:"0,95%", coinFlip:"second",
+      { id:124, name:"Archaludon Dudunsparce", tier:"A", wr:"~52%", metaShare:"0,95%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Duraludon + Dudunsparce (engine de draw)",
-          "Metagross 300 OHKO os ex deles; Latias reposiciona; Annihilape trades; Slowking copy mantém pressão"
+          "Metagross OHKO os ex deles; Kyurem monta prize map; Slowking copy mantém pressão"
         ],
         cuidado:[
           "Archaludon ex bate forte (Metal); Dudunsparce dá consistência/draw",
           "Demorar contra o engine de draw deles"
         ] },
-      { id:125, name:"Cinccino Ex Metagross 🔧", tier:"C", wr:"42-47%", metaShare:"0,74%", coinFlip:"second",
+      { id:125, name:"Cinccino Ex Metagross 🔧", tier:"C", wr:"~42%", metaShare:"0,74%", coinFlip:"first",
         objetivo:[
           "👁️ Banco: Minccino + Beldum/Metang (Metagross MONTADO) + Genesect ex + 25 Metal",
-          "🎯 Annihilape Luta do Destino = KO mútuo IGNORA o Pelagem Lisa (é nocaute, não dano) — melhor jeito de matar o Cinccino ex (troca 1-por-2)",
-          "Metagross 300 OHKO Genesect ex (220)/Cinccino (240) [conta com o flip do Pelagem Lisa]; Ordens no Genesect cedo; Latias reposiciona"
+          "Metagross 300 OHKO Genesect ex (220) / Cinccino (240) [conta com o flip do Pelagem Lisa]; ataque contínuo; Latias reposiciona"
         ],
         cuidado:[
-          "🚫 Lillie's Clefairy não ajuda (Metal/Incolor) e Psíquico não bate Metal",
-          "Pelagem Lisa: seus ataques de DANO têm 50% de errar no Cinccino; Metagross 300 deles + Cinccino 200-280 OHKO Slowking"
+          "⚠️ Esta lista CORTOU o Annihilape — era a melhor tech aqui (KO mútuo furava o Pelagem Lisa). MU piorou",
+          "Pelagem Lisa: 50% dos seus ataques de DANO erram no Cinccino; Metagross 300 deles + Cinccino 200-280 OHKO Slowking; Lillie's/Psíquico não ajudam (Metal)"
         ] },
-      { id:126, name:"Mega Kangaskhan Box (Clefairy) 🆕", tier:"A", wr:"47-52%", metaShare:"novo", coinFlip:"second",
+      { id:126, name:"Mega Kangaskhan Box (Clefairy) 🆕", tier:"A", wr:"~50% ⚠️", metaShare:"novo", coinFlip:"first",
         objetivo:[
           "👁️ Banco: vários ex (Mega Kang/Latias/Lillie's Clefairy) + Profundezas da Área Zero (banco 8)",
-          "Metagross 300 OHKO o Mega Kang deles (3 prêmios!)",
-          "🎯 Koraidon ex é Lutador fraco a Psíquico ×2 → Super Psy Bolt 240 OHKO; Kyurem Geada Tripla espalha no banco 8; Latias reposiciona"
+          "Metagross 300 OHKO o Mega Kang deles (3 prêmios!); Koraidon ex é Lutador fraco a Psíquico ×2 → Super Psy Bolt 240 OHKO",
+          "Kyurem Geada Tripla espalha no banco 8; Latias reposiciona"
         ],
         cuidado:[
-          "🚫 Sua Lillie's Clefairy não ajuda (o Box não tem Dragão); o Box bate primeiro e forte (todos 200)",
-          "Liability mútua de ex (2 prêmios); Slowking 120 morre a qualquer atacante deles"
+          "⚠️ WR NÃO-validado (sem entrada exata no Limitless; proxies: Basic Box 56% / Lillie's Clefairy 62%)",
+          "🚫 Sua Lillie's Clefairy não ajuda (o Box não tem Dragão); o Box bate primeiro e forte; liability mútua de ex"
         ] }
     ]
   },
