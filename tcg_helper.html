@@ -881,45 +881,47 @@ const DECKS = {
     label: "🐉 Dragapult Ex",
     accent: "#c084fc",
     universal: [
-      '<strong>DRAGAPULT EX (disrupção/spread):</strong>',
+      '<strong>DRAGAPULT EX CRUSHING HAMMER (lista do Andrew Hedrick, campeão mundial 2026):</strong>',
       '🎯 <span class="key">Mergulho Fantasma</span> [FP] 200 + 60 spread (6 contadores) no banco do oponente',
       '💥 <span class="key">Munkidori</span> (com Sombria): move 3 counters SEUS → oponente = finaliza KO + pseudo-cura',
-      '🔒 <span class="key">Stax</span>: Crushing Hammer (energia) · Budew (item lock) · Watchtower (desliga abilities de Pokémon INCOLOR) · Judge/Unfair Stamp (mão)',
-      '🎯 <span class="key">Watchtower só pega Pokémon INCOLOR</span> (Dudunsparce/Cinccino/Porygon2) — NÃO afeta suas peças (Dragão/Psíquico/Sombrio), só seu Meowth ex',
-      '🏟️ Risky Ruins: bancar Básico NÃO-Sombrio = 20 nele (amolece banco + fuel pro Munkidori)',
-      '🔥 Moltres = tech non-ex anti-ex (110 num ex, só dá 1 prêmio)'
+      '🔒 <span class="key">Trava</span>: 4 Martelo Esmagador (energia) · 2 Budew (item lock) · Judge + Unfair Stamp (mão)',
+      '🦎 <span class="key">Dudunsparce</span>: Run Away Draw = draw extra, volta pro Budew sem gastar energia, reseta confusão do Mind Bend; atacante 90/140 HP (Crustle)',
+      '🌹 <span class="key">Rosa</span> (só ATRÁS nos prêmios): 2 energias do descarte num Estágio 2 — resposta a Martelos do oponente',
+      '🏟️ 2 Ruínas Arriscadas: bancar Básico NÃO-Sombrio = 20 nele (amolece banco + fuel pro Munkidori). NUNCA cedo vs deck com Jaula de Batalha',
+      '📏 <span class="key">Regra de ouro</span>: atacar quando está 5×6 nos prêmios e fechar em 3 Mergulhos; sem info, JOGAR PRIMEIRO'
     ],
     decklist: {
-      note: '🐉 <strong>Disrupção/spread.</strong> Mergulho Fantasma 200 + 60 espalhado no banco; Risky Ruins soma 20 ao bancar básicos não-Sombrios → o spread + Munkidori (move counters SEUS pro oponente) fecham os KOs. Pacote de trava: Crushing Hammer (energia), Budew (item), Team Rocket\'s Watchtower (desliga abilities de Pokémon INCOLOR — Dudunsparce/Cinccino), Judge + Unfair Stamp (mão). Moltres pune ex como atacante single-prize.',
+      note: '🐉 <strong>Lista exata do campeão mundial 2026 (Andrew Hedrick), versão pré-Baltimore do guia.</strong> Mergulho Fantasma 200 + 60 espalhado; Ruínas Arriscadas soma 20 ao bancar; Munkidori move os counters SEUS pro oponente. Trava: 4 Martelo Esmagador + 2 Budew + Judge + Unfair Stamp. Dudunsparce dá draw e reseta o Budew; Rosa recupera energia quando está atrás. ⚠️ Diferenças da lista do Mundial: Judge no lugar do Special Red Card (Eri do Alakazam descarta o Red Card) e energia 4 Psíquico / 3 Fogo / 2 Sombrio (era 3/3/3).',
       groups: [
-        { type: "Pokémon (18)", cards: [
-          { n:4, name:"Dreepy", set:"TWM 128", fn:"Básico. Linha de início do Dragapult. Buddy-Buddy Poffin-able (≤70 HP)." },
-          { n:4, name:"Drakloak", set:"TWM 129", fn:"Estágio 1. Ability de compra (consistência) — ponte pro Dragapult ex." },
-          { n:3, name:"Dragapult ex", set:"TWM 130", fn:"⭐ Estágio 2 · 320 HP · 3 prêmios. Mergulho Fantasma [FP] 200 + põe 6 contadores (60) no banco do oponente. Jet Headbutt [P] 70. Sem fraqueza (mas Lillie's Clefairy ex torna Dragão fraco a Psíquico)." },
-          { n:2, name:"Munkidori", set:"TWM 95", fn:"Básico. Ability Cérebro-Adrena (precisa Sombria anexada): move até 3 contadores dos SEUS Pokémon → oponente. Finaliza + pseudo-cura." },
-          { n:2, name:"Budew", set:"ASC 16", fn:"Básico. Trava de Itens (ninguém joga Item enquanto Budew ativo). Disrupção T1." },
-          { n:1, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Tutor de Apoiador (busca 1 Supporter do deck)." },
-          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex (Sombrio). Ability de recovery/draw (compra 3 após perder Pokémon). Imune ao Risky Ruins (é Sombrio)." },
-          { n:1, name:"Moltres", set:"PFL 14", fn:"Básico non-ex (Fogo). Fighting Wings 20 (+90 = 110 se o Ativo do oponente for ex). 🔥 Tech single-prize que pune ex (morre por só 1 prêmio)." }
+        { type: "Pokémon (19)", cards: [
+          { n:4, name:"Dreepy", set:"TWM 128", fn:"Básico. Linha de início do Dragapult. Poffin-able (≤70 HP). Vs Slowking: bance 4 pra sobreviver ao Geada Tripla." },
+          { n:4, name:"Drakloak", set:"TWM 129", fn:"Estágio 1. Recon Directives (compra). Acumule energia nele no banco — energia em jogo é o recurso principal do deck." },
+          { n:3, name:"Dragapult ex", set:"TWM 130", fn:"⭐ Estágio 2 · 320 HP · 3 prêmios. Mergulho Fantasma [FP] 200 + 6 contadores (60) no banco do oponente. Jet Headbutt [P] 70. Lillie's Clefairy ex torna Dragão fraco a Psíquico." },
+          { n:2, name:"Munkidori", set:"TWM 95", fn:"Básico. Cérebro Adrena (precisa Sombria): move até 3 contadores dos SEUS Pokémon → oponente. Mind Bend [P] 30 + confusão (trava Clefairy/Crustle sem Nebulosa)." },
+          { n:2, name:"Budew", set:"ASC 16", fn:"Básico. Itchy Pollen = trava de Itens. 2 cópias: abre mais, sem prizing, reusa após o KO. Pergunta antes de recuar: 'meu Budew morre antes de eu Mergulhar?'" },
+          { n:1, name:"Dunsparce", set:"JTG 120", fn:"Básico. Suporte do Dudunsparce. Bancar no T1 permite voltar pro Budew no T2 via Run Away Draw sem gastar energia." },
+          { n:1, name:"Dudunsparce", set:"TEF 129", fn:"🦎 Estágio 1 · 140 HP · 1 prêmio. Run Away Draw: embaralha ele no deck e compra (draw extra quando Drakloak morre/prizado). Land Crush 90 = melhor atacante vs Crustle (sobrevive a Tremendas Tesouras sem Espinhosa)." },
+          { n:1, name:"Meowth ex", set:"POR 62", fn:"Básico ex. Last-Ditch Catch = tutor de Apoiador. Não tenha medo de usar cedo pra achar Lillie. Guarde pra jogar em função da Rosa." },
+          { n:1, name:"Fezandipiti ex", set:"ASC 142", fn:"Básico ex (Sombrio). Flip the Script (compra 3 após perder Pokémon). NÃO bancar cedo no espelho nem vs Lucario (trap). Vs Ghost Veil vira ATACANTE." }
         ]},
-        { type: "Trainer (33)", cards: [
-          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra principal." },
-          { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Gust — traz 1 Pokémon do banco do oponente pro Ativo. Finaliza alvos amolecidos pelo spread. (Ordens da Chefia)" },
-          { n:3, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Busca 2 Energia Básica de tipos diferentes (acelera/fix de cor — Fogo + Psíquico)." },
-          { n:1, name:"Judge", set:"POR 76", fn:"Apoiadora. Cada jogador embaralha a mão e compra 4. Disrupção de mão. (Sentença)" },
-          { n:4, name:"Crushing Hammer", set:"POR 71", fn:"Item. Jogue uma moeda; cara = descarte 1 Energia de 1 Pokémon do oponente. 🔒 Energy denial (4 cópias!). (Martelo Esmagador)" },
-          { n:4, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dreepy/Budew/Munkidori/Moltres). Consistência de setup." },
-          { n:4, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box (não pega ex), de graça." },
-          { n:4, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2 cartas, busca QUALQUER Pokémon (inclui os ex)." },
-          { n:2, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte." },
-          { n:1, name:"Unfair Stamp", set:"TWM 165", fn:"⭐ ACE SPEC (Item). Após nocautear um Pokémon do oponente: cada um embaralha a mão pro deck; você compra 5 e o oponente 2. Disrupção + refill." },
-          { n:2, name:"Team Rocket's Watchtower", set:"DRI 180", fn:"Estádio. Pokémon do tipo INCOLOR em jogo (de ambos) NÃO têm Habilidades. 🎯 Pega Dudunsparce (Run Away Draw), Cinccino (Smooth Coat), Porygon2 etc. NÃO afeta suas peças (Dragão/Psíquico/Sombrio) — só seu Meowth ex." },
-          { n:1, name:"Risky Ruins", set:"MEG 127", fn:"Estádio. Quando QUALQUER jogador banca um Básico NÃO-Sombrio no turno, põe 2 contadores nele. Amolece o banco (sinergia spread + Munkidori). Cuidado: dana seus próprios básicos não-Sombrios." }
+        { type: "Trainer (32)", cards: [
+          { n:4, name:"Lillie's Determination", set:"MEG 119", fn:"Apoiadora. Engine de compra principal. Jogue ANTES de Recon Directives/Run Away Draw quando possível." },
+          { n:3, name:"Boss's Orders", set:"MEG 114", fn:"Apoiadora. Gust. 3 Ordens seguidas em 5-6 prêmios ganha vs Hydrapple; Ordens no Fezandipiti/Thwackey trapeia. (Ordens da Chefia)" },
+          { n:2, name:"Crispin", set:"SCR 133", fn:"Apoiadora. Busca 2 Energia Básica de tipos diferentes. Monta board sem Lillie. Vs Alakazam Elgyem: GUARDE 1 com energias no deck." },
+          { n:1, name:"Rosa's Encouragement", set:"POR 84", fn:"🌹 Apoiadora. Só se você tem MAIS prêmios restantes: anexa 2 Energia Básica do descarte a 1 Estágio 2. Chave vs Martelos (espelho) e pra encadear 3 Dragapults vs Excadrill. Jogue em função dela: fique atrás, tenha Fogo+Psíquico no descarte." },
+          { n:1, name:"Judge", set:"POR 76", fn:"Apoiadora. Cada um embaralha a mão e compra 4. Judge + Itchy Pollen cedo pode brickar; Judge no 1º Mergulho vs Alakazam com mão grande. Substituiu o Special Red Card (Eri descartava). (Sentença)" },
+          { n:4, name:"Crushing Hammer", set:"POR 71", fn:"Item. Cara = descarta 1 Energia do oponente. Se não tem valor no turno e você não vai embaralhar a mão, SEGURE. Combo que ganha jogo: Martelo + Unfair Stamp. (Martelo Esmagador)" },
+          { n:4, name:"Buddy-Buddy Poffin", set:"TEF 144", fn:"Item. Busca 2 Básicos com ≤70 HP (Dreepy/Budew/Munkidori/Dunsparce)." },
+          { n:4, name:"Poké Pad", set:"POR 81", fn:"Item. Busca 1 Pokémon SEM Rule Box. Não segure no T1 vs Alakazam (Eri)." },
+          { n:3, name:"Ultra Ball", set:"MEG 131", fn:"Item. Descarta 2, busca QUALQUER Pokémon. 3 cópias: fraca no espelho (item lock). Fora do espelho evite descartar Ultra Ball com Ultra Ball — precisa achar Fezandipiti/Meowth depois." },
+          { n:3, name:"Night Stretcher", set:"ASC 196", fn:"Item. Recupera 1 Pokémon OU 1 Energia Básica do descarte. Com 3 vira carta de consistência: descartar Dragapult na Ultra Ball e buscar de volta. Vs Alakazam jogue ANTES do Eri. (Maca Noturna)" },
+          { n:1, name:"Unfair Stamp", set:"TWM 165", fn:"⭐ ACE SPEC. Após KO do oponente: ambos embaralham a mão; você compra 5, ele 2. Melhor disrupção do deck; se está sob Budew deles, jogue seus itens ANTES de eles usarem o Selo deles." },
+          { n:2, name:"Risky Ruins", set:"MEG 127", fn:"Estádio. Bancar Básico NÃO-Sombrio = 2 contadores nele. T1 devastador vs Garchomp/Lucario/Mewtwo/Excadrill. GUARDE vs Jaula de Batalha. Deixe o dano cair em 2 Pokémon seus (fuel do Munkidori). (Ruínas Arriscadas)" }
         ]},
         { type: "Energy (9)", cards: [
-          { n:4, name:"Fire Energy", set:"MEE 2", fn:"BÁSICA Fogo. Custo do Mergulho Fantasma [FP] + Moltres." },
-          { n:3, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Mergulho Fantasma [FP] + Jet Headbutt + Munkidori." },
-          { n:2, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. Trigger do Munkidori + Fezandipiti." }
+          { n:4, name:"Psychic Energy", set:"MEE 5", fn:"BÁSICA Psíquica. Mergulho Fantasma [FP] + Jet Headbutt + Mind Bend. 4ª cópia = erra menos Mergulho fora do espelho e alimenta a Rosa." },
+          { n:3, name:"Fire Energy", set:"MEE 2", fn:"BÁSICA Fogo. Custo do Mergulho Fantasma [FP]." },
+          { n:2, name:"Darkness Energy", set:"MEE 7", fn:"BÁSICA Sombria. Trigger do Munkidori + Fezandipiti. Com 2, cuide delas: Martelo do oponente nela desliga o Munki (3ª seria melhor só no espelho)." }
         ]}
       ]
     },
@@ -927,8 +929,8 @@ const DECKS = {
       { id:201, name:"Honchkrow da Equipe Rocket ⭐", tier:"S", wr:"68-73%", metaShare:"2,98%", coinFlip:"first",
         objetivo:[
           "Correr: spread + Ordens fecham antes das Penas do Foguete escalarem",
-          "Watchtower desliga o Porygon2 deles (Incolor), se rodarem",
-          "Judge/Unfair Stamp limpam a mão deles (menos Apoiador TR pra descartar = menos dano)"
+          "Judge/Unfair Stamp limpam a mão deles (menos Apoiador TR pra descartar = menos dano)",
+          "Ruínas cedo: banco deles é de básicos non-ex — Munkidori fecha KOs de 1 prêmio"
         ],
         cuidado:[
           "Não deixar o jogo arrastar — Penas do Foguete escala com Apoiadores TR no descarte"
@@ -940,13 +942,12 @@ const DECKS = {
           "Martelo atrasa o setup de Água deles"
         ],
         cuidado:[
-          "Watchtower NÃO pega nada aqui (Greninja é Água)",
           "Variante c/ Mega Froslass: Resentful Refrain pune MÃO CHEIA (50×carta) — mão baixa ou martela a Água dela"
         ] },
       { id:203, name:"Hop's Trevenant", tier:"S", wr:"64-70%", metaShare:"0,59%", coinFlip:"first",
         objetivo:[
           "Correr com spread — fechar antes da trava deles montar",
-          "Jogar os Itens CEDO (Poffin/Ultra Ball) antes do lock de Item deles ligar"
+          "Jogar os Itens CEDO (Poffin/Poké Pad/Ultra Ball) antes do lock de Item deles ligar"
         ],
         cuidado:[
           "Com a trava de Item deles ativa, seu setup sufoca — não fique segurando Item na mão"
@@ -954,12 +955,12 @@ const DECKS = {
       { id:204, name:"Ceruledge Ex", tier:"S", wr:"64-69%", metaShare:"1,08%", coinFlip:"first",
         objetivo:[
           "Spread + Munki fecham; Martelo atrasa o Fogo deles",
-          "Moltres pune os ex deles (110 por 1 prêmio)"
+          "Ruínas + Munkidori matam os single-prize do banco (Solrock/Lunatone) sem gastar Ordens"
         ],
         cuidado:[
           "Deck agressivo — não passe turnos sem pressão"
         ] },
-      { id:205, name:"Mega Starmie Ex Froslass", tier:"A", wr:"55-62%", metaShare:"1,35%", coinFlip:"first",
+      { id:205, name:"Mega Starmie Ex Froslass", tier:"S", wr:"60-64%", metaShare:"1,35%", coinFlip:"first",
         objetivo:[
           "[GUIA] Assustador mas tranquilo. Anexa Sombria no Munkidori cedo: devolve o spread deles o jogo todo + dá a opção de só Mind Bend em jogos ruins",
           "🎯 Martelo no Munkidori DELES (querem montar Munki pra contrariar o seu); Ordens + Martelo às vezes faz eles errarem o ataque",
@@ -969,42 +970,44 @@ const DECKS = {
           "Feixe Celestial 210 ignora efeitos; o deck deles atropela — desacelere e monte board que eles não fecham nem na frente nos prêmios",
           "Indo SEGUNDO vs Starmie: bance tudo da mão antes do turno deles (evita o Risky Ruins deles)"
         ] },
-      { id:206, name:"Festival Lead", tier:"S", wr:"58-64%", metaShare:"1,96%", coinFlip:"first",
+      { id:206, name:"Festival Lead", tier:"S", wr:"57-62%", metaShare:"5,28%", coinFlip:"first",
         objetivo:[
-          "[GUIA] JOGAR PRIMEIRO. Budew é ÓTIMO aqui — o deck deles depende de Item pra montar e precisa de bastante pra te dar KO no T2",
-          "Budew + Martelo na energia do ativo deles força achar outra (têm ~5 só) — rouba turnos",
-          "🎯 Alvo: THWACKEY (retreat 2, não usa ability no ativo). Ordens + Jet Headbutt + Munki/Ruínas pra matar os Thwackey = travam o combo"
+          "[GUIA] JOGAR PRIMEIRO. Budew é ÓTIMO — o deck depende de Item pra montar e precisa de muito Item pra te dar KO no T2. Martelo na energia do ativo deles força outra (têm só ~5)",
+          "Tenha Munkidori ou Dudunsparce no banco pra promover depois do KO e ainda ter ataque",
+          "🎯 Alvo: THWACKEY (recuo 2, sem Boom Boom Groove no ativo). Ordens + Jet Headbutt + Cérebro Adrena (90) num; próximo turno Ordens no outro + Unfair Stamp + Adrena + Mergulho = zero Thwackey",
+          "Atrás em energia: Ordens no Thwackey + Unfair Stamp — eles quase nunca acham switch = turno grátis",
+          "Se gastam 4 vagas em Thwackey + Rabsca + lixo: Jet Headbutt num Dipplin, Ordens no outro + Munkidori no primeiro = ficam sem ataque real"
         ],
         cuidado:[
-          "Único matchup onde Martelo rende pouco no late — não tenha pena de 'gastar' cedo",
-          "Se montarem perfeito com Rabsca, ganhe TRAVANDO o deck (matar Thwackey), não na corrida de prêmios"
+          "Único matchup onde Martelo rende pouco no late — gaste sem dó",
+          "Se montarem perfeito com Rabsca, ganhe TRAVANDO o deck (matar Thwackey), não na corrida de prêmios",
+          "Eles atacam DUAS VEZES por turno — não promova quem morre em 2 hits; guarde estádio pra bumpar o Pátio do Festival"
         ] },
       { id:207, name:"Okidogi Barbaracle", tier:"S", wr:"59-65%", metaShare:"0,85%", coinFlip:"first",
         objetivo:[
           "Spread + correr; Munki e Ordens finalizam",
-          "Moltres pune o Okidogi ex (1 prêmio)"
+          "Deck single-prize de Luta: mire em vencer em 3 Mergulhos a partir de 5×6"
         ],
         cuidado:[
-          "Não deixar eles montarem board grande"
+          "Não deixar eles montarem board grande; Fezandipiti ex é fraco a Lutador — não banque à toa"
         ] },
       { id:208, name:"Beedrill Ex", tier:"S", wr:"56-61%", metaShare:"4,57%", coinFlip:"first",
         objetivo:[
-          "Colocar Watchtower pra travar o Dudunsparce (Incolor — desliga o draw deles)",
-          "Bater de Dragapult o mais rápido que der pra limpar o banco",
-          "Martelo pra descartar energia da Beedrill ex",
-          "Ruínas Arriscadas ajuda a limpar com o Munki"
+          "Bater de Dragapult o mais rápido que der pra limpar o banco (Weedle/Kakuna = 1 prêmio cada)",
+          "Martelo pra descartar a Planta da Beedrill ex (Abelhas Furiosas)",
+          "Ruínas Arriscadas + Munki limpam o banco"
         ],
         cuidado:[
-          "Minha Watchtower pode atrapalhar o Meowth ex (ele é Incolor — perde o tutor de Apoiador)"
+          "Dudunsparce deles compra muito — Judge/Unfair Stamp no turno do KO"
         ] },
-      { id:209, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"50-55%", metaShare:"2,44%", coinFlip:"first",
+      { id:209, name:"Mewtwo Ex da Equipe Rocket", tier:"A", wr:"55-60%", metaShare:"2,44%", coinFlip:"first",
         objetivo:[
           "[GUIA] JOGAR PRIMEIRO (turno grátis — eles não atacam T1 indo segundo); Risky Ruins T1 é forte (sem Fábrica TR na mão eles tomam muito dano)",
           "🎯 Martelo BRILHA no Mewtwo (atacante mais sustentável deles): trava ele no ativo, força Giovanni com 1-2 heads",
           "Explore o espaço de banco: matar o Articuno certo (board cheio sem Clefairy) impede re-bench + ameaça ao mesmo tempo"
         ],
         cuidado:[
-          "🚨 Um dos matchups mais DIFÍCEIS e mais difíceis de pilotar — muitos atacantes e situações únicas",
+          "🚨 Um dos matchups mais difíceis de PILOTAR — muitos atacantes e situações únicas (dado real 57%, favorável)",
           "Bola de Apagar até 280; eles só disruptam sua mão se você der KO em Pokémon TR (às vezes dá pra segurar combo com segurança)"
         ] },
       { id:210, name:"Ogerpon Meganium Arboliva", tier:"A", wr:"55-60%", metaShare:"0,71%", coinFlip:"first",
@@ -1013,141 +1016,146 @@ const DECKS = {
           "Munki devolve o chip do Meganium"
         ],
         cuidado:[
-          "Oil Salvo espalha 6×20 no SEU banco — estoura os Munki (110 HP)",
-          "Watchtower não pega nada (Planta)"
+          "Oil Salvo espalha 6×20 no SEU banco — estoura os Munki (110 HP)"
         ] },
-      { id:211, name:"Alakazam Dudunsparce", tier:"A", wr:"56-62%", metaShare:"3,38%", coinFlip:"first",
+      { id:211, name:"Alakazam Dudunsparce", tier:"S", wr:"58-63%", metaShare:"6,06%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Sólido (o pro 'não perde muito'). JOGAR PRIMEIRO (ameaça ataque com eles ainda em 5 prêmios); Budew bom, mas evite retreatar nele indo segundo (Kadabra mata)",
-          "Jogue Unfair Stamp / Special Red Card na 1ª chance (acham Genesect via Dawn mesmo sob Budew). Mergulho + disrupção = eles erram KO e você ganha muitos jogos só com isso",
-          "🎯 JOGADA-CHAVE: Martelo na única energia deles → Ordens no Fezandipiti → Mergulho Fantasma. Sem Air Balloon/Wondrous Patch é IMPOSSÍVEL atacarem = 2 prêmios grátis",
-          "🔑 (sua build) Watchtower desliga o DUDUNSPARCE deles (Incolor) — corta o draw"
+          "[GUIA] Real 60,6%. JOGAR PRIMEIRO. BUDEW É PRIORIDADE em todas as versões: não recue nele T1 indo 2º (Kadabra mata), mas T2 indo 1º sim. Se o Budew morrer e você não está pronto, Budew DE NOVO (Dunsparce no banco → Run Away Draw volta)",
+          "🎯 JUDGE no 1º Mergulho quando têm mão grande (Red Card não: Eri descarta). Deixe-os SEM energia em jogo (Mergulho + Martelo) = Enriching morre. Unfair Stamp em qualquer chance",
+          "🎯 Trap do Fezandipiti: Martelo na única energia deles + Ordens no Fezandipiti + Mergulho = não atacam (só Air Balloon/Wondrous Patch salva) = 2 prêmios grátis",
+          "Guarde Ruínas pro turno de Mergulho com Jaula em campo (Munki mata Kadabra reserva)",
+          "Variantes: 4 JAULA (Cassiraga) sem truques, valorize Ruínas, esgote os Abra (1 Sacred Ash + 1 Lana's Aid), 2 Air Balloon · CLEFAIRY + NIGHTTIME MINE (Cerys Jones): 3 energias num Dragapult fura a Mina; Red Card deles só quando você ameaça vencer → não desça de 4 prêmios sem draw pronto; Wondrous Patch = switch; banco de 1 evita o Full Moon Rondo · ELGYEM + MINA (Calvin Connor): se Elgyem move sua única energia pro Budew cedo, pare de anexar e só Itchy Pollen; GUARDE 1 Crispin com energias no deck; Maca + Lillie reativa Crispin; Jet Headbutt fura o Elgyem · RABSCA + FLORESTA (Eisenblätter): Ruínas T1 vale; Ordens + Itchy Pollen no Rabsca; mate o Rabsca só se a Floresta já foi gasta; eles ficam sem vaga no banco (Genesect + Rabsca + Rellor/Patrat = 3 vagas) e Judge dói; parece perdido mas o deck deles desmonta"
         ],
         cuidado:[
-          "Mão Poderosa escala com a mão deles; só ataque agressivo se tiver energia em jogo pra Special Red Card/seguir Mergulhando",
-          "Eles single-prize e você dá 3; guarde Ruínas pra quando for Mergulhar E tiver Battle Cage em jogo"
+          "ERI: jogue Macas Noturnas ANTES, não segure Poké Pad no T1. Não inicie com Judge sem energia já em jogo (não acelera no mesmo turno)",
+          "Mão Poderosa escala com a mão deles; Clefairy ex (versão CJ) ameaça Dragapult mesmo sem Alakazam"
         ] },
-      { id:212, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"50-56%", metaShare:"2,45%", coinFlip:"first",
+      { id:212, name:"Mega Starmie Ex Dusknoir", tier:"A", wr:"52-57%", metaShare:"2,45%", coinFlip:"first",
         objetivo:[
           "[GUIA] USE Budew aqui (versão Dusknoir) a menos que monte board perfeito — dificulta mirarem seus Drakloak",
           "Sombria no Munkidori cedo (devolve o spread); Martelo corta o Munki deles; Ordens + Martelo às vezes faz eles errarem o ataque inteiro"
         ],
         cuidado:[
-          "Feixe Celestial 210 ignora efeitos; Explosão Amaldiçoada 130 (ability, Watchtower não pega — Psíquico)",
+          "Feixe Celestial 210 ignora efeitos; Explosão Amaldiçoada 130 (ability)",
           "Indo segundo: bance tudo da mão antes do turno deles (Risky Ruins deles)"
         ] },
       { id:213, name:"Archaludon Dudunsparce", tier:"A", wr:"52-56%", metaShare:"0,95%", coinFlip:"first",
         objetivo:[
-          "Watchtower desliga o Dudunsparce (Incolor)",
-          "Martelo na energia Metal deles"
+          "Martelo na energia Metal deles; Judge/Unfair Stamp contra o draw do Dudunsparce",
+          "Spread + Munki matam Dunsparce/Duraludon no banco"
         ],
         cuidado:[
           "Assemble Alloy re-acelera do descarte ao evoluir — martelar nem sempre resolve"
         ] },
       { id:214, name:"Mega Lopunny Dudunsparce", tier:"A", wr:"55-60%", metaShare:"3,11%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Pro 'não sofre muito' — JOGAR PRIMEIRO = praticamente turno grátis. NÃO retreatar em Budew se T1 deles for forte; inunde o board de energia",
+          "[GUIA] Pro 'não sofre' — JOGAR PRIMEIRO = praticamente turno grátis. NÃO recue pro Budew se T1 deles for forte; inunde o board de energia",
           "Comece a atacar de Dragapult o MAIS rápido possível (eles precisam 2-shot seus atacantes)",
-          "🎯 Retreat entre seus Dragapult ex após apanharem → libera muito dano de Munki; eles não jogam Ordens no mesmo turno que Wally's Compassion",
-          "🔑 (sua build) Watchtower desliga o Dudunsparce deles (Incolor)"
+          "🎯 Recue entre seus Dragapult ex após apanharem → libera muito dano de Munki; eles não jogam Ordens no mesmo turno que Wally's Compassion",
+          "Unfair Stamp + matar Dunsparce no banco; Ruínas removendo a Jaula libera Munki pra matar Dunsparce de 70"
         ],
         cuidado:[
           "🎯 Martelo na Enriching Energy (looparia com Wally's Compassion = 4 cartas/turno) — guarde os Martelos pra ela",
-          "Guarde estádio pra bumpar a Jaula de Batalha; Saltador Espinhudo 160 ignora efeitos"
+          "Guarde estádio até entrar a Jaula de Batalha; Saltador Espinhudo 160 ignora efeitos"
         ] },
-      { id:215, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"50-56%", metaShare:"3,68%", coinFlip:"first",
+      { id:215, name:"Ogerpon Meganium Hydrapple", tier:"A", wr:"53-58%", metaShare:"3,68%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Parece assustador mas é OK. JOGAR PRIMEIRO; Budew decente (use se não morrer fácil). Enquanto usam Celebi pra montar, você ganha MUITOS turnos",
-          "🎯 3 Ordens seguidas começando em 5-6 prêmios ganha a corrida (mais comum do que parece — eles têm só 2 Ordens e o único snipe é Cruel Arrow do Fezandipiti)",
-          "Acumule energia nos Drakloak; monte mão grande pra encadear 3 Dragapult + Ordens"
+          "[GUIA] Parece assustador mas é OK (real 55%). JOGAR PRIMEIRO; Budew só se não morrer no turno seguinte. Enquanto usam Celebi pra montar, você ganha MUITOS turnos — floode energia nos Drakloak",
+          "🎯 3 Ordens seguidas começando em 5-6 prêmios ganha a corrida (eles têm só 2 Ordens e o único snipe é Cruel Arrow do Fezandipiti)",
+          "Ripening Charge cura: Ordens no Ogerpon com 60 no Celebi → Ordens no outro Ogerpon/Meowth → fecha com Meganium",
+          "Agressivos: Ordens + Unfair Stamp no Meganium; guarde Ruínas pra bumpar a Floresta da Vitalidade"
         ],
         cuidado:[
-          "Meganium/Ogerpon/Hydrapple dão KO fácil no Dragapult; Ripening Charge (Hydrapple ex) cura o board — cuidado ao deixar dano em jogo",
-          "NÃO vá de Dragapult cedo demais (sem board forte atrás OU Unfair Stamp difícil de responder); Moltres ajuda muito esse matchup"
+          "Meganium/Ogerpon/Hydrapple dão KO fácil no Dragapult; não pegue KO que dependa de dano ficando em jogo enquanto eles têm só 1 Hydrapple",
+          "NÃO vá de Dragapult cedo demais contra mão grande deles (sem board forte atrás OU Unfair Stamp)"
         ] },
-      { id:216, name:"Dragapult Ex Dusknoir", tier:"A", wr:"50-55%", metaShare:"5,63%", coinFlip:"second",
+      { id:216, name:"Dragapult Ex Dusknoir", tier:"A", wr:"49-53%", metaShare:"5,70%", coinFlip:"second",
         objetivo:[
-          "[GUIA] Indo SEGUNDO é ainda mais forte aqui; USE Budew (item lock impede Candy + Dusknoir tirarem seu Drakloak carregado)",
+          "[GUIA] Indo SEGUNDO é ainda mais forte aqui; SEMPRE Budew, mesmo indo 1º (item lock impede Candy + Dusknoir tirarem seu Drakloak carregado)",
           "Corrida de spread; controle o residual de 30 — NÃO deixe 30 sobrando se eles têm energia (vira KO com Munki + 60 deles)"
         ],
         cuidado:[
-          "Explosão Amaldiçoada (ability, Watchtower não pega — Psíquico); não dar acesso a Item = evita Candy + Dusknoir",
+          "Explosão Amaldiçoada (ability); não dar acesso a Item = evita Candy + Dusknoir",
           "Não exponha o 2º Dragapult (3 prêmios); evolua o Drakloak reserva antes se for deixar 30 em jogo"
         ] },
-      { id:217, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"49-53%", metaShare:"1,26%", coinFlip:"first",
+      { id:217, name:"Grimmsnarl Froslass da Marnie", tier:"A", wr:"50-54%", metaShare:"3,77%", coinFlip:"first",
         objetivo:[
-          "Matar os Munkidori deles (rodam até 4!) e o Yveltal com spread/Ordens"
+          "Matar os Munkidori deles (rodam até 4!) e o Yveltal com spread/Ordens",
+          "Martelo na Sombria: sem ela o Munki deles não move nada"
         ],
         cuidado:[
-          "Manto Congelante chipa 10/turno em TODO mundo com ability (seus Drakloak/Dragapult!)",
+          "Manto Congelante chipa 10/turno em TODO mundo com ability (seus Drakloak/Dragapult/Dudunsparce!)",
           "Bala Sombria 180 + 30 no banco"
         ] },
-      { id:218, name:"Mega Lucario Ex Hariyama", tier:"A", wr:"52-57%", metaShare:"3,41%", coinFlip:"first",
+      { id:218, name:"Mega Lucario Ex Hariyama", tier:"A", wr:"52-56%", metaShare:"3,41%", coinFlip:"first",
         objetivo:[
-          "[GUIA] JOGAR PRIMEIRO. 🎯 Retreatar pra Munkidori T1 é MUITO forte (precisam de 2 Premium Power Pro pra matar via Cosmic Beam) — nega prêmio no T1 deles",
-          "Risky Ruins cedo (eles só têm 2 estádios): dano extra deixa Mergulho ameaçar OHKO em Makuhita/Riolu no banco",
+          "[GUIA] JOGAR PRIMEIRO. 🎯 Recuar pra Munkidori T1 é MUITO forte (precisam de 2 Premium Power Pro pra matar via Cosmic Beam) — nega o prêmio do T1 deles",
+          "Risky Ruins cedo (eles só têm 2 estádios): residual do Mergulho ameaça OHKO em Makuhita/Riolu no banco → vencer em 3 Mergulhos",
           "🎯 Martelo logo após Cosmic Beam do Solrock (sem energia, não usam Aura Jab) ou pra zerar o Lucario ativo + Unfair Stamp"
         ],
         cuidado:[
-          "🚨 O matchup pra EVITAR bancar Fezandipiti/Meowth — se roubarem prêmios em liability enquanto montam via Aura Jab, complica",
+          "🚨 O matchup pra EVITAR bancar Fezandipiti/Meowth — se roubarem prêmios em liability enquanto montam via Aura Jab, complica (exceção: Ultra Ball → Meowth → Lillie se for o único caminho)",
           "Maximum Belt faz Mega Lucario 270+50 = 320 OHKO exato no Dragapult"
         ] },
-      { id:219, name:"🐉 Dragapult Ex (Espelho)", tier:"A", wr:"48-52%", metaShare:"9,25%", coinFlip:"second",
+      { id:219, name:"🐉 Dragapult Ex (Espelho)", tier:"A", wr:"46-50%", metaShare:"8,36%", coinFlip:"second",
         objetivo:[
-          "[GUIA] Pro hoje prefere SEGUNDO (indo 1º você se pressiona; indo 2º eles usam menos Budew → seus Martelos pegam). Lista Crushing Hammer é a melhor no espelho",
-          "Indo primeiro: pressione KO no Budew deles; ataque a Dreepy/Munki ativos T1 pra tornar o Budew deles arriscado",
-          "🎯 Martelo na energia que ameaça seu Budew = entra com segurança; sua edge é Martelo + Unfair Stamp/Special Red Card"
+          "[GUIA] SEGUNDO (indo 1º você se pressiona; indo 2º eles usam menos Budew → seus Martelos pegam mesmo com start bom deles). Lista Hammer é a melhor no espelho",
+          "Indo primeiro: anexe no Dreepy/Munki ATIVO no T1 pra tornar o Budew deles arriscado. Indo segundo: só Budew se Martelou a energia que ameaça ele",
+          "Deixe ELES iniciarem se têm pouca energia: Unfair Stamp + Martelo na resposta enterra. Seu Budew + Cérebro Adrena mata o Budew deles = turno de itens antes de ir",
+          "🌹 Rosa é a resposta aos Martelos deles: fique atrás nos prêmios, tenha Fogo+Psíquico no descarte; 3 Macas dificultam te secarem de energia"
         ],
         cuidado:[
-          "NÃO inicie em board cheio deles sem o seu também forte (ainda mais se for furar Budew); cuidado com o residual de 30 (Munki deles devolve)",
-          "🎯 NÃO bancar Fezandipiti cedo (eles trapeiam + Mergulham nele); não ponha dano no Fezandipiti deles antes (perde o trap), salvo pra fechar prêmios"
+          "NÃO inicie em board cheio deles sem o seu também forte (ainda mais se for furar Budew); residual de 30 num só Pokémon vira KO no seu Drakloak (Munki deles + 60)",
+          "🎯 NÃO bancar Fezandipiti cedo (trapeiam + Mergulham nele); não ponha dano no Fezandipiti deles antes (perde o trap). Late game com 3 prêmios restantes bancar é seguro",
+          "Ultra Ball é fraca aqui (item lock) — não desperdice; 3ª Sombria vale pra Munki duplo"
         ] },
       { id:220, name:"Mega Venusaur Ex", tier:"A", wr:"47-51%", metaShare:"0,70%", coinFlip:"first",
         objetivo:[
-          "Moltres/Ordens no Genesect (mata o snipe) — 120 HP",
+          "Ordens no Genesect (120 HP): Jet Headbutt + Ruínas/Munki mata o snipe",
           "2HKO no Venusaur com spread acumulado (380 HP + cura 30, não tem OHKO)"
         ],
         cuidado:[
           "Jungle Dump 240 + chip de spread mata seu Dragapult",
           "Genesect snipa seu banco escalando com Planta anexada"
         ] },
-      { id:221, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"50-55%", metaShare:"3,56%", coinFlip:"first",
+      { id:221, name:"Raging Bolt / Ogerpon Box", tier:"A", wr:"45-52%", metaShare:"3,56%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Com Crustle Hammer NÃO é desfavorável (~50/50 ou +). JOGAR PRIMEIRO (o deck deles trava indo 1º). Meta: atacar com eles em 5 e você em 6, com energia extra no banco — o deck deles é lento",
+          "[GUIA] Agregado 45,6%, mas o pro diz 50/50 com Martelo. JOGAR PRIMEIRO (o deck deles trava indo 1º). Meta: atacar em 5×6 com energia extra no banco — o deck deles é lento",
           "🎯 Martelo no Kangaskhan (terminam T1 com 1 energia nele): 1 heads atrasa enormemente; Budew bom SE fizer esse play (corta Energy Switch)",
-          "🎯 Empilhe o residual do Mergulho no Meowth ex deles a cada turno → 2 prêmios extras sem gastar Ordens no ativo"
+          "Após Unfair Stamp: Ordens EM VOLTA do Kangaskhan nega o Run Errand deles",
+          "🎯 Empilhe o residual do Mergulho no Meowth ex deles → 2 prêmios sem Ordens; 20 no Raging Bolt que vai atacar deixa Ordens fechar os dois no banco"
         ],
         cuidado:[
           "Bellowing Thunder escala 70×energia descartada — nunca deixe energia sobrando neles",
-          "Chien-Pao limpa dano descartando Área Zero — disrupte a mão / tire o estádio deles ANTES de pôr dano"
+          "Chien-Pao limpa dano descartando Área Zero — bumpe o estádio deles ANTES de espalhar dano"
         ] },
-      { id:222, name:"Cinccino Ex Metagross", tier:"A", wr:"45-49%", metaShare:"0,74%", coinFlip:"first",
+      { id:222, name:"Cinccino Ex Metagross", tier:"C", wr:"45-49%", metaShare:"0,74%", coinFlip:"first",
         objetivo:[
-          "Watchtower DESLIGA o Pelagem Lisa do Cinccino (Incolor!) — seus ataques param de errar no flip",
-          "Martelo na energia Metal"
+          "Ordens EM VOLTA do Cinccino (Pelagem Lisa faz 50% dos ataques nele falharem): mate Metang/Beldum com spread + Munki",
+          "Martelo na energia Metal do Metagross"
         ],
         cuidado:[
           "Martelo Metálico 300 — com 20+ de chip seu Dragapult morre",
-          "Sem Watchtower, 50% dos seus ataques no Cinccino falham"
+          "Sem Watchtower na lista: não dá pra desligar o Cinccino — jogue ao redor dele"
         ] },
-      { id:223, name:"Mega Lucario Ex (solo)", tier:"A", wr:"48-53%", metaShare:"1,58%", coinFlip:"first",
+      { id:223, name:"Mega Lucario Ex (solo)", tier:"A", wr:"55-60%", metaShare:"1,58%", coinFlip:"first",
         objetivo:[
-          "[GUIA] JOGAR PRIMEIRO; retreatar pra Munkidori T1 nega prêmio e dificulta o KO no Dragapult depois",
+          "[GUIA] Real 57,7%. JOGAR PRIMEIRO; recuar pra Munkidori T1 nega prêmio e dificulta o KO no Dragapult depois",
           "Risky Ruins cedo + residual do Mergulho ameaça OHKO em Riolu/Makuhita no banco; Martelo após Solrock",
-          "🔑 (sua build) Moltres pune o Mega Lucario ex ativo (110 por 1 prêmio)"
+          "Martelo até zero no Lucario ativo + Unfair Stamp = quase impossível pegarem 2 prêmios"
         ],
         cuidado:[
           "Mega Brave 270 (+Maximum Belt = 320 OHKO); evite bancar Fezandipiti/Meowth"
         ] },
-      { id:224, name:"Zoroark Ex do N", tier:"A", wr:"46-50%", metaShare:"3,95%", coinFlip:"first",
+      { id:224, name:"Zoroark Ex do N", tier:"A", wr:"48-53%", metaShare:"5,43%", coinFlip:"second",
         objetivo:[
-          "[GUIA] Difícil dos dois lados. JOGAR PRIMEIRO; use Budew MAIS aqui (difícil te darem KO no T2 indo 1º; desliga Poffin/Poké Pad/Ultra Ball/PP Up/Secret Box + protege do Darmanitan)",
-          "🎯 Martelo num Zoroark SEM energia = ele não Outrage (precisam mover + PP Up + voltar). Guarde Martelos pra quando atacarem → zere energia + Unfair Stamp",
-          "🎯 EXPLORE o board lock deles (sem Scoop Up / Turo): NÃO mate Tatsugiri/Budew/Meowth/Fezandipiti cedo — eles querem esses fora pra abrir espaço pros support deles",
-          "🔑 (sua build) Moltres pune o Zoroark ex ativo (110 por 1 prêmio)"
+          "[GUIA pós-NAIC, lista Tord] Agora SEGUNDO: Budew + Darmanitan deles é forte contra start fraco seu",
+          "🎯 Transformation Tome converte liabilities → board lock vale MENOS. Budew IMPEDE o Tome: se bancaram lixo cedo, Itchy Pollen seguido enquanto você monta",
+          "Mate liabilities cedo se há caminho pra vencer no prize trade (não ficam mais presas no board)",
+          "🎯 Martelo num Zoroark SEM energia = ele não Outrage; guarde Martelos pra quando atacarem → zere energia + Unfair Stamp. Mão baixa = sem Tome (Trade + 2 cartas)"
         ],
         cuidado:[
-          "Pense ANTES de cada KO (o board lock é onde o jogador médio deles erra); eles também rodam disrupção",
+          "Lista agressiva com 1 Munkidori: eles SOFREM contra múltiplos Dragapult — se eles iniciarem, Unfair Stamp + Mergulho na resposta",
           "Guarde Ruínas pra valor de Munki / bumpar N's Castle (Zorua não toma dano de Ruínas)"
         ] },
       { id:225, name:"Greninja (não-Mega)", tier:"C", wr:"42-46%", metaShare:"1,61%", coinFlip:"first",
@@ -1155,16 +1163,17 @@ const DECKS = {
           "Munki segura o chip deles; correr"
         ],
         cuidado:[
-          "Mirage Barrage snipa 120×2 no seu banco — Drakloak (90 HP) morre, evolua rápido",
-          "Watchtower não pega nada (Água)"
+          "Mirage Barrage snipa 120×2 no seu banco — Drakloak (90 HP) morre, evolua rápido"
         ] },
-      { id:226, name:"Dragapult Ex Blaziken", tier:"A", wr:"47-51%", metaShare:"2,42%", coinFlip:"first",
+      { id:226, name:"Dragapult Ex Blaziken", tier:"A", wr:"47-51%", metaShare:"5,29%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Variante de espelho mais lenta — sua lista Crushing Hammer é FAVORECIDA (eles não têm os Martelos)",
-          "Corrida: mate o Munki deles e feche com spread + Ordens; Martelo na energia deles trava o ritmo"
+          "[GUIA Pitch Black] 🎯 GATEKEEP o Blaziken: eles têm 8 energias e sem Rosa → Martelo pressiona muito enquanto o Blaziken não entra",
+          "Ruínas cedo: Torchic com 20 morre pro residual do Mergulho; Combusken cai com +1 Cérebro Adrena",
+          "Iniciar cedo é MENOS punido (eles não têm Martelo pra combinar com Unfair Stamp)",
+          "Blaziken em jogo: Ordens no Blaziken ex + Martelo nas energias do BANCO = atrapalha ataques/Adrena do turno seguinte"
         ],
         cuidado:[
-          "Blaziken acelera energia (podem ser mais rápidos) — não jogue passivo demais",
+          "Blaziken não gera energia infinita: zerar entre KOs + Martelo força Crispin pra novo Dragapult + Munki",
           "Não exponha o 2º Dragapult (3 prêmios); cuidado com o residual de 30 (Munki deles devolve)"
         ] },
       { id:227, name:"Diancie Dusknoir", tier:"C", wr:"40-44%", metaShare:"0,76%", coinFlip:"first",
@@ -1173,27 +1182,30 @@ const DECKS = {
         ],
         cuidado:[
           "Diamond Coat: Diancie toma 30 a MENOS de dano",
-          "Explosão Amaldiçoada 130 (ability, Watchtower não pega)"
+          "Explosão Amaldiçoada 130 (ability)"
         ] },
       { id:228, name:"Crustle", tier:"C", wr:"43-47%", metaShare:"1,45%", coinFlip:"first",
         objetivo:[
           "[GUIA] PIOR matchup do deck, mas JOGÁVEL. JOGAR PRIMEIRO (anexa antes; ameaça Crustle com 1 energia; melhor ainda se eles abrem Kangaskhan)",
-          "🎯 Melhor atacante: o Dunsparce pequeno (90 dano, 140 HP — sobrevive a Tremendas Tesouras se não tiver Espinhosa). Seguro no banco (Run Away Draw re-monta)",
-          "🎯 Evite a Espinhosa: Martelo ou suba um Crustle que ainda não tem Espinhosa. Sem Mist (ou tira no Martelo) eles tomam confusão do Mind Bend + residual"
+          "🦎 Melhor atacante: DUDUNSPARCE (Land Crush 90, 140 HP — sobrevive a Tremendas Tesouras se não bater em Espinhosa). Seguro no banco: se Ordens nele, Run Away Draw re-monta",
+          "🎯 Evite a Espinhosa: Martelo ou Ordens num Crustle que ainda não tem Espinhosa. Sem Nebulosa (ou tira no Martelo) eles tomam confusão do Mind Bend + residual",
+          "Ascension no T1 deles: bata no Crustle IMEDIATAMENTE (Mind Bend ou Dragon Headbutt do Drakloak)",
+          "Abriram Kangaskhan: Mergulho rápido + JUDGE no 2º Mergulho (mão grande do Run Errand); residual nos Crustle com energia do banco"
         ],
         cuidado:[
           "Seu trabalho é IMPEDIR um Crustle saudável com muita energia + Capa do Herói (é como eles passam por você)",
-          "Não use Martelo num Crustle até a 2ª energia (senão migram pra outro); vs Kangaskhan: Mergulho rápido + Judge/Special Red Card no 2º Mergulho (mão grande do Run Errand)"
+          "NÃO Martele um Crustle até a 2ª energia nele (senão migram pra outro). Espinhosa deles vira fuel: counters no Dragapult voltam via Munki"
         ] },
-      { id:229, name:"Slowking Metagross", tier:"A", wr:"50-55%", metaShare:"5,22%", coinFlip:"first",
+      { id:229, name:"Slowking Metagross", tier:"A", wr:"46-50%", metaShare:"5,44%", coinFlip:"first",
         objetivo:[
-          "[GUIA] JOGAR PRIMEIRO (ameaça evoluir pra Dragapult rápido — podem nunca atacar de Kyurem); Budew é EXTREMAMENTE forte, use quase todo jogo",
-          "🎯 Estabeleça MÚLTIPLOS Dragapult antes de atacar: com Dragapult+Dragapult+Drakloak eles não fazem nada além de te deixar dar 3 Mergulhos = geralmente ganha",
-          "Contra o Kyurem: Special Red Card/Unfair Stamp + Budew trava; ou bance 4 Dreepy (reduz o estrago do board wipe)"
+          "[GUIA] JOGAR PRIMEIRO (ameaça evoluir pra Dragapult rápido — podem nunca atacar de Kyurem); BUDEW praticamente TODO jogo (recuar não custa caro aqui). T2 Martelo cara + Budew pode travar eles no 2º turno",
+          "🎯 Bance 4 DREEPY (sobrevive ao Geada Tripla); estabeleça MÚLTIPLOS Dragapult antes de atacar: Dragapult + Dragapult + Drakloak = eles não impedem 3 Mergulhos",
+          "Levou Kyurem cedo: Unfair Stamp/Judge + Budew; depois Martelo trava (sem aceleração fora da anexação)",
+          "Ordens na Latias por 200 SEM matar: corta promoção do Kangaskhan + draw do Fezandipiti (vale ~5 cartas)"
         ],
         cuidado:[
           "🚨 KYUREM é o que você mais teme (limpa quase todo seu board) — não ataque antes de montar múltiplos Dragapult",
-          "Ordens no Latias (200, sem matar) corta promoção do Kangaskhan + draw do Fezandipiti; guarde estádio pra bumpar Academy at Night (Watchtower desliga Kangaskhan/Meowth se você rodar)"
+          "Guarde estádio pra bumpar Academy at Night no turno de disrupção; Clefairy carregado = mude o plano se não pode perder o Dragapult"
         ] },
       { id:230, name:"Ethan's Typhlosion", tier:"C", wr:"39-43%", metaShare:"0,64%", coinFlip:"first",
         objetivo:[
@@ -1203,27 +1215,51 @@ const DECKS = {
         cuidado:[
           "Buddy Blast escala 60×Aventura no descarte — o tempo joga contra você"
         ] },
-      { id:231, name:"Garchomp Ex da Cíntia", tier:"A", wr:"45-48%", metaShare:"1,84%", coinFlip:"first",
+      { id:231, name:"Garchomp Ex da Cíntia", tier:"A", wr:"44-48%", metaShare:"1,84%", coinFlip:"first",
         objetivo:[
-          "[GUIA] Levemente desfavorável, mas com chances reais. JOGAR PRIMEIRO (~1 turno extra). Budew T1 indo 2º só se for difícil te darem KO nele",
+          "[GUIA] Levemente desfavorável (real 45%), mas com chances reais. JOGAR PRIMEIRO (~1 turno extra). Budew T1 indo 2º só se for difícil te darem KO nele",
           "🎯 Risky Ruins T1 é DEVASTADOR (Garchomp não roda estádio): KOs e ameaças bem mais fáceis — jogo fica favorável",
-          "Persiga as Roselia (limitam seu OHKO); Ordens + Jet Headbutt numa Roselia a prepara pro Mergulho",
-          "🔑 (sua build) Moltres pune o Garchomp ex ativo (110 por 1 prêmio)"
+          "Persiga as Roselia (limitam seu OHKO); Ordens + Jet Headbutt numa Roselia a prepara pro Mergulho"
         ],
         cuidado:[
-          "🎯 Martelo: descarte energia do Garchomp DO BANCO (não do ativo) — senão eles retreatam e usam Draconic Buster",
+          "🎯 Martelo: descarte energia do Garchomp DO BANCO (não do ativo) — senão eles recuam e usam Investida do Dragão",
           "Spiritomb é o mais chato: NÃO deixe dano suficiente no banco DELES pra Spiritomb + Roselias darem KO fácil; evite bancar Meowth/Fezandipiti"
         ] },
-      { id:232, name:"Mega Kangaskhan Box (Clefairy) 🔴", tier:"C", wr:"38-43%", metaShare:"novo", coinFlip:"first",
+      { id:232, name:"Kangaskhan Box (Clefairy Pearl / Slop)", tier:"C", wr:"42-47%", metaShare:"~3%", coinFlip:"first",
         objetivo:[
-          "👁️ Banco: vários ex (4 Lillie's Clefairy!) + Profundezas da Área Zero (banco 8)",
-          "Watchtower desliga o Mega Kang (Incolor) Ir Buscar + o Meowth ex deles",
-          "Spread + Munkidori shift; Ordens nos alvos amolecidos"
+          "👁️ Banco: Mega Kangaskhan + Lillie's Clefairy ex + Latias/Raging Bolt/Meowth ex, Crispin, Lillie's Pearl (Kowalski, campeão NAIC). Real 42-44% agregado, mas o pro 'não acha tão desfavorável'",
+          "🎯 MIND BEND cedo é o melhor ataque: confusão trava o 2º Clefairy (eles montam 1 fácil, o 2º não). Sombria no Munki bancado T1 > Budew se o start deles for razoável. Após o 1º prêmio deles, Mind Bend imediato",
+          "Dano do Mind Bend deixa o Clefairy no alcance do residual (190: +10 via Ruínas ou Itchy Pollen) = 6 prêmios em 2 Mergulhos PULANDO o Pearl. Prime Catcher no Munki? mande de volta; se recuarem pra passar pelo Munki, Rosa monta Dragapult novo",
+          "🎯 Plano SLOP (start lento mas board bom): Ruínas cedo → mova 60 pro MEOWTH EX deles → 2 Mergulhos. Setup: 3-6 prêmios, 20 no Meowth, energia em Drakloak + Munki. Turno: Ordens num 210 HP do banco (Fezandipiti/Latias) + disrupção + Martelo + move 20 + Mergulho 60 no Meowth SEM pegar KO (nega draw do Kang/Fezandipiti) → próximo turno Clefairy ativo + Meowth = 6"
         ],
         cuidado:[
           "🚨 Lillie's Clefairy Zona das Fadas = SEU Dragapult ex fraco a Psíquico ×2 → Latias Eon Blade 200×2 = 400 OHKO",
-          "Spread/Ruínas é lento vs Box saudável de banco 8; Crushing Hammer ajuda pouco (energia mista)",
-          "Dragapult ex = 3 prêmios (liability)"
+          "Com Lillie's Pearl em jogo ou Raging Bolt: precisa 1 energia a MAIS pro plano do Meowth (Ordens extra). Chien-Pao pode descartar o Meowth danificado — mão baixa deles evita",
+          "Dragapult ex = 3 prêmios (liability); deck resistente a item lock (Run Errand + Flip the Script)"
+        ] },
+      { id:233, name:"Mega Excadrill Ex", tier:"A", wr:"45-49%", metaShare:"6,77%", coinFlip:"first",
+        objetivo:[
+          "👁️ T1: banco CHEIO (Drilbur Call for Family, Petrel, Genesect) ou quase VAZIO — setup all-or-nothing. Real 47,4% — o matchup mais assustador da lista padrão, mas vencível",
+          "🎯 Banco vazio no T1 deles (principalmente indo 2º): BUDEW. Banco cheio + Genesect: NÃO gaste recurso recuando (eles já jogaram os itens)",
+          "🏟️ RUÍNAS CEDO quase sempre (eles têm 0-1 estádio): acumula dano pro Munki; start lento deles + Martelo + Mergulho rápido impede montar os Metang",
+          "🎯 Plano principal: 3 Dragapults a partir de 5×6. Mergulho em 5-6 com Sombria no Munki + Ruínas; turno seguinte ROSA (2 energias num Dragapult novo) + anexa num Drakloak; Ordens no 3º Mergulho",
+          "Residual: 20 em cada Metang (Adrena + Mergulho ameaça), +20 no Excadrill ativo (fica no alcance mesmo com 1 Sorvete/Capa). Sem Munki: 40 no Metang"
+        ],
+        cuidado:[
+          "Eles matam Dragapult todo turno — o plano é ritmo, não parede. Martelo em start lento junto com KO em Metang; se vão ter energia de qualquer jeito, guarde pro late",
+          "Conte as cartas REAIS da mão deles (evoluções Metal do Genesect não contam). Sem Capa anexada e sem Apoiador jogado = mão morta. Unfair Stamp ok, mas a mão deles já costuma ser fraca"
+        ] },
+      { id:234, name:"Dhelmise (Ghost Veil)", tier:"A", wr:"50-54%", metaShare:"4,00%", coinFlip:"first",
+        objetivo:[
+          "👁️ Banco: Dhelmise + Clefairy ex/Banette + Dunsparce, poucos switch. Real 52%; o pro acha 'um dos mais divertidos' — deck cheio de fraquezas",
+          "🎯 FIQUE À FRENTE EM ENERGIA. Budew RARO (Dhelmise mata Budew fácil mesmo sem Ghost Veil no descarte) — só se passarem com algo que não é Dhelmise",
+          "🎯 FEZANDIPITI EX COMO ATACANTE: anexe nele cedo + Crispin → eles não matam em 1 hit; bater nele te dá prêmios e energia em jogo",
+          "Ordens em Clefairy ex/Banette SEM energia + Martelo ou Cruel Arrow no que tem energia no banco: eles têm 0-1 switch = turno sem ataque = jogo",
+          "Backup: Unfair Stamp + Mergulho (Ruínas + Munki no Dunsparce). Mind Bend também: single-prize, força flip, Munki duplo move 60/turno do Fezandipiti"
+        ],
+        cuidado:[
+          "Discarding 4 Ghost Veil pra matar seu starter é difícil pra eles sem draw perfeito — não dê tempo",
+          "Ir de Dragapult força o Clefairy ex deles = abre turno de 3 prêmios depois"
         ] }
     ]
   }
@@ -1525,7 +1561,7 @@ const DECK_ORDER = ['crustle', 'slowking', 'dragapult', 'zam'];
 const DECK_INFO = {
   crustle:   { short: 'Crustle',  tag: 'Parede single-prize · imune a ataques de ex', overall: '~57%' },
   slowking:  { short: 'Slowking', tag: 'Combo Metagross 300 · Psíquico bate Lutador', overall: '~52%' },
-  dragapult: { short: 'Pult',     tag: 'Spread + trava stax · Munkidori shift', overall: '~53%' },
+  dragapult: { short: 'Pult',     tag: 'Crushing Hammer do Hedrick (campeão mundial) · Dudunsparce + Rosa', overall: '~53%' },
   zam:       { short: 'Pult+Zam', tag: 'Spread + finisher non-ex (Alakazam)', overall: 'est.' }
 };
 const TABS = [
@@ -1559,7 +1595,8 @@ const MON_DEX = [
   ['starmie', 121], ['crobat', 169], ['typhlosion', 157], ['greninja', 658], ['lucario', 448],
   ['lopunny', 428], ['kangaskhan', 115], ['festival', 1011], ['ceruledge', 937], ['archaludon', 1018],
   ['cinccino', 573], ['trevenant', 709], ['barbaracle', 689], ['diancie', 719],
-  ['metagross', 376], ['ursaluna', 901], ['lunatone', 337]
+  ['metagross', 376], ['ursaluna', 901], ['lunatone', 337],
+  ['excadrill', 530], ['dhelmise', 781]
 ];
 function matchupDex(name) {
   const s = String(name).toLowerCase();
